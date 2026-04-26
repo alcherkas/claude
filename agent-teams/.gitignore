@@ -1,0 +1,24 @@
+# Runtime output (created when /debate runs)
+logs/
+
+# Node
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
+.#*
+*.bak
+
+# Local-only Claude Code overrides — never push these
+.claude/settings.local.json
+
+# Secrets — extra safety net (we don't expect these here, but never commit them)
+.env
+.env.local
+*.pem
+*.key
+
+# bin/ is intentionally ignored (inherited from the parent .gitignore).
+# The bin/log-chat and bin/log-decision scripts are local-only — not committed.
