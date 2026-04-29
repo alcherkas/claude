@@ -1,0 +1,27 @@
+schema_version: "1.0"
+
+extension:
+  id: adr
+  name: "Architecture Decision Records"
+  version: "1.0.0"
+  description: "Capture architectural decisions as numbered, status-tracked ADR files under specs/<feature>/adr/. Invoked any time after /speckit.specify."
+  author: local-team
+  license: MIT
+
+requires:
+  speckit_version: ">=0.7.2"
+  tools: []
+
+provides:
+  commands:
+    - name: speckit.adr
+      file: commands/speckit.adr.md
+      description: "Capture an architectural decision as a numbered ADR file"
+  templates:
+    - name: adr-template
+      file: templates/adr-template.md
+
+tags:
+  - "adr"
+  - "governance"
+  - "decisions"
