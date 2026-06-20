@@ -20,26 +20,31 @@ REPORT_MD = REPO_ROOT / "build_report.md"
 REPORT_JSON = WIKIGEN_DIR / "build_report.json"
 
 # --- Theme mapping: keyed off the source filename's UUID prefix (H1 titles vary) ---
-# slug -> (title, filename_uuid_prefix)
+# slug -> {title (full, page H1), nav (short tab label), prefix (filename UUID)}
 THEMES: dict[str, dict] = {
     "context-engineering": {
         "title": "Solution-Level Context Engineering Across Multiple Repositories",
+        "nav": "Context Engineering",
         "prefix": "6d87f7be",
     },
     "security-governance": {
         "title": "Security, Governance & Safe Autonomy for AI Coding Agents",
+        "nav": "Security & Governance",
         "prefix": "3bd81473",
     },
     "orchestration": {
         "title": "Agentic Orchestration & Workflows",
+        "nav": "Orchestration",
         "prefix": "b31d71b8",
     },
     "spec-driven": {
         "title": "Spec-Driven, Constraints-Driven & Test-Driven Development",
+        "nav": "Spec-Driven Dev",
         "prefix": "9b07b939",
     },
     "evals-observability": {
         "title": "Evaluations, Observability & Quality Gates",
+        "nav": "Evals & Observability",
         "prefix": "5549b666",
     },
 }

@@ -167,7 +167,7 @@ def render_nav(manifest: list[dict]) -> None:
             if org_label[s] in settings.ORG_ORDER
             else 99,
         )
-        _write_pages(theme, {"title": settings.THEMES[theme]["title"], "nav": ["index.md", *ordered]})
+        _write_pages(theme, {"title": settings.THEMES[theme]["nav"], "nav": ["index.md", *ordered]})
         for s in org_slugs:
             _write_pages(f"{theme}/{s}", {"title": org_label[s]})
 
