@@ -1,0 +1,13 @@
+# Local-only fetcher deps for tools/wikigen. NOT installed in CI.
+# Install with: pip install -r requirements.txt -r requirements-fetch.txt
+httpx[http2]>=0.27
+tenacity>=8.2
+trafilatura>=1.8
+readability-lxml>=0.8
+markdownify>=0.12
+python-slugify>=8.0
+pyyaml>=6.0
+feedparser>=6.0
+pypdf>=4.0
+tqdm>=4.66
+typer>=0.12

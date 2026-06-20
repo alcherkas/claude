@@ -1,0 +1,86 @@
+site_name: AI-Agent Engineering Knowledge Wiki
+site_description: >-
+  A curated, searchable wiki of authoritative sources on building, securing,
+  orchestrating, and evaluating AI coding agents.
+site_url: https://alcherkas.github.io/claude/
+repo_url: https://github.com/alcherkas/claude
+repo_name: alcherkas/claude
+docs_dir: docs
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - navigation.instant
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+  - awesome-pages
+  - tags
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# --- Build validation ---
+# Source pages are all reachable via awesome-pages, so nothing is "omitted".
+# Internal-link breakage fails `mkdocs build --strict` (CI gate); external links
+# and anchors are not validated.
+validation:
+  nav:
+    omitted_files: ignore
+    not_found: warn
+  links:
+    not_found: warn
+    anchors: ignore
+    absolute_links: ignore
+    unrecognized_links: ignore
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/alcherkas/claude
+
+copyright: >-
+  Curated annotations and excerpts only — full text of each source remains with
+  its original publisher. See the About page for usage notes.

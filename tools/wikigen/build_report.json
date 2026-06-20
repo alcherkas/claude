@@ -1,0 +1,37 @@
+{
+  "total": 278,
+  "ok": 269,
+  "failed": 9,
+  "by_status": {
+    "ok": 258,
+    "pdf": 5,
+    "extraction_failed": 5,
+    "arxiv": 6,
+    "not_found": 1,
+    "forbidden": 3
+  },
+  "by_org": {
+    "Anthropic": 39,
+    "Google": 55,
+    "Microsoft/GitHub": 84,
+    "ThoughtWorks": 42,
+    "Martin Fowler": 27,
+    "Other": 22,
+    "PCI DSS": 9
+  },
+  "by_theme": {
+    "context-engineering": 72,
+    "security-governance": 61,
+    "orchestration": 44,
+    "spec-driven": 53,
+    "evals-observability": 48
+  },
+  "link_rot": [
+    {
+      "title": "Custom chat modes",
+      "url": "https://github.com/microsoft/vscode-docs/blob/main/docs/copilot/customization/custom-chat-modes.md",
+      "wayback": null
+    }
+  ],
+  "missing_pages": []
+}

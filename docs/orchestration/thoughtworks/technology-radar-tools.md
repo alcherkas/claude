@@ -1,0 +1,29 @@
+---
+title: Tools | Technology Radar | Thoughtworks
+url: https://www.thoughtworks.com/radar/tools
+canonical_url: https://thoughtworks.com/radar/tools
+org: ThoughtWorks
+theme: orchestration
+subtopic: Key Findings — Best Links by Organization
+source_type: html
+tags:
+- ThoughtWorks
+- orchestration
+fetch_status: ok
+http_status: 200
+fetched_at: '2026-06-20'
+also_in:
+- evals-observability
+---
+
+# Tools | Technology Radar | Thoughtworks
+
+Google Antigravity multi-agent orchestration; Warp Oz
+
+> **Excerpt from the original:** 66. Axe-coreAxe-core is an open-source accessibility testing tool that detects issues in websites and other HTML-based applications. It checks pages for compliance with standards such as WCAG — including conformance levels A, AA and AAA — and flags common accessibility best practices. Since first appearing in the Radar in Trial in 2021, several of our teams have adopted Axe-core with clients. Accessibility is increasingly a mandatory quality attribute. In Europe, for example, regulations such as …
+
+[Read the original →](https://www.thoughtworks.com/radar/tools)
+
+*Source: ThoughtWorks · Thoughtworks · 2026-04-01 · archived 2026-06-20.*
+
+*Also referenced in: [Evaluations, Observability & Quality Gates](../../evals-observability/index.md).*

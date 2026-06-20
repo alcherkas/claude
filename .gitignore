@@ -399,3 +399,14 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# === Knowledge wiki (tools/wikigen + MkDocs) ===
+# MkDocs build output
+/site/
+# Local-only full-text archive (copyright-safe: never published)
+/archive/
+/docs_private/
+# Python virtualenv
+.venv/
+# macOS
+.DS_Store

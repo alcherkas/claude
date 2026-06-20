@@ -1,0 +1,4 @@
+# Site build only — installed by CI (.github/workflows/docs.yml).
+# Keep this minimal and deterministic; the fetcher deps live in requirements-fetch.txt.
+mkdocs-material>=9.5
+mkdocs-awesome-pages-plugin>=2.9
