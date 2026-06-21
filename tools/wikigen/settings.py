@@ -18,6 +18,7 @@ WIKIGEN_DIR = Path(__file__).resolve().parent
 MANIFEST_PATH = WIKIGEN_DIR / "manifest.json"
 REPORT_MD = REPO_ROOT / "build_report.md"
 REPORT_JSON = WIKIGEN_DIR / "build_report.json"
+REVIEW_LEDGER = WIKIGEN_DIR / "review_ledger.json"   # committed: approve/reject decisions
 
 # --- Theme mapping: keyed off the source filename's UUID prefix (H1 titles vary) ---
 # slug -> {title (full, page H1), nav (short tab label), prefix (filename UUID)}

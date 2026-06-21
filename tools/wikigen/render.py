@@ -15,7 +15,7 @@ import shutil
 
 import yaml
 
-from . import settings
+from . import review, settings
 from .manifest import canonicalize
 from .parse import _BULLET_RE, _URL_RE, _clean_url, _split_title_annotation
 
@@ -103,16 +103,19 @@ def render_source_page(entry: dict) -> None:
     dest.write_text("\n".join(lines), encoding="utf-8")
 
 
-def render_theme_landing(theme: str, manifest: list[dict]) -> None:
+def render_theme_landing(theme: str, manifest: list[dict], rejected: set[str]) -> None:
     """Rebuild a theme's landing page from its source todo file.
 
     Prose is kept verbatim; each link bullet is rewritten to link to the internal
     source page (resolved via the manifest), preserving the curated annotation.
+    Bullets for reviewer-rejected sources are dropped entirely.
     """
     src = next(
         (p for p in settings.TODO_DIR.glob("*.md") if settings.theme_for_file(p) == theme),
         None,
     )
+    if src is None:
+        return  # no todo source available (e.g. a docs-only checkout) — leave as-is
     by_canonical = {e["canonical_url"]: e for e in manifest}
     landing_path = f"{theme}/index.md"
 
@@ -129,9 +132,12 @@ def render_theme_landing(theme: str, manifest: list[dict]) -> None:
             out.append(line)
             continue
         url = _clean_url(urls[-1])
+        canonical = canonicalize(url)
+        if canonical in rejected:
+            continue  # reviewer rejected this source — omit its bullet
         title_block = _BULLET_RE.sub("", line[: line.rfind(urls[-1])])
         title, annotation = _split_title_annotation(title_block)
-        entry = by_canonical.get(canonicalize(url))
+        entry = by_canonical.get(canonical)
         if entry is None:
             out.append(line)
             continue
@@ -173,11 +179,14 @@ def render_nav(manifest: list[dict]) -> None:
 
 
 def render_all(manifest: list[dict]) -> None:
+    # Reviewer-rejected sources are never published (persistent exclusion).
+    rejected = review.rejected_canonicals()
+    visible = [e for e in manifest if e["canonical_url"] not in rejected]
     # Clean rebuild of the generated theme trees (leaves index.md/about.md/tags.md).
     for theme in settings.THEME_ORDER:
         shutil.rmtree(settings.DOCS_DIR / theme, ignore_errors=True)
-    for entry in manifest:
+    for entry in visible:
         render_source_page(entry)
     for theme in settings.THEME_ORDER:
-        render_theme_landing(theme, manifest)
-    render_nav(manifest)
+        render_theme_landing(theme, visible, rejected)
+    render_nav(visible)

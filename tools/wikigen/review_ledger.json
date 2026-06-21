@@ -1,0 +1,163 @@
+{
+  "https://a2a-protocol.org/latest/specification/": {
+    "decision": "approved",
+    "review_hash": "7f3da50769138091cf602d559cf88e7879f96eb1",
+    "title": "Agent2Agent Protocol Specification",
+    "dest_path": "orchestration/google/agent2agent-protocol-specification.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://adk.dev/evaluate/": {
+    "decision": "approved",
+    "review_hash": "0853ee8ac44489a90cdf3c3fcc2766f0e4f3d2af",
+    "title": "Evaluate agents",
+    "dest_path": "evals-observability/google/evaluate-agents-adk.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://developers.openai.com/api/docs/guides/evals": {
+    "decision": "approved",
+    "review_hash": "a248dea8aad9e6a3b088e7e1569e997a79ba2ff8",
+    "title": "OpenAI Evals guide",
+    "dest_path": "evals-observability/other/openai-evals-guide.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00638/119630/Lost-in-the-Middle-How-Language-Models-Use-Long": {
+    "decision": "approved",
+    "review_hash": "235a8c5122097978c87fad08b677fc647577ef09",
+    "title": "Lost in the Middle: How Language Models Use Long Contexts",
+    "dest_path": "context-engineering/other/lost-in-the-middle-how-language-models-use-long-contexts.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://docs.langchain.com/langsmith/evaluation-concepts": {
+    "decision": "approved",
+    "review_hash": "f2cea9c1cc163d6b56edd6525b55351c5e74b5c6",
+    "title": "LangSmith evaluation concepts",
+    "dest_path": "evals-observability/other/langsmith-evaluation-concepts.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/": {
+    "decision": "approved",
+    "review_hash": "c12b66bf0b9e333833ef9c7a22a21e6d995a52ad",
+    "title": "Ragas available metrics",
+    "dest_path": "evals-observability/other/ragas-available-metrics.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://genai.owasp.org/llm-top-10/": {
+    "decision": "approved",
+    "review_hash": "57dc3dda296e603dc0b1456799df0c3ee65072ef",
+    "title": "OWASP GenAI Security Project - LLM Top 10",
+    "dest_path": "security-governance/other/owasp-genai-security-project-llm-top-10.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://github.com/anthropic-experimental/sandbox-runtime": {
+    "decision": "approved",
+    "review_hash": "e9ec016800bdf21533d1f9b7a81ef15af1ef9048",
+    "title": "Sandbox Runtime",
+    "dest_path": "security-governance/anthropic/sandbox-runtime.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://github.com/github/spec-kit/blob/main/spec-driven.md": {
+    "decision": "approved",
+    "review_hash": "8e58c64caf78ff0e6aa17b5f67d0dd34ed1e4d87",
+    "title": "GitHub Spec Kit - spec-driven.md",
+    "dest_path": "spec-driven/microsoft-github/spec-kit-spec-driven-md.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://github.com/github/spec-kit/blob/main/templates/spec-template.md": {
+    "decision": "approved",
+    "review_hash": "4bbe9f8bce6c99bd703ca69ace34a124f1da45a1",
+    "title": "GitHub Spec Kit - spec-template.md",
+    "dest_path": "spec-driven/microsoft-github/spec-kit-spec-template.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://github.com/open-telemetry/semantic-conventions-genai": {
+    "decision": "approved",
+    "review_hash": "6a83db3ddaf302b8894bcfcac86956ffca818cab",
+    "title": "OpenTelemetry GenAI semantic conventions repository",
+    "dest_path": "evals-observability/other/opentelemetry-semantic-conventions-genai-repository.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://github.com/openai/evals": {
+    "decision": "approved",
+    "review_hash": "96cc92c1a34c8a6f042880747550263db8179fd3",
+    "title": "openai/evals",
+    "dest_path": "evals-observability/other/openai-evals-repository.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://github.com/swe-bench/SWE-bench": {
+    "decision": "approved",
+    "review_hash": "21ee284b49ea92afb38f6032d5356f9deda4e1c0",
+    "title": "SWE-bench repository",
+    "dest_path": "evals-observability/other/swe-bench-repository.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://kiro.dev/docs/specs/": {
+    "decision": "approved",
+    "review_hash": "ea7aaea19dd36970ae4ea9fc38acd6e673ca2b90",
+    "title": "Kiro Docs - Specs",
+    "dest_path": "spec-driven/other/kiro-specs.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://kiro.dev/docs/steering/": {
+    "decision": "approved",
+    "review_hash": "d2760b75d7f21d05a99f772f0212a39deb68444d",
+    "title": "Kiro Docs - Steering",
+    "dest_path": "spec-driven/other/kiro-steering.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://langfuse.com/docs/evaluation/overview": {
+    "decision": "approved",
+    "review_hash": "e44dc4065396a47f487e036e68855950f217af1d",
+    "title": "Langfuse Evaluation Overview",
+    "dest_path": "evals-observability/other/langfuse-evaluation-overview.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://langfuse.com/docs/observability/overview": {
+    "decision": "approved",
+    "review_hash": "a9a80e2470ad78a386756b26b22829306f782ab0",
+    "title": "Langfuse Observability and Application Tracing",
+    "dest_path": "evals-observability/other/langfuse-observability-application-tracing.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://learn.microsoft.com/en-us/azure/foundry/concepts/observability": {
+    "decision": "approved",
+    "review_hash": "369fc77041cf27f08fdcad9ccc09a34d703a5e10",
+    "title": "Observability in Generative AI - Microsoft Foundry",
+    "dest_path": "evals-observability/microsoft-github/observability-in-generative-ai-microsoft-foundry.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://modelcontextprotocol.io/specification/2025-06-18": {
+    "decision": "approved",
+    "review_hash": "3faf325ec6a4258925a7a79ec992565a18a1a516",
+    "title": "Model Context Protocol Specification 2025-06-18",
+    "dest_path": "context-engineering/other/model-context-protocol-specification-2025-06-18.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://openai.github.io/openai-agents-python/multi_agent/": {
+    "decision": "approved",
+    "review_hash": "66b994553f0bef54add98ff8d63ee39e59d57f63",
+    "title": "OpenAI Agents SDK - Agent orchestration",
+    "dest_path": "orchestration/other/openai-agents-sdk-agent-orchestration.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://openreview.net/forum?id=VTF8yNQM66": {
+    "decision": "approved",
+    "review_hash": "27ceace0c82c8ce8d44f3d16ae55e3981ed876cf",
+    "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+    "dest_path": "evals-observability/other/swe-bench-paper-openreview.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://owasp.org/www-project-top-10-for-large-language-model-applications/": {
+    "decision": "approved",
+    "review_hash": "9653ce63e8cfdc2530f41fc60adfad2ea8cc2888",
+    "title": "OWASP Top 10 for LLM Applications",
+    "dest_path": "security-governance/other/owasp-top-10-for-llm-applications.md",
+    "reviewed_at": "2026-06-21"
+  },
+  "https://www.nist.gov/itl/ai-risk-management-framework": {
+    "decision": "approved",
+    "review_hash": "20d3467a4649fb85b5588a102f55dcb1cd4b99d0",
+    "title": "NIST AI Risk Management Framework",
+    "dest_path": "security-governance/other/nist-ai-risk-management-framework.md",
+    "reviewed_at": "2026-06-21"
+  }
+}

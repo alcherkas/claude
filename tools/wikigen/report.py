@@ -10,12 +10,17 @@ from __future__ import annotations
 import json
 from collections import Counter
 
-from . import settings
+from . import review, settings
 
 _OK = {"ok", "arxiv", "pdf"}
 
 
 def build_report(manifest: list[dict]) -> dict:
+    # Report on the published set only — rejected sources aren't rendered, so
+    # counting them (or flagging their absent pages) would be misleading.
+    rejected = review.rejected_canonicals()
+    manifest = [e for e in manifest if e["canonical_url"] not in rejected]
+
     by_status = Counter(e["fetch"]["status"] for e in manifest)
     by_org = Counter(e["org"] for e in manifest)
     by_theme = Counter(e["theme"] for e in manifest)
