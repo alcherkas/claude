@@ -42,6 +42,8 @@ title: Spec-Driven, Constraints-Driven & Test-Driven Development
 - [Spec-driven development with AI: get started with a new open source toolkit](microsoft-github/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit.md) — GitHub Blog; Den Delimarsky, Sep 2, 2025
 - [GitHub Spec Kit repository](microsoft-github/github-spec-kit-repository.md)
 - [Spec Kit documentation site](microsoft-github/spec-kit-documentation-site.md)
+- [GitHub Spec Kit - spec-driven.md](microsoft-github/spec-kit-spec-driven-md.md) — primary repository document for SDD philosophy and workflow
+- [GitHub Spec Kit - spec-template.md](microsoft-github/spec-kit-spec-template.md) — feature-spec template for scenarios, tests, requirements, and success criteria
 - [Spec Kit AGENTS.md](microsoft-github/spec-kit-agents-md.md) — workflow conventions
 - [Diving Into Spec-Driven Development With GitHub Spec Kit](microsoft-github/diving-into-spec-driven-development-with-github-spec-kit.md) — Microsoft for Developers blog
 - [VS Code Live: Where does spec-kit fit now?](microsoft-github/vs-code-live-where-does-spec-kit-fit-now.md) — Spec Kit discussion #1175
@@ -117,6 +119,8 @@ title: Spec-Driven, Constraints-Driven & Test-Driven Development
 - [Constraint decay: The Fragility of LLM Agents in Backend Code Generation](other/constraint-decay-the-fragility-of-llm-agents-in-backend-code-generation.md) — arXiv
 - [Beyond Vibe Coding: Amazon Introduces Kiro, the Spec-Driven Agentic AI IDE](other/beyond-vibe-coding-amazon-introduces-kiro-the-spec-driven-agentic-ai-ide.md) — InfoQ, Aug 2025
 - [Kiro Documentation](other/kiro-documentation.md) — AWS
+- [Kiro Docs - Specs](other/kiro-specs.md) — requirements/design/tasks workflow for spec-driven agentic development
+- [Kiro Docs - Steering](other/kiro-steering.md) — persistent product, tech-stack, and structure context for agents
 
 ## Recommendations
 - **Start with the primary-source canon.** For SDD: GitHub's Spec Kit announcement + repo, Fowler/Böckeler's three-levels taxonomy, and the ThoughtWorks Radar blip. For TDD-with-agents: Anthropic's best-practices post plus ThoughtWorks's "The hidden pearls of TDD" and the Copilot/TDD article.

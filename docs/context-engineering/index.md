@@ -81,6 +81,10 @@ title: Solution-Level Context Engineering Across Multiple Repositories
 - [Exploring Generative AI](martin-fowler/exploring-generative-ai.md) — series index
 - [Fragments: April 29](martin-fowler/fragments-april-29.md) — notes on harness / AGENTS.md
 
+## Adjacent standards and research
+- [Model Context Protocol Specification 2025-06-18](other/model-context-protocol-specification-2025-06-18.md) — authoritative MCP spec for context/tools/resources/prompts
+- [Lost in the Middle: How Language Models Use Long Contexts](other/lost-in-the-middle-how-language-models-use-long-contexts.md) — peer-reviewed long-context caveat
+
 ## High-value multi-repo / solution-level practitioner references (non-priority sources)
 - [Repo-of-Repos: Tony's Multi-Repo Workspace for AI Coding Agents](other/repo-of-repos-tony-s-multi-repo-workspace-for-ai-coding-agents.md)
 - [The Spine Pattern: Multi-Repo Context for AI-Assisted Development](other/the-spine-pattern-multi-repo-context-for-ai-assisted-development.md)

@@ -70,6 +70,7 @@ title: Evaluations, Observability & Quality Gates
 ### Evaluations
 - [Introducing Gemini Enterprise Agent Platform](../orchestration/google/introducing-gemini-enterprise-agent-platform.md) — Agent Simulation, Agent Evaluation with multi-turn autoraters, Agent Observability, Agent Optimizer
 - [More ways to build and scale AI agents with Vertex AI Agent Builder](google/more-ways-to-build-and-scale-ai-agents-with-vertex-ai-agent-builder.md) — new Evaluation Layer + User Simulator; observability dashboard
+- [Evaluate agents](google/evaluate-agents-adk.md) — official ADK trajectory/tool-use and final-response evaluation guide
 - [Announcing User Simulation in ADK Evaluation](google/announcing-user-simulation-in-adk-evaluation.md) — LLM-powered multi-turn user simulator for goal-oriented agent eval
 - [Agent Development Kit: making it easy to build multi-agent applications](../orchestration/google/agent-development-kit-announcement.md) — built-in eval framework: trajectory + response scoring, `adk eval`
 - [AI in software engineering at Google: progress and the path ahead](google/ai-in-software-engineering-at-google-progress-and-the-path-ahead.md) — internal AI-SWE measurement and direction
@@ -96,6 +97,7 @@ title: Evaluations, Observability & Quality Gates
 - [What's new in Microsoft Foundry | Build Edition](microsoft-github/what-s-new-in-microsoft-foundry-build-edition.md) — ASSERT, ACS, Rubric, tracing, Agent Optimizer, tracing/evals for any framework
 
 ### Observability
+- [Observability in Generative AI - Microsoft Foundry](microsoft-github/observability-in-generative-ai-microsoft-foundry.md) — Microsoft Learn concept page for traces, monitoring, evals, and CI/CD quality gates
 - [Observability for AI Systems: Strengthening visibility](microsoft-github/observability-for-ai-systems-strengthening-visibility.md) — Microsoft Security Blog, Mar 2026; observability as a release requirement, trust-boundary violations
 - [Observability for Generative AI and agentic AI systems](microsoft-github/observability-for-generative-ai-and-agentic-ai-systems.md) — Microsoft Learn / Secure Future Initiative; AI-native logs/metrics/traces, OTel standardization
 - [Designing AI-Driven Observability for Trustworthy Agentic AI Systems](microsoft-github/designing-ai-driven-observability-for-trustworthy-agentic-ai-systems.md) — non-deterministic execution, LLM-as-judge evaluators, runaway-loop cost control
@@ -126,7 +128,16 @@ title: Evaluations, Observability & Quality Gates
 ## ADJACENT PRIMARY SOURCES (not among the five named, but high-value)
 - [Eval-Driven Development](other/eval-driven-development.md) — manifesto/landing site; "build evals first; code is generated, evals are engineered"
 - [OpenTelemetry GenAI semantic conventions](other/opentelemetry-genai-semantic-conventions.md) — vendor-neutral `gen_ai.*` agent telemetry standard referenced across Google, Microsoft, Databricks, and LangChain agent-observability tooling
+- [OpenTelemetry GenAI semantic conventions repository](other/opentelemetry-semantic-conventions-genai-repository.md) — primary OpenTelemetry repo for GenAI spans, metrics, and events
+- [LangSmith evaluation concepts](other/langsmith-evaluation-concepts.md) — offline/online eval concepts for curated datasets and production traces
+- [Langfuse Observability and Application Tracing](other/langfuse-observability-application-tracing.md) — traces for prompts, responses, tool calls, cost, latency, and nested steps
+- [Langfuse Evaluation Overview](other/langfuse-evaluation-overview.md) — datasets, experiments, automated evaluators, scores, and CI/CD eval workflows
+- [OpenAI Evals guide](other/openai-evals-guide.md) — eval construction concepts, data sources, and graders
+- [openai/evals](other/openai-evals-repository.md) — primary OpenAI eval repository and historical framework material
+- [SWE-bench: Can Language Models Resolve Real-World GitHub Issues?](other/swe-bench-paper-openreview.md) — peer-reviewed ICLR 2024 benchmark paper
+- [SWE-bench repository](other/swe-bench-repository.md) — primary benchmark repository
 - [Introducing SWE-bench Verified (OpenAI, Aug 13, 2024) — the standard coding-agent benchmark used by all major labs; a 500-sample human-verified subset of the original 2,294-instance SWE-bench across 12 Python repositories](other/introducing-swe-bench-verified-openai-aug-13-2024-the-standard-coding-agent-used.md)
+- [Ragas available metrics](other/ragas-available-metrics.md) — concrete RAG, agent/tool-use, factuality, semantic similarity, rubric, and exact-match metrics
 
 ---
 

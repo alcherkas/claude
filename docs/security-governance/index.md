@@ -26,6 +26,7 @@ title: Security, Governance & Safe Autonomy for AI Coding Agents
 - [Security – Claude Code Docs](anthropic/security-claude-code-docs.md) — read-only default, permission model, MCP controls
 - [Claude Code settings](anthropic/claude-code-settings.md) — managed settings, permissions, MDM/registry policy, precedence
 - [Making Claude Code more secure and autonomous with sandboxing](anthropic/making-claude-code-more-secure-and-autonomous-with-sandboxing.md) — engineering blog; OS-level bubblewrap/Seatbelt; reduced permission prompts by 84% in internal use
+- [Sandbox Runtime](anthropic/sandbox-runtime.md) — Anthropic Experimental repository for filesystem/network-isolated agent workloads
 - [How we contain Claude across products](anthropic/how-we-contain-claude-across-products.md) — engineering; environment/runtime containment
 - [Claude Code for Enterprise](anthropic/claude-code-for-enterprise.md) — SSO, SCIM, RBAC, custom retention, IP allowlisting, Bedrock/Vertex/Foundry
 
@@ -131,6 +132,10 @@ title: Security, Governance & Safe Autonomy for AI Coding Agents
 ---
 
 ## Cross-cutting risk & research
+- [OWASP Top 10 for LLM Applications](other/owasp-top-10-for-llm-applications.md) — community vulnerability taxonomy for LLM application risks
+- [OWASP GenAI Security Project - LLM Top 10](other/owasp-genai-security-project-llm-top-10.md) — OWASP GenAI Security Project landing page and guidance
+- [NIST AI Risk Management Framework](other/nist-ai-risk-management-framework.md) — standards-body framework for AI risk management and trustworthiness
+- [Model Context Protocol Specification 2025-06-18](../context-engineering/other/model-context-protocol-specification-2025-06-18.md) — MCP security principles for user consent, data privacy, and tool safety
 - [The 2025 AI Agent Index](other/the-2025-ai-agent-index.md) — arXiv; documents safety/guardrail disclosures across deployed agents incl. Claude Code, Copilot, Gemini
 - [SCGAgent: Recreating the Benefits of Reasoning Models for Secure Code Generation with Agentic Workflows](other/scgagent-recreating-the-benefits-of-reasoning-models-for-secure-code-generation.md) — arXiv
 - [Are AI-assisted Development Tools Immune to Prompt Injection?](other/are-ai-assisted-development-tools-immune-to-prompt-injection.md) — arXiv survey of agentic coding editor injection attacks

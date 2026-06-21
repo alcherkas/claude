@@ -37,6 +37,7 @@ title: Agentic Orchestration & Workflows
 - [ADK technical overview](google/adk-technical-overview.md)
 - [Build multi-agentic systems using Google ADK](google/build-multi-agentic-systems-using-google-adk.md) — Cloud blog
 - [Announcing the Agent2Agent (A2A) Protocol](google/announcing-the-agent2agent-a2a-protocol.md) — Apr 9, 2025
+- [Agent2Agent Protocol Specification](google/agent2agent-protocol-specification.md) — official A2A interoperability spec
 - [A2A protocol upgrade](google/a2a-protocol-upgrade.md) — v0.3; now Linux Foundation–governed
 - [What's new with Agents: ADK, Agent Engine, and A2A enhancements](google/what-s-new-with-agents-adk-agent-engine-and-a2a-enhancements.md) — v0.2, Python SDK
 - [Build and manage multi-system agents with Vertex AI](google/build-and-manage-multi-system-agents-with-vertex-ai.md) — ADK, A2A, Agent Garden, Agent Engine
@@ -84,6 +85,10 @@ title: Agentic Orchestration & Workflows
 - [The role of developer skills in agentic coding](martin-fowler/the-role-of-developer-skills-in-agentic-coding.md) — Birgitta Böckeler, Mar 25, 2025
 - [How far can we push AI autonomy in code generation?](../context-engineering/martin-fowler/how-far-can-we-push-ai-autonomy-in-code-generation.md) — Spring Boot multi-agent experiment, Aug 5, 2025
 - [VibeCoding vs Agentic Programming](martin-fowler/vibecoding-vs-agentic-programming.md) — bliki; "semantic diffusion" of the term
+
+### 6. Adjacent primary sources
+- [Model Context Protocol Specification 2025-06-18](../context-engineering/other/model-context-protocol-specification-2025-06-18.md) — official agent-to-tool/context protocol spec; complements A2A's agent-to-agent layer
+- [OpenAI Agents SDK - Agent orchestration](other/openai-agents-sdk-agent-orchestration.md) — LLM-driven vs. code-driven orchestration, agents-as-tools, and handoffs
 
 ---
 
