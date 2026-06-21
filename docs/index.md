@@ -10,10 +10,6 @@ A curated, searchable knowledge base of the strongest **authoritative sources**
 on how to build, secure, orchestrate, develop with, and evaluate **AI coding
 agents** across the software development lifecycle.
 
-Sources are filtered for primary, recent (2024–2026) material from five priority
-organizations — **Anthropic, Google, Microsoft/GitHub, ThoughtWorks, and Martin
-Fowler** — plus high-value practitioner and academic references.
-
 ## Themes
 
 <div class="grid cards" markdown>
