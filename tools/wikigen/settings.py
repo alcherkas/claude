@@ -52,6 +52,12 @@ THEMES: dict[str, dict] = {
 THEME_ORDER = list(THEMES.keys())
 _PREFIX_TO_SLUG = {v["prefix"]: slug for slug, v in THEMES.items()}
 
+# Hand-authored themes that live alongside the generated ones. They are NOT
+# rendered from todo/ link libraries, so render_all never rmtree's them; render_nav
+# appends them to the root nav (after the generated themes) so a rebuild preserves
+# the tab. Each must be a real docs/<slug>/ directory with its own .pages + index.md.
+STATIC_THEMES: list[str] = ["system-card-analysis"]
+
 # --- Organization detection / canonical names + ordering ---
 # Matched as lowercase substring against a heading; first hit wins (order matters).
 ORG_RULES: list[tuple[str, str]] = [

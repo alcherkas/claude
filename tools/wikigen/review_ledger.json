@@ -153,6 +153,13 @@
     "dest_path": "security-governance/other/owasp-top-10-for-llm-applications.md",
     "reviewed_at": "2026-06-21"
   },
+  "https://www.anthropic.com/claude-opus-4-8-system-card": {
+    "decision": "approved",
+    "review_hash": "404773c321e06617bd3f12e226a7b7603d225ae0",
+    "title": "Claude Opus 4.8 — System Card Analysis",
+    "dest_path": "system-card-analysis/opus-4-8.md",
+    "reviewed_at": "2026-06-22"
+  },
   "https://www.nist.gov/itl/ai-risk-management-framework": {
     "decision": "approved",
     "review_hash": "20d3467a4649fb85b5588a102f55dcb1cd4b99d0",

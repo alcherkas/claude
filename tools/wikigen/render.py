@@ -156,8 +156,8 @@ def _write_pages(rel_dir: str, data: dict) -> None:
 
 
 def render_nav(manifest: list[dict]) -> None:
-    # Root nav order: Home, the five themes, Tags, About.
-    _write_pages("", {"nav": ["index.md", *settings.THEME_ORDER, "tags.md", "about.md"]})
+    # Root nav order: Home, the generated themes, any hand-authored static themes, Tags, About.
+    _write_pages("", {"nav": ["index.md", *settings.THEME_ORDER, *settings.STATIC_THEMES, "tags.md", "about.md"]})
 
     orgs_by_theme: dict[str, list[str]] = {t: [] for t in settings.THEME_ORDER}
     org_label: dict[str, str] = {}

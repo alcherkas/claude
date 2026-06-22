@@ -41,6 +41,12 @@ agents** across the software development lifecycle.
     Evals-as-regression-sentinels, observability pipelines (OpenTelemetry GenAI),
     deterministic quality gates, and benchmarks (SWE-bench Verified).
 
+-   :material-clipboard-text: **[System Card Analysis](system-card-analysis/index.md)**
+
+    Practitioner takeaways distilled from frontier-model system cards — best
+    practices, deployment guidance, and known failure modes, page-cited to the
+    source. First entry: Claude Opus 4.8.
+
 </div>
 
 ## How to use this wiki
