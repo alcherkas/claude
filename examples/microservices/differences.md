@@ -68,8 +68,8 @@ pricing snapshot) → `payment-service` (capture total **incl. tip**) → `check
 
 ### How to run
 
-1. Open a Claude Code session **rooted in `best/`**, give it the task verbatim.
-2. Open a separate session **rooted in `naive/`**, give it the *same* task.
+1. Open a Claude Code session **rooted in `best/`** and paste the prompt from [`feature-prompt.md`](./feature-prompt.md) verbatim.
+2. Open a separate session **rooted in `naive/`** and paste the **same** prompt.
 3. Compare. (Optionally repeat with GitHub Copilot using `.github/copilot-instructions.md`.)
 
 ### What to watch for (the efficiency gap)
