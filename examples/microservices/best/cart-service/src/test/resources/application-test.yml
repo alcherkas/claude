@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:cart_db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: false
+
+clients:
+  menu:
+    url: http://localhost:8083
+  identity:
+    url: http://localhost:8081

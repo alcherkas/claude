@@ -1,0 +1,188 @@
+openapi: 3.0.3
+info:
+  title: QuickBite Wallet Service API
+  description: >-
+    Holds per-user wallet balances and an append-only transaction ledger for the
+    QuickBite marketplace. Public endpoints are reached through the gateway at
+    /api/wallets/**. The /internal/** endpoints are service-to-service only
+    (consumed by payment-service) and are never exposed through the gateway.
+  version: 1.0.0
+  contact:
+    name: QuickBite Platform
+    email: platform@quickbite.example
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8090
+    description: Local direct
+  - url: http://localhost:8080
+    description: Through the API gateway (public /api routes only)
+paths:
+  /api/wallets/{userId}:
+    get:
+      summary: Get a user's wallet
+      operationId: getWallet
+      tags: [Wallet]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: The user's wallet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+  /api/wallets/{userId}/credits:
+    post:
+      summary: Credit (top up) a user's wallet
+      operationId: creditWallet
+      tags: [Wallet]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditRequest'
+      responses:
+        '200':
+          description: Updated wallet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /internal/wallets/{userId}:
+    get:
+      summary: Get a user's wallet (internal)
+      operationId: getWalletInternal
+      tags: [Internal]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: The user's wallet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+  /internal/wallets/{userId}/debit:
+    post:
+      summary: Debit a user's wallet for an order payment (internal)
+      description: Rejects with 409 when funds are insufficient.
+      operationId: debitWallet
+      tags: [Internal]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DebitRequest'
+      responses:
+        '200':
+          description: The created ledger entry plus the resulting balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletTxnResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+components:
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: Identity-service user id
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    WalletResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        balanceCents:
+          type: integer
+          format: int64
+        currency:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+    CreditRequest:
+      type: object
+      required: [amountCents, reason]
+      properties:
+        amountCents:
+          type: integer
+          format: int64
+          minimum: 1
+        reason:
+          type: string
+    DebitRequest:
+      type: object
+      required: [amountCents, orderId]
+      properties:
+        amountCents:
+          type: integer
+          format: int64
+          minimum: 1
+        orderId:
+          type: integer
+          format: int64
+    WalletTxnResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: string
+          format: uuid
+        deltaCents:
+          type: integer
+          format: int64
+        reason:
+          type: string
+        balanceCents:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string
+  responses:
+    Error:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

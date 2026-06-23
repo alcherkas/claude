@@ -1,0 +1,143 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      # Global CORS: allow the shell + every micro-frontend dev origin (ports 3000-3006).
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - http://localhost:3000
+              - http://localhost:3001
+              - http://localhost:3002
+              - http://localhost:3003
+              - http://localhost:3004
+              - http://localhost:3005
+              - http://localhost:3006
+            allowedMethods: [GET, POST, PUT, PATCH, DELETE, OPTIONS]
+            allowedHeaders: ["*"]
+            allowCredentials: true
+            maxAge: 3600
+      # One route per backend service (PLATFORM_SPEC §4). Each target service serves its own
+      # /api/<resource>/** path, so the gateway forwards the path unchanged (no StripPrefix).
+      # Targets come from clients.<service>.url so they are overridable per environment.
+      routes:
+        - id: identity-auth
+          uri: ${CLIENTS_IDENTITY_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/auth/**
+        - id: identity-users
+          uri: ${CLIENTS_IDENTITY_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/users/**
+        - id: restaurant
+          uri: ${CLIENTS_RESTAURANT_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/restaurants/**
+        - id: menu
+          uri: ${CLIENTS_MENU_URL:http://localhost:8083}
+          predicates:
+            - Path=/api/menu/**
+        - id: search
+          uri: ${CLIENTS_SEARCH_URL:http://localhost:8084}
+          predicates:
+            - Path=/api/search/**
+        - id: cart
+          uri: ${CLIENTS_CART_URL:http://localhost:8085}
+          predicates:
+            - Path=/api/carts/**
+        - id: pricing
+          uri: ${CLIENTS_PRICING_URL:http://localhost:8086}
+          predicates:
+            - Path=/api/pricing/**
+        - id: promotion
+          uri: ${CLIENTS_PROMOTION_URL:http://localhost:8087}
+          predicates:
+            - Path=/api/promotions/**
+        - id: order
+          uri: ${CLIENTS_ORDER_URL:http://localhost:8088}
+          predicates:
+            - Path=/api/orders/**
+        - id: payment
+          uri: ${CLIENTS_PAYMENT_URL:http://localhost:8089}
+          predicates:
+            - Path=/api/payments/**
+        - id: wallet
+          uri: ${CLIENTS_WALLET_URL:http://localhost:8090}
+          predicates:
+            - Path=/api/wallets/**
+        - id: driver
+          uri: ${CLIENTS_DRIVER_URL:http://localhost:8091}
+          predicates:
+            - Path=/api/drivers/**
+        - id: delivery
+          uri: ${CLIENTS_DELIVERY_URL:http://localhost:8092}
+          predicates:
+            - Path=/api/deliveries/**
+        - id: notification
+          uri: ${CLIENTS_NOTIFICATION_URL:http://localhost:8093}
+          predicates:
+            - Path=/api/notifications/**
+        - id: review
+          uri: ${CLIENTS_REVIEW_URL:http://localhost:8094}
+          predicates:
+            - Path=/api/reviews/**
+
+# Backend service URLs the gateway routes to. Defaults are local direct ports; in docker-compose
+# these resolve to the compose service names, and in AWS to internal Cloud Map / ALB DNS.
+clients:
+  identity:
+    url: ${CLIENTS_IDENTITY_URL:http://localhost:8081}
+  restaurant:
+    url: ${CLIENTS_RESTAURANT_URL:http://localhost:8082}
+  menu:
+    url: ${CLIENTS_MENU_URL:http://localhost:8083}
+  search:
+    url: ${CLIENTS_SEARCH_URL:http://localhost:8084}
+  cart:
+    url: ${CLIENTS_CART_URL:http://localhost:8085}
+  pricing:
+    url: ${CLIENTS_PRICING_URL:http://localhost:8086}
+  promotion:
+    url: ${CLIENTS_PROMOTION_URL:http://localhost:8087}
+  order:
+    url: ${CLIENTS_ORDER_URL:http://localhost:8088}
+  payment:
+    url: ${CLIENTS_PAYMENT_URL:http://localhost:8089}
+  wallet:
+    url: ${CLIENTS_WALLET_URL:http://localhost:8090}
+  driver:
+    url: ${CLIENTS_DRIVER_URL:http://localhost:8091}
+  delivery:
+    url: ${CLIENTS_DELIVERY_URL:http://localhost:8092}
+  notification:
+    url: ${CLIENTS_NOTIFICATION_URL:http://localhost:8093}
+  review:
+    url: ${CLIENTS_REVIEW_URL:http://localhost:8094}
+
+# Shared HS256 JWT settings. The secret is identical across identity-service (issuer), the gateway
+# and every downstream service, so tokens can be validated at the edge without a callback.
+security:
+  jwt:
+    secret: ${JWT_SECRET:change-me-quickbite-shared-dev-secret-please-rotate-32b}
+    issuer: ${JWT_ISSUER:quickbite-identity}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

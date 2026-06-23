@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: QuickBite Restaurant Service
+  description: >
+    Restaurant catalog service. Owners register restaurants (validated against
+    identity-service), customers discover them, and owners drive the status
+    lifecycle (PENDING -> ACTIVE -> SUSPENDED). Emits restaurant.events on Kafka.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8082
+    description: Local direct
+  - url: http://localhost:8080
+    description: Through the API gateway (prefix /api)
+tags:
+  - name: restaurants
+    description: Public restaurant catalog API (/api/restaurants)
+paths:
+  /api/restaurants:
+    post:
+      tags: [restaurants]
+      summary: Register a new restaurant
+      description: >
+        Validates that ownerUserId resolves to a RESTAURANT_OWNER in
+        identity-service before persisting. New restaurants start in PENDING.
+      operationId: createRestaurant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRestaurantRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestaurantResponse'
+        '400':
+          description: Validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '422':
+          description: Owner is not a valid RESTAURANT_OWNER
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+    get:
+      tags: [restaurants]
+      summary: List restaurants, optionally filtered by cuisine and/or city
+      operationId: listRestaurants
+      parameters:
+        - name: cuisine
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: city
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RestaurantResponse'
+  /api/restaurants/{id}:
+    get:
+      tags: [restaurants]
+      summary: Fetch a single restaurant
+      operationId: getRestaurant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestaurantResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+  /api/restaurants/{id}/status:
+    patch:
+      tags: [restaurants]
+      summary: Change a restaurant's status
+      description: Emits a RestaurantStatusChanged event on restaurant.events.
+      operationId: updateRestaurantStatus
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestaurantResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+components:
+  schemas:
+    RestaurantStatus:
+      type: string
+      enum: [PENDING, ACTIVE, SUSPENDED]
+    CreateRestaurantRequest:
+      type: object
+      required: [ownerUserId, name, cuisine, addressLine, city, lat, lng]
+      properties:
+        ownerUserId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        cuisine:
+          type: string
+        addressLine:
+          type: string
+        city:
+          type: string
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        lng:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+        openingHours:
+          type: string
+    UpdateStatusRequest:
+      type: object
+      required: [status]
+      properties:
+        status:
+          $ref: '#/components/schemas/RestaurantStatus'
+    RestaurantResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        ownerUserId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        cuisine:
+          type: string
+        addressLine:
+          type: string
+        city:
+          type: string
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+        status:
+          $ref: '#/components/schemas/RestaurantStatus'
+        openingHours:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    ApiError:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

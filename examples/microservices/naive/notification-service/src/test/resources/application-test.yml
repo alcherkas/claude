@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:notification_db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: false
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers:localhost:9092}
+    consumer:
+      group-id: notification-service-test
+      auto-offset-reset: earliest
+
+quickbite:
+  topics:
+    orders-events: orders.events
+    payments-events: payments.events
+    deliveries-events: deliveries.events

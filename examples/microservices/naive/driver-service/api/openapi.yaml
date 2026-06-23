@@ -1,0 +1,291 @@
+openapi: 3.0.3
+info:
+  title: QuickBite Driver Service API
+  description: >-
+    Manages couriers, their availability, location pings and nearest-driver
+    lookup for the QuickBite marketplace. Public endpoints are exposed through
+    the gateway under /api/drivers; /internal endpoints are service-to-service
+    only and never routed via the gateway.
+  version: 1.0.0
+  contact:
+    name: QuickBite Platform
+    email: platform@quickbite.example
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8091
+    description: Local direct
+  - url: http://localhost:8080
+    description: Through the API gateway (public /api routes only)
+tags:
+  - name: Drivers
+  - name: Internal
+paths:
+  /api/drivers:
+    post:
+      tags: [Drivers]
+      summary: Register a courier (requires a COURIER identity user)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDriverRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+  /api/drivers/{id}:
+    get:
+      tags: [Drivers]
+      summary: Fetch a driver by id
+      parameters:
+        - $ref: '#/components/parameters/DriverId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+  /api/drivers/{id}/availability:
+    patch:
+      tags: [Drivers]
+      summary: Update a driver's availability status
+      parameters:
+        - $ref: '#/components/parameters/DriverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAvailabilityRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /api/drivers/{id}/location:
+    post:
+      tags: [Drivers]
+      summary: Record a driver location ping
+      parameters:
+        - $ref: '#/components/parameters/DriverId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationPingRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /api/drivers/available:
+    get:
+      tags: [Drivers]
+      summary: List available drivers nearest to a location
+      parameters:
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lng'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DriverResponse'
+  /internal/drivers/available:
+    get:
+      tags: [Internal]
+      summary: Find the nearest AVAILABLE driver to a pickup location (internal)
+      parameters:
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lng'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalDriverResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+  /internal/drivers/{id}/assign:
+    post:
+      tags: [Internal]
+      summary: Assign a driver to a delivery, transitioning to ON_DELIVERY (internal)
+      parameters:
+        - $ref: '#/components/parameters/DriverId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalDriverResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+components:
+  parameters:
+    DriverId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Lat:
+      name: lat
+      in: query
+      required: true
+      schema:
+        type: number
+        format: double
+    Lng:
+      name: lng
+      in: query
+      required: true
+      schema:
+        type: number
+        format: double
+  responses:
+    Error:
+      description: Error envelope
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Vehicle:
+      type: string
+      enum: [BIKE, CAR, SCOOTER]
+    DriverStatus:
+      type: string
+      enum: [OFFLINE, AVAILABLE, ON_DELIVERY]
+    CreateDriverRequest:
+      type: object
+      required: [userId, name, vehicle]
+      properties:
+        userId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+    UpdateAvailabilityRequest:
+      type: object
+      required: [status]
+      properties:
+        status:
+          $ref: '#/components/schemas/DriverStatus'
+    LocationPingRequest:
+      type: object
+      required: [lat, lng]
+      properties:
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        lng:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+    DriverResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+        status:
+          $ref: '#/components/schemas/DriverStatus'
+        lat:
+          type: number
+          format: double
+          nullable: true
+        lng:
+          type: number
+          format: double
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+    InternalDriverResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+        status:
+          $ref: '#/components/schemas/DriverStatus'
+        lat:
+          type: number
+          format: double
+          nullable: true
+        lng:
+          type: number
+          format: double
+          nullable: true
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

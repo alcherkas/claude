@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:payment_db;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: false
+  kafka:
+    bootstrap-servers: localhost:9092
+
+clients:
+  order:
+    url: http://localhost:8088
+  wallet:
+    url: http://localhost:8090
+  identity:
+    url: http://localhost:8081
+
+kafka:
+  topics:
+    payments-events: payments.events

@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: QuickBite review-service API
+  version: 1.0.0
+  description: >-
+    Customer ratings and reviews for restaurants and drivers. A review is only
+    accepted once the underlying order is DELIVERED and belongs to the reviewing
+    user (verified against order-service /internal). Only the public /api/reviews
+    surface is documented here; /internal/** is for service-to-service use and is
+    never exposed through the gateway.
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8080
+    description: Through the API gateway
+  - url: http://localhost:8094
+    description: Direct (local)
+paths:
+  /api/reviews:
+    post:
+      summary: Create a review for a delivered order
+      description: >-
+        The authenticated user id is taken from the X-User-Id header injected by
+        the gateway after JWT validation.
+      parameters:
+        - in: header
+          name: X-User-Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReviewRequest'
+      responses:
+        '201':
+          description: Review created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewResponse'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Order not DELIVERED, not owned by user, or already reviewed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: order-service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      summary: List reviews by exactly one filter
+      description: Provide exactly one of restaurantId, driverId or userId.
+      parameters:
+        - in: query
+          name: restaurantId
+          schema:
+            type: string
+            format: uuid
+        - in: query
+          name: driverId
+          schema:
+            type: string
+            format: uuid
+        - in: query
+          name: userId
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Matching reviews, newest first
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReviewResponse'
+        '422':
+          description: Zero or more than one filter supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreateReviewRequest:
+      type: object
+      required: [orderId, rating]
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        comment:
+          type: string
+          maxLength: 2000
+          nullable: true
+    ReviewResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        restaurantId:
+          type: string
+          format: uuid
+        driverId:
+          type: string
+          format: uuid
+          nullable: true
+        rating:
+          type: integer
+        comment:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

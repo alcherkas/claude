@@ -1,0 +1,180 @@
+openapi: 3.0.3
+info:
+  title: QuickBite payment-service API
+  version: 1.0.0
+  description: >-
+    Captures order payments via wallet debit or a mock card PSP, supports refunds,
+    and emits PaymentCaptured / PaymentFailed / Refunded events on payments.events.
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8089
+    description: Direct (local)
+  - url: http://localhost:8080/api
+    description: Through the API gateway
+paths:
+  /api/payments:
+    post:
+      summary: Create (authorize + capture) a payment for an order
+      operationId: createPayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentRequest'
+      responses:
+        '201':
+          description: Payment processed (CAPTURED or FAILED)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Order does not belong to user / has no payable amount
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: A required dependency (order/wallet) is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      summary: List payments for an order
+      operationId: listPaymentsByOrder
+      parameters:
+        - name: orderId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Payments for the order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentResponse'
+  /api/payments/{id}:
+    get:
+      summary: Fetch a single payment
+      operationId: getPayment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '404':
+          description: Payment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/payments/{id}/refund:
+    post:
+      summary: Refund a captured payment
+      operationId: refundPayment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Payment refunded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '404':
+          description: Payment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Payment is not in a refundable (CAPTURED) state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreatePaymentRequest:
+      type: object
+      required: [orderId, userId, method]
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        method:
+          type: string
+          enum: [CARD, WALLET]
+    PaymentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        amountCents:
+          type: integer
+          format: int64
+        currency:
+          type: string
+        method:
+          type: string
+          enum: [CARD, WALLET]
+        status:
+          type: string
+          enum: [AUTHORIZED, CAPTURED, REFUNDED, FAILED]
+        provider:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

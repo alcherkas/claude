@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: QuickBite API Gateway
+  description: >
+    Reactive public edge for the QuickBite platform. Routes /api/** to backend services
+    (see PLATFORM_SPEC §4), validates the shared HS256 JWT for protected routes and injects
+    X-User-Id / X-User-Role headers downstream. /internal/** is never exposed through the edge.
+
+    This contract documents only the gateway's own local endpoints. The proxied resource paths
+    (/api/auth, /api/restaurants, /api/orders, ...) are described by each backend service's own
+    openapi.yaml.
+  version: 1.0.0
+  contact:
+    name: QuickBite Platform
+    email: platform@quickbite.example
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8080
+    description: Local gateway edge
+tags:
+  - name: gateway
+    description: Public gateway metadata
+  - name: actuator
+    description: Operational endpoints
+paths:
+  /api/gateway/info:
+    get:
+      tags: [gateway]
+      summary: Describe the gateway edge
+      description: >
+        Anonymous-safe description of configured route prefixes and the paths that are readable
+        without authentication.
+      operationId: getGatewayInfo
+      responses:
+        "200":
+          description: Gateway description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayInfo"
+  /actuator/health:
+    get:
+      tags: [actuator]
+      summary: Liveness/readiness probe
+      operationId: getHealth
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: UP
+components:
+  schemas:
+    GatewayInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          example: api-gateway
+        version:
+          type: string
+          example: 1.0.0
+        routes:
+          type: array
+          items:
+            type: string
+          example:
+            - /api/auth/**
+            - /api/restaurants/**
+            - /api/orders/**
+        publicPaths:
+          type: array
+          items:
+            type: string
+          example:
+            - /api/auth/**
+            - /api/search/**
+            - GET /api/restaurants/**
+            - GET /api/menu/**
+    ErrorResponse:
+      type: object
+      description: Platform-standard error envelope.
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          example: 401
+        error:
+          type: string
+          example: Unauthorized
+        message:
+          type: string
+          example: Invalid or expired token
+        path:
+          type: string
+          example: /api/orders/42
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

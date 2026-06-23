@@ -1,0 +1,307 @@
+:root {
+  --qb-accent: #ff5a1f;
+  --qb-bg: #fafafa;
+  --qb-fg: #1c1c1e;
+  --qb-muted: #6b7280;
+  --qb-border: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* When run standalone (not inside the shell), give the page a base look. */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--qb-bg);
+  color: var(--qb-fg);
+}
+
+.qb-btn {
+  background: var(--qb-accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.qb-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dc-app {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* --- search bar --- */
+.dc-searchbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.dc-searchbar__input {
+  flex: 1 1 280px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--qb-border);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.dc-searchbar__cuisine {
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--qb-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+}
+
+/* --- headings / status --- */
+.dc-discover__heading,
+.dc-detail__menu-title {
+  font-size: 1.1rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.dc-status {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--qb-muted);
+}
+
+.dc-status--error {
+  color: #b91c1c;
+}
+
+/* --- restaurant grid + card --- */
+.dc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.dc-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid var(--qb-border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s ease;
+}
+
+.dc-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.dc-card--closed {
+  opacity: 0.65;
+}
+
+.dc-card__name {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.dc-card__cuisine {
+  margin: 0;
+  color: var(--qb-accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.dc-card__address {
+  margin: 0.25rem 0 0;
+  color: var(--qb-muted);
+  font-size: 0.85rem;
+}
+
+.dc-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--qb-muted);
+}
+
+.dc-badge {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.dc-badge--active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.dc-badge--pending {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+.dc-badge--suspended {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* --- detail --- */
+.dc-detail__back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--qb-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dc-detail__header {
+  background: #fff;
+  border: 1px solid var(--qb-border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.dc-detail__name {
+  margin: 0 0 0.25rem;
+}
+
+.dc-detail__cuisine {
+  margin: 0;
+  color: var(--qb-accent);
+  font-weight: 600;
+}
+
+.dc-detail__address,
+.dc-detail__hours {
+  margin: 0.25rem 0 0;
+  color: var(--qb-muted);
+  font-size: 0.9rem;
+}
+
+/* --- menu --- */
+.dc-menu__section {
+  margin-bottom: 1.5rem;
+}
+
+.dc-menu__category {
+  font-size: 1rem;
+  border-bottom: 1px solid var(--qb-border);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.dc-menu__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dc-menuitem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid var(--qb-border);
+  border-radius: 8px;
+}
+
+.dc-menuitem--unavailable {
+  opacity: 0.6;
+}
+
+.dc-menuitem__name {
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
+}
+
+.dc-menuitem__desc {
+  margin: 0;
+  color: var(--qb-muted);
+  font-size: 0.85rem;
+}
+
+.dc-menuitem__category {
+  font-size: 0.72rem;
+  color: var(--qb-muted);
+}
+
+.dc-menuitem__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.dc-menuitem__price {
+  font-weight: 700;
+}
+
+.dc-menuitem__sold-out {
+  font-size: 0.8rem;
+  color: #b91c1c;
+}
+
+.dc-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dc-qty__btn {
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--qb-border);
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.dc-qty__value {
+  min-width: 1.2rem;
+  text-align: center;
+}
+
+.dc-menuitem__add {
+  padding: 0.35rem 0.8rem;
+}
+
+/* --- notices --- */
+.dc-notice {
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.dc-notice--success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.dc-notice--error {
+  background: #fee2e2;
+  color: #b91c1c;
+}

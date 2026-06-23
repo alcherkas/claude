@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: QuickBite Search Service API
+  description: >
+    Denormalized search read model built by consuming restaurant.events and menu.events
+    from Kafka. Serves public discovery queries over restaurants and menu items. Uses
+    Postgres ILIKE/trigram matching in the example; production uses OpenSearch.
+  version: 1.0.0
+  license:
+    name: Proprietary
+servers:
+  - url: http://localhost:8084
+    description: Local direct
+  - url: http://localhost:8080
+    description: Through the API gateway (paths prefixed with /api)
+tags:
+  - name: Search
+    description: Public discovery queries.
+paths:
+  /api/search:
+    get:
+      tags: [Search]
+      summary: Search restaurants and menu items
+      operationId: search
+      parameters:
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Cuisine'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lng'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+  /api/search/restaurants:
+    get:
+      tags: [Search]
+      summary: Search restaurants only
+      operationId: searchRestaurants
+      parameters:
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Cuisine'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lng'
+      responses:
+        '200':
+          description: Restaurant results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+  /api/search/menu-items:
+    get:
+      tags: [Search]
+      summary: Search menu items only
+      operationId: searchMenuItems
+      parameters:
+        - $ref: '#/components/parameters/Q'
+        - $ref: '#/components/parameters/Cuisine'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lng'
+      responses:
+        '200':
+          description: Menu item results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+components:
+  parameters:
+    Q:
+      name: q
+      in: query
+      required: false
+      description: Free text matched against name and cuisine.
+      schema:
+        type: string
+    Cuisine:
+      name: cuisine
+      in: query
+      required: false
+      description: Exact cuisine filter.
+      schema:
+        type: string
+    Lat:
+      name: lat
+      in: query
+      required: false
+      description: Caller latitude for proximity ranking.
+      schema:
+        type: number
+        format: double
+    Lng:
+      name: lng
+      in: query
+      required: false
+      description: Caller longitude for proximity ranking.
+      schema:
+        type: number
+        format: double
+  responses:
+    Error:
+      description: Standard error body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    SearchResponse:
+      type: object
+      properties:
+        query:
+          type: string
+          nullable: true
+        cuisine:
+          type: string
+          nullable: true
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+    SearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [RESTAURANT, MENU_ITEM]
+        refId:
+          type: string
+          format: uuid
+        restaurantId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        cuisine:
+          type: string
+          nullable: true
+        priceCents:
+          type: integer
+          format: int64
+          nullable: true
+        lat:
+          type: number
+          format: double
+          nullable: true
+        lng:
+          type: number
+          format: double
+          nullable: true
+        available:
+          type: boolean
+        distanceKm:
+          type: number
+          format: double
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+    ApiError:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

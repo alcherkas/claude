@@ -1,0 +1,9 @@
+node_modules
+dist
+dist-ssr
+.git
+.github
+terraform
+*.local
+.DS_Store
+npm-debug.log*

@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: QuickBite delivery-service API
+  version: 1.0.0
+  description: >
+    Creates deliveries for ready orders, assigns an available driver (driver-service),
+    reads the order (order-service), tracks courier location, and emits DeliveryStatusChanged
+    on deliveries.events.
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8092
+    description: Local direct
+  - url: http://localhost:8080
+    description: Through the API gateway (prefix /api preserved)
+tags:
+  - name: deliveries
+    description: Public delivery endpoints (gateway /api/deliveries/**)
+
+paths:
+  /api/deliveries:
+    post:
+      tags: [deliveries]
+      summary: Create a delivery for an order and assign a driver
+      operationId: createDelivery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDeliveryRequest'
+      responses:
+        '201':
+          description: Delivery created and driver assigned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryResponse'
+        '422':
+          description: Validation error (unknown order, duplicate delivery, no available driver)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: order-service or driver-service is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags: [deliveries]
+      summary: List deliveries for an order
+      operationId: listDeliveriesByOrder
+      parameters:
+        - name: orderId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Deliveries for the order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeliveryResponse'
+
+  /api/deliveries/{id}:
+    get:
+      tags: [deliveries]
+      summary: Get a delivery by id
+      operationId: getDelivery
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The delivery
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryResponse'
+        '404':
+          description: Delivery not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/deliveries/{id}/status:
+    patch:
+      tags: [deliveries]
+      summary: Update delivery status (emits DeliveryStatusChanged)
+      operationId: updateDeliveryStatus
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+      responses:
+        '200':
+          description: Updated delivery
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryResponse'
+        '404':
+          description: Delivery not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/deliveries/{id}/tracking:
+    get:
+      tags: [deliveries]
+      summary: Get the courier tracking trail for a delivery
+      operationId: getDeliveryTracking
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Ordered list of tracking points (oldest first)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrackingPointResponse'
+        '404':
+          description: Delivery not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    DeliveryStatus:
+      type: string
+      enum: [PENDING, ASSIGNED, EN_ROUTE_TO_PICKUP, PICKED_UP, EN_ROUTE_TO_CUSTOMER, DELIVERED, FAILED]
+    CreateDeliveryRequest:
+      type: object
+      required: [orderId]
+      properties:
+        orderId:
+          type: string
+          format: uuid
+    UpdateStatusRequest:
+      type: object
+      required: [status]
+      properties:
+        status:
+          $ref: '#/components/schemas/DeliveryStatus'
+    DeliveryResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        orderId:
+          type: string
+          format: uuid
+        driverId:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          $ref: '#/components/schemas/DeliveryStatus'
+        createdAt:
+          type: string
+          format: date-time
+    TrackingPointResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+        at:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

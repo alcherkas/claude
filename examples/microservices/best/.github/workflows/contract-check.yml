@@ -1,0 +1,23 @@
+# Spine-level contract-drift gate. Lives in the integration/meta repo, runs on every PR
+# that touches a service contract, and fails the PR on a breaking OpenAPI change so a
+# cross-repo change cannot merge without coordinating its consumers.
+name: contract-check
+
+on:
+  pull_request:
+    paths:
+      - "*/api/openapi.yaml"
+      - "PLATFORM_SPEC.md"
+  workflow_dispatch: {}
+
+jobs:
+  oasdiff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # need HEAD baseline for the diff
+      - name: Install oasdiff
+        run: go install github.com/oasdiff/oasdiff@latest
+      - name: Check contracts for breaking changes
+        run: ./tools/check-contracts.sh

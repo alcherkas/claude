@@ -1,0 +1,11 @@
+target/
+.git/
+.github/
+.gitignore
+.idea/
+*.iml
+terraform/
+README.md
+Dockerfile
+.dockerignore
+**/*.log

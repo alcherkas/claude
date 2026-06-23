@@ -1,0 +1,237 @@
+openapi: 3.0.3
+info:
+  title: QuickBite identity-service API
+  version: 1.0.0
+  description: >
+    Authentication, user accounts, and JWT issuance for the QuickBite platform.
+    Public endpoints are exposed through the gateway under /api/auth/** and /api/users/**.
+    Internal endpoints under /internal/** are service-to-service only and never routed
+    through the gateway.
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8081
+    description: Local direct
+  - url: http://localhost:8080
+    description: Through the API gateway (public paths only)
+tags:
+  - name: Authentication
+  - name: Users
+  - name: Internal
+paths:
+  /api/auth/register:
+    post:
+      tags: [Authentication]
+      summary: Register a new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+  /api/auth/login:
+    post:
+      tags: [Authentication]
+      summary: Log in and receive a JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+  /api/users/me:
+    get:
+      tags: [Users]
+      summary: Get the current authenticated user
+      security:
+        - bearer-jwt: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Error'
+  /api/users/{id}:
+    get:
+      tags: [Users]
+      summary: Get a user by id
+      security:
+        - bearer-jwt: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+  /internal/users/{id}:
+    get:
+      tags: [Internal]
+      summary: Fetch compact user details (service-to-service)
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalUserResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+  /internal/users/{id}/validate:
+    get:
+      tags: [Internal]
+      summary: Validate that a user exists, is active, and optionally has a role
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - name: role
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+components:
+  parameters:
+    UserId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearer-jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    Error:
+      description: Standard error body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Role:
+      type: string
+      enum: [CUSTOMER, RESTAURANT_OWNER, COURIER, ADMIN]
+    RegisterRequest:
+      type: object
+      required: [email, password, fullName, role]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+          maxLength: 100
+        fullName:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/UserResponse'
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        fullName:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+    InternalUserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        fullName:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        active:
+          type: boolean
+    ValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

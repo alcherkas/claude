@@ -1,0 +1,191 @@
+:root {
+  --qb-accent: #ff5a1f;
+  --qb-bg: #fafafa;
+  --qb-fg: #1c1c1e;
+  --qb-muted: #6b7280;
+  --qb-border: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--qb-bg);
+  color: var(--qb-fg);
+}
+
+.qb-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.qb-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid var(--qb-border);
+}
+
+.qb-nav__brand {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--qb-accent);
+  text-decoration: none;
+}
+
+.qb-nav__links {
+  display: flex;
+  gap: 1rem;
+}
+
+.qb-nav__links a {
+  text-decoration: none;
+  color: var(--qb-fg);
+  padding: 0.25rem 0;
+}
+
+.qb-nav__links a.active {
+  color: var(--qb-accent);
+  border-bottom: 2px solid var(--qb-accent);
+}
+
+.qb-nav__auth {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.qb-nav__user {
+  font-size: 0.9rem;
+  color: var(--qb-muted);
+}
+
+.qb-main {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.qb-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--qb-border);
+  color: var(--qb-muted);
+  font-size: 0.85rem;
+}
+
+.qb-btn {
+  background: var(--qb-accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.qb-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.qb-btn--ghost {
+  background: transparent;
+  color: var(--qb-fg);
+  border: 1px solid var(--qb-border);
+}
+
+.qb-link {
+  background: none;
+  border: none;
+  color: var(--qb-accent);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.qb-loading,
+.qb-gate,
+.qb-remote-error {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--qb-muted);
+}
+
+.qb-gate h2,
+.qb-remote-error h2 {
+  color: var(--qb-fg);
+}
+
+.qb-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.qb-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: min(420px, 92vw);
+  padding: 1.5rem;
+}
+
+.qb-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qb-modal__close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--qb-muted);
+}
+
+.qb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.qb-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--qb-muted);
+}
+
+.qb-field input,
+.qb-field select {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--qb-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--qb-fg);
+}
+
+.qb-form__error {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.qb-modal__footer {
+  margin-top: 1rem;
+  text-align: center;
+}

@@ -1,0 +1,220 @@
+:root {
+  --ot-bg: #0f1115;
+  --ot-panel: #1a1d24;
+  --ot-border: #2a2f3a;
+  --ot-text: #e6e8ec;
+  --ot-muted: #9aa3b2;
+  --ot-accent: #ff5a4d;
+  --ot-done: #34c759;
+  --ot-current: #ffb02e;
+}
+
+.ot-root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ot-text);
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.ot-header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+.ot-header p {
+  margin: 0.25rem 0 1rem;
+  color: var(--ot-muted);
+}
+
+.ot-empty,
+.ot-error {
+  color: var(--ot-muted);
+  padding: 1rem;
+}
+.ot-error {
+  color: var(--ot-accent);
+}
+
+.ot-order-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.ot-order-card button {
+  width: 100%;
+  text-align: left;
+  background: var(--ot-panel);
+  border: 1px solid var(--ot-border);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  color: inherit;
+  cursor: pointer;
+}
+.ot-order-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ot-order-id {
+  font-weight: 600;
+}
+.ot-order-card__meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ot-muted);
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+.ot-order-card__time {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--ot-muted);
+  font-size: 0.8rem;
+}
+
+.ot-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  background: var(--ot-border);
+  color: var(--ot-text);
+}
+.ot-badge--delivered {
+  background: var(--ot-done);
+  color: #06210f;
+}
+.ot-badge--cancelled,
+.ot-badge--failed {
+  background: var(--ot-accent);
+  color: #2a0805;
+}
+.ot-badge--en_route_to_customer,
+.ot-badge--picked_up {
+  background: var(--ot-current);
+  color: #2a1c02;
+}
+
+.ot-back {
+  background: none;
+  border: none;
+  color: var(--ot-accent);
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.ot-tracking-page__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ot-panel {
+  background: var(--ot-panel);
+  border: 1px solid var(--ot-border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.ot-panel h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--ot-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ot-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.ot-timeline__step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.ot-timeline__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--ot-border);
+  background: transparent;
+}
+.ot-timeline__step--done .ot-timeline__dot {
+  background: var(--ot-done);
+  border-color: var(--ot-done);
+}
+.ot-timeline__step--current .ot-timeline__dot {
+  background: var(--ot-current);
+  border-color: var(--ot-current);
+}
+.ot-timeline__step--todo .ot-timeline__label {
+  color: var(--ot-muted);
+}
+
+.ot-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ot-items li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--ot-border);
+}
+
+.ot-delivery__header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+.ot-delivery__driver {
+  color: var(--ot-muted);
+  margin: 0 0 0.5rem;
+}
+.ot-delivery__updated {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--ot-muted);
+  font-size: 0.8rem;
+}
+
+.ot-map {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+.ot-map--empty {
+  color: var(--ot-muted);
+  padding: 2rem;
+  text-align: center;
+  border: 1px dashed var(--ot-border);
+  border-radius: 10px;
+}
+.ot-map__bg {
+  fill: #11141b;
+}
+.ot-map__route {
+  stroke: var(--ot-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ot-map__point {
+  fill: var(--ot-muted);
+}
+.ot-map__courier {
+  fill: var(--ot-accent);
+  stroke: #fff;
+  stroke-width: 2;
+}

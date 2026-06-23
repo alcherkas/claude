@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: QuickBite Pricing Service
+  description: >-
+    Stateless quote engine. Prices a cart against menu-service and
+    promotion-service, then layers on delivery, service and tax fees.
+  version: 1.0.0
+  contact:
+    name: QuickBite Platform
+    email: platform@quickbite.example
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8086
+    description: Local direct
+  - url: http://localhost:8080/api/pricing
+    description: Through the API gateway
+paths:
+  /api/pricing/quote:
+    post:
+      tags: [Pricing]
+      summary: Price a cart
+      description: >-
+        Fetches authoritative menu prices, applies an optional promotion, and
+        returns the full fee breakdown.
+      operationId: quote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '200':
+          description: Priced quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Quote could not be priced (e.g. unavailable item)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: A required upstream service (menu) was unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    QuoteRequest:
+      type: object
+      required: [userId, restaurantId, items]
+      properties:
+        userId:
+          type: integer
+          format: int64
+        restaurantId:
+          type: integer
+          format: int64
+        items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/QuoteItem'
+        promoCode:
+          type: string
+          nullable: true
+    QuoteItem:
+      type: object
+      required: [menuItemId, qty]
+      properties:
+        menuItemId:
+          type: integer
+          format: int64
+        qty:
+          type: integer
+          minimum: 1
+    QuoteResponse:
+      type: object
+      properties:
+        subtotalCents:
+          type: integer
+          format: int64
+        deliveryFeeCents:
+          type: integer
+          format: int64
+        serviceFeeCents:
+          type: integer
+          format: int64
+        taxCents:
+          type: integer
+          format: int64
+        discountCents:
+          type: integer
+          format: int64
+        totalCents:
+          type: integer
+          format: int64
+        currency:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+    LineItem:
+      type: object
+      properties:
+        menuItemId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        qty:
+          type: integer
+        unitPriceCents:
+          type: integer
+          format: int64
+        lineTotalCents:
+          type: integer
+          format: int64
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

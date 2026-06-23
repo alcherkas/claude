@@ -1,0 +1,66 @@
+server:
+  port: ${SERVER_PORT:8082}
+
+spring:
+  application:
+    name: restaurant-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/restaurant_db}
+    username: ${DB_USERNAME:quickbite}
+    password: ${DB_PASSWORD:quickbite}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+# Bootstrap server alias also exposed under kafka.* for parity with the spec wording.
+kafka:
+  bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+# Outbound dependency URLs (target each dependency's /internal/** API).
+clients:
+  identity:
+    url: ${CLIENTS_IDENTITY_URL:http://localhost:8081}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      identity:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 3
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

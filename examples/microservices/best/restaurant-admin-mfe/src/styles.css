@@ -1,0 +1,149 @@
+/* Restaurant-admin MFE styles. Namespaced under .ra-* so the bundle composes
+   cleanly inside the shell host without leaking global rules. */
+
+:root {
+  --ra-bg: #fbfaf8;
+  --ra-surface: #ffffff;
+  --ra-border: #e6e2db;
+  --ra-text: #1f2933;
+  --ra-muted: #6b7280;
+  --ra-accent: #d9480f;
+  --ra-accent-soft: #fff4ed;
+  --ra-ok: #2b8a3e;
+  --ra-warn: #e8590c;
+  --ra-danger: #c92a2a;
+  --ra-radius: 10px;
+}
+
+.ra-app {
+  color: var(--ra-text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--ra-bg);
+  min-height: 100%;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+.ra-app h1,
+.ra-app h2,
+.ra-app h3 {
+  margin: 0 0 0.5rem;
+}
+
+.ra-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.ra-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: var(--ra-surface);
+  border: 1px solid var(--ra-border);
+  border-radius: var(--ra-radius);
+  padding: 0.75rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.ra-nav a {
+  text-decoration: none;
+  color: var(--ra-text);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+}
+
+.ra-nav a.active {
+  background: var(--ra-accent-soft);
+  color: var(--ra-accent);
+  font-weight: 600;
+}
+
+.ra-card {
+  background: var(--ra-surface);
+  border: 1px solid var(--ra-border);
+  border-radius: var(--ra-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ra-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ra-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.ra-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.ra-field label {
+  font-size: 0.8rem;
+  color: var(--ra-muted);
+}
+
+.ra-field input,
+.ra-field select,
+.ra-field textarea {
+  padding: 0.5rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.ra-btn {
+  border: 1px solid var(--ra-accent);
+  background: var(--ra-accent);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.ra-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ra-btn--ghost {
+  background: transparent;
+  color: var(--ra-accent);
+}
+
+.ra-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ra-badge--ok { background: #ebfbee; color: var(--ra-ok); }
+.ra-badge--warn { background: #fff4e6; color: var(--ra-warn); }
+.ra-badge--danger { background: #fff5f5; color: var(--ra-danger); }
+.ra-badge--muted { background: #f1f3f5; color: var(--ra-muted); }
+
+.ra-muted { color: var(--ra-muted); }
+.ra-error { color: var(--ra-danger); }
+
+.ra-form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}

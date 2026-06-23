@@ -1,0 +1,255 @@
+openapi: 3.0.3
+info:
+  title: QuickBite Cart Service API
+  description: |
+    Builds, re-prices and checks out customer carts for the QuickBite marketplace.
+    A cart is restaurant-scoped: all items must belong to a single restaurant.
+    Items are re-priced authoritatively against menu-service.
+  version: 1.0.0
+  license:
+    name: Apache-2.0
+servers:
+  - url: http://localhost:8080/api
+    description: Through the API gateway
+  - url: http://localhost:8085
+    description: Direct (local)
+paths:
+  /carts/{userId}:
+    get:
+      summary: Get the current cart for a user
+      operationId: getCart
+      tags: [carts]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: The user's cart (possibly empty)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+  /carts/{userId}/items:
+    post:
+      summary: Add an item to the cart (user validated against identity-service, re-priced against menu-service)
+      operationId: addItem
+      tags: [carts]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddItemRequest'
+      responses:
+        '201':
+          description: Item added; updated cart returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+        '404':
+          description: Menu item does not exist, or the user is unknown
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Item belongs to a different restaurant, or is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: menu-service or identity-service unavailable (could not re-price or validate user)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /carts/{userId}/items/{itemId}:
+    put:
+      summary: Update the quantity of a cart item
+      operationId: updateItem
+      tags: [carts]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/ItemId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateItemRequest'
+      responses:
+        '200':
+          description: Updated cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+        '404':
+          description: Cart or item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Remove an item from the cart
+      operationId: removeItem
+      tags: [carts]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/ItemId'
+      responses:
+        '200':
+          description: Updated cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartResponse'
+        '404':
+          description: Cart or item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /carts/{userId}/checkout:
+    post:
+      summary: Produce an immutable checkout snapshot of the cart
+      operationId: checkout
+      tags: [carts]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Immutable cart snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartSnapshot'
+        '404':
+          description: No cart for user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Cart is empty
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ItemId:
+      name: itemId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    AddItemRequest:
+      type: object
+      required: [menuItemId, qty]
+      properties:
+        menuItemId:
+          type: integer
+          format: int64
+        qty:
+          type: integer
+          minimum: 1
+    UpdateItemRequest:
+      type: object
+      required: [qty]
+      properties:
+        qty:
+          type: integer
+          minimum: 1
+    CartItemResponse:
+      type: object
+      properties:
+        itemId:
+          type: integer
+          format: int64
+        menuItemId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        qty:
+          type: integer
+        unitPriceCents:
+          type: integer
+          format: int64
+        lineTotalCents:
+          type: integer
+          format: int64
+    CartResponse:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        restaurantId:
+          type: integer
+          format: int64
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItemResponse'
+        subtotalCents:
+          type: integer
+          format: int64
+        updatedAt:
+          type: string
+          format: date-time
+    CartSnapshot:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        restaurantId:
+          type: integer
+          format: int64
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              menuItemId:
+                type: integer
+                format: int64
+              name:
+                type: string
+              qty:
+                type: integer
+              unitPriceCents:
+                type: integer
+                format: int64
+        subtotalCents:
+          type: integer
+          format: int64
+    Error:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

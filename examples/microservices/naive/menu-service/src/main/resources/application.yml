@@ -1,0 +1,79 @@
+server:
+  port: ${SERVER_PORT:8083}
+
+spring:
+  application:
+    name: menu-service
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/menu_db}
+    username: ${DB_USERNAME:quickbite}
+    password: ${DB_PASSWORD:quickbite}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+# Kafka topic names (overridable)
+kafka:
+  bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+  topics:
+    menu-events: ${KAFKA_TOPIC_MENU_EVENTS:menu.events}
+
+# Downstream dependencies (Feign). Targets the service's /internal API.
+clients:
+  restaurant:
+    url: ${CLIENTS_RESTAURANT_URL:http://localhost:8082}
+
+# Resilience4j circuit breaker backing the restaurant Feign client
+resilience4j:
+  circuitbreaker:
+    instances:
+      restaurant:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 3
+  timelimiter:
+    instances:
+      restaurant:
+        timeout-duration: 3s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

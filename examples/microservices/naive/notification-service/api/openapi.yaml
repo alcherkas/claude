@@ -1,0 +1,104 @@
+openapi: 3.0.3
+info:
+  title: QuickBite Notification Service API
+  description: >-
+    Event-driven notifications for QuickBite. The service consumes orders.events,
+    payments.events and deliveries.events from Kafka, renders a template, persists a
+    notification and (mock) sends it. This contract covers the public read API exposed
+    through the gateway at /api/notifications. The /internal/** surface is service-to-service
+    only and is never exposed through the gateway.
+  version: 1.0.0
+  license:
+    name: Proprietary
+servers:
+  - url: http://localhost:8093
+    description: Local direct
+  - url: http://localhost:8080
+    description: Through the API gateway (prefix /api)
+paths:
+  /api/notifications:
+    get:
+      tags: [Notifications]
+      summary: List notifications for a user, newest first
+      operationId: listNotifications
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          description: The recipient user id (UUID).
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The user's notification history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationListResponse'
+        '400':
+          description: Missing or invalid userId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Channel:
+      type: string
+      enum: [EMAIL, SMS, PUSH]
+    NotificationStatus:
+      type: string
+      enum: [PENDING, SENT, FAILED]
+    NotificationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        channel:
+          $ref: '#/components/schemas/Channel'
+        template:
+          type: string
+          example: order.created
+        message:
+          type: string
+          description: Rendered, human-readable message body.
+        status:
+          $ref: '#/components/schemas/NotificationStatus'
+        createdAt:
+          type: string
+          format: date-time
+        sentAt:
+          type: string
+          format: date-time
+          nullable: true
+    NotificationListResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        count:
+          type: integer
+        notifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationResponse'
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string

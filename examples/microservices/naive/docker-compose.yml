@@ -1,0 +1,504 @@
+# QuickBite — full local stack.
+#
+# Brings up: postgres (with all 14 *_db databases), zookeeper + kafka (9092),
+# the 15 Java services (exact ports per PLATFORM_SPEC.md §1.1) and the 7 MFEs
+# (ports 3000-3006). Service names == repo names == DNS names on this network,
+# so clients.<dep>.url uses http://<service>:<port> and internal calls hit /internal/**.
+#
+#   docker compose up -d --build
+#
+# Build contexts are ./<repo>: this file lives at the multi-repo root and each repo
+# is a directory directly beneath it. Run from this directory: `docker compose up --build`.
+version: "3.9"
+
+name: quickbite
+
+# ---- shared bits ------------------------------------------------------------
+x-jwt-secret: &jwt-secret "local-dev-shared-hs256-secret-change-me-please-32+chars"
+x-kafka: &kafka "kafka:9092"
+
+x-service-defaults: &service-defaults
+  restart: unless-stopped
+  networks: [quickbite]
+  environment: &service-env
+    KAFKA_BOOTSTRAP_SERVERS: *kafka
+    JWT_SECRET: *jwt-secret
+    SPRING_PROFILES_ACTIVE: docker
+
+services:
+  # =========================================================================
+  # Infrastructure
+  # =========================================================================
+  postgres:
+    image: postgres:16.3
+    container_name: quickbite-postgres
+    environment:
+      POSTGRES_USER: quickbite
+      POSTGRES_PASSWORD: quickbite
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # init script creates all 14 databases on first boot:
+      #   identity_db restaurant_db menu_db search_db cart_db promotion_db
+      #   order_db wallet_db payment_db driver_db delivery_db notification_db review_db
+      #   (pricing-service and api-gateway are stateless — no DB)
+      - ./docker/postgres-init.sql:/docker-entrypoint-initdb.d/01-databases.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quickbite"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [quickbite]
+
+  # Idempotent fallback DB creator (in case the volume already exists and the
+  # init script above was not re-run). Lists every *_db database explicitly.
+  db-init:
+    image: postgres:16.3
+    container_name: quickbite-db-init
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: quickbite
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        for db in identity_db restaurant_db menu_db search_db cart_db promotion_db \
+                  order_db wallet_db payment_db driver_db delivery_db \
+                  notification_db review_db; do
+          psql -h postgres -U quickbite -tc "SELECT 1 FROM pg_database WHERE datname='$$db'" \
+            | grep -q 1 || psql -h postgres -U quickbite -c "CREATE DATABASE $$db";
+        done
+        echo "all quickbite databases present";
+    networks: [quickbite]
+    restart: "no"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.1
+    container_name: quickbite-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks: [quickbite]
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: quickbite-kafka
+    depends_on: [zookeeper]
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      # PLAINTEXT (internal, kafka:9092) + PLAINTEXT_HOST (localhost:9094 for host tools)
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:9094
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+    networks: [quickbite]
+
+  # =========================================================================
+  # Java services (depends_on: identity first; gateway last)
+  # =========================================================================
+
+  # 1 — identity-service :8081 — foundational, no deps
+  identity-service:
+    <<: *service-defaults
+    build: ./identity-service
+    container_name: identity-service
+    ports: ["8081:8081"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8081"
+      DB_URL: jdbc:postgresql://postgres:5432/identity_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      db-init: { condition: service_completed_successfully }
+
+  # 2 — restaurant-service :8082 — deps: identity
+  restaurant-service:
+    <<: *service-defaults
+    build: ./restaurant-service
+    container_name: restaurant-service
+    ports: ["8082:8082"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8082"
+      DB_URL: jdbc:postgresql://postgres:5432/restaurant_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      identity-service: { condition: service_started }
+
+  # 3 — menu-service :8083 — deps: restaurant
+  menu-service:
+    <<: *service-defaults
+    build: ./menu-service
+    container_name: menu-service
+    ports: ["8083:8083"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8083"
+      DB_URL: jdbc:postgresql://postgres:5432/menu_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_RESTAURANT_URL: http://restaurant-service:8082
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      restaurant-service: { condition: service_started }
+
+  # 4 — search-service :8084 — deps: restaurant, menu (consumer)
+  search-service:
+    <<: *service-defaults
+    build: ./search-service
+    container_name: search-service
+    ports: ["8084:8084"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8084"
+      DB_URL: jdbc:postgresql://postgres:5432/search_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_RESTAURANT_URL: http://restaurant-service:8082
+      CLIENTS_MENU_URL: http://menu-service:8083
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      restaurant-service: { condition: service_started }
+      menu-service: { condition: service_started }
+
+  # 5 — cart-service :8085 — deps: menu, identity
+  cart-service:
+    <<: *service-defaults
+    build: ./cart-service
+    container_name: cart-service
+    ports: ["8085:8085"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8085"
+      DB_URL: jdbc:postgresql://postgres:5432/cart_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_MENU_URL: http://menu-service:8083
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      menu-service: { condition: service_started }
+      identity-service: { condition: service_started }
+
+  # 6 — pricing-service :8086 — deps: menu, promotion (stateless)
+  pricing-service:
+    <<: *service-defaults
+    build: ./pricing-service
+    container_name: pricing-service
+    ports: ["8086:8086"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8086"
+      CLIENTS_MENU_URL: http://menu-service:8083
+      CLIENTS_PROMOTION_URL: http://promotion-service:8087
+    depends_on:
+      kafka: { condition: service_healthy }
+      menu-service: { condition: service_started }
+      promotion-service: { condition: service_started }
+
+  # 7 — promotion-service :8087 — deps: identity
+  promotion-service:
+    <<: *service-defaults
+    build: ./promotion-service
+    container_name: promotion-service
+    ports: ["8087:8087"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8087"
+      DB_URL: jdbc:postgresql://postgres:5432/promotion_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      identity-service: { condition: service_started }
+
+  # 8 — order-service :8088 — deps: cart, pricing, menu, restaurant, identity (producer)
+  order-service:
+    <<: *service-defaults
+    build: ./order-service
+    container_name: order-service
+    ports: ["8088:8088"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8088"
+      DB_URL: jdbc:postgresql://postgres:5432/order_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_CART_URL: http://cart-service:8085
+      CLIENTS_PRICING_URL: http://pricing-service:8086
+      CLIENTS_MENU_URL: http://menu-service:8083
+      CLIENTS_RESTAURANT_URL: http://restaurant-service:8082
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      cart-service: { condition: service_started }
+      pricing-service: { condition: service_started }
+      menu-service: { condition: service_started }
+      restaurant-service: { condition: service_started }
+      identity-service: { condition: service_started }
+
+  # 9 — wallet-service :8090 — deps: identity
+  wallet-service:
+    <<: *service-defaults
+    build: ./wallet-service
+    container_name: wallet-service
+    ports: ["8090:8090"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8090"
+      DB_URL: jdbc:postgresql://postgres:5432/wallet_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      identity-service: { condition: service_started }
+
+  # 10 — payment-service :8089 — deps: order, wallet, identity (producer)
+  payment-service:
+    <<: *service-defaults
+    build: ./payment-service
+    container_name: payment-service
+    ports: ["8089:8089"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8089"
+      DB_URL: jdbc:postgresql://postgres:5432/payment_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_ORDER_URL: http://order-service:8088
+      CLIENTS_WALLET_URL: http://wallet-service:8090
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      order-service: { condition: service_started }
+      wallet-service: { condition: service_started }
+      identity-service: { condition: service_started }
+
+  # 11 — driver-service :8091 — deps: identity
+  driver-service:
+    <<: *service-defaults
+    build: ./driver-service
+    container_name: driver-service
+    ports: ["8091:8091"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8091"
+      DB_URL: jdbc:postgresql://postgres:5432/driver_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      identity-service: { condition: service_started }
+
+  # 12 — delivery-service :8092 — deps: order, driver (producer)
+  delivery-service:
+    <<: *service-defaults
+    build: ./delivery-service
+    container_name: delivery-service
+    ports: ["8092:8092"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8092"
+      DB_URL: jdbc:postgresql://postgres:5432/delivery_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_ORDER_URL: http://order-service:8088
+      CLIENTS_DRIVER_URL: http://driver-service:8091
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      order-service: { condition: service_started }
+      driver-service: { condition: service_started }
+
+  # 13 — notification-service :8093 — consumer (events only)
+  notification-service:
+    <<: *service-defaults
+    build: ./notification-service
+    container_name: notification-service
+    ports: ["8093:8093"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8093"
+      DB_URL: jdbc:postgresql://postgres:5432/notification_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      order-service: { condition: service_started }
+      delivery-service: { condition: service_started }
+      payment-service: { condition: service_started }
+
+  # 14 — review-service :8094 — deps: order, restaurant, identity
+  review-service:
+    <<: *service-defaults
+    build: ./review-service
+    container_name: review-service
+    ports: ["8094:8094"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8094"
+      DB_URL: jdbc:postgresql://postgres:5432/review_db
+      DB_USERNAME: quickbite
+      DB_PASSWORD: quickbite
+      CLIENTS_ORDER_URL: http://order-service:8088
+      CLIENTS_RESTAURANT_URL: http://restaurant-service:8082
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      order-service: { condition: service_started }
+      restaurant-service: { condition: service_started }
+      identity-service: { condition: service_started }
+
+  # 15 — api-gateway :8080 — routes to all services (started after them)
+  api-gateway:
+    <<: *service-defaults
+    build: ./api-gateway
+    container_name: api-gateway
+    ports: ["8080:8080"]
+    environment:
+      <<: *service-env
+      SERVER_PORT: "8080"
+      # downstream route targets (Spring Cloud Gateway uri per /api/** prefix).
+      # Names must match the CLIENTS_*_URL placeholders in api-gateway application.yml.
+      CLIENTS_IDENTITY_URL: http://identity-service:8081
+      CLIENTS_RESTAURANT_URL: http://restaurant-service:8082
+      CLIENTS_MENU_URL: http://menu-service:8083
+      CLIENTS_SEARCH_URL: http://search-service:8084
+      CLIENTS_CART_URL: http://cart-service:8085
+      CLIENTS_PRICING_URL: http://pricing-service:8086
+      CLIENTS_PROMOTION_URL: http://promotion-service:8087
+      CLIENTS_ORDER_URL: http://order-service:8088
+      CLIENTS_PAYMENT_URL: http://payment-service:8089
+      CLIENTS_WALLET_URL: http://wallet-service:8090
+      CLIENTS_DRIVER_URL: http://driver-service:8091
+      CLIENTS_DELIVERY_URL: http://delivery-service:8092
+      CLIENTS_NOTIFICATION_URL: http://notification-service:8093
+      CLIENTS_REVIEW_URL: http://review-service:8094
+    depends_on:
+      identity-service: { condition: service_started }
+      restaurant-service: { condition: service_started }
+      menu-service: { condition: service_started }
+      search-service: { condition: service_started }
+      cart-service: { condition: service_started }
+      pricing-service: { condition: service_started }
+      promotion-service: { condition: service_started }
+      order-service: { condition: service_started }
+      payment-service: { condition: service_started }
+      wallet-service: { condition: service_started }
+      driver-service: { condition: service_started }
+      delivery-service: { condition: service_started }
+      notification-service: { condition: service_started }
+      review-service: { condition: service_started }
+
+  # =========================================================================
+  # Micro-frontends (3000-3006) — all call the gateway
+  # =========================================================================
+  shell:
+    build: ./shell
+    container_name: shell
+    ports: ["3000:80"]
+    environment:
+      VITE_GATEWAY_URL: http://localhost:8080
+    depends_on: [api-gateway]
+    networks: [quickbite]
+    restart: unless-stopped
+
+  discovery-mfe:
+    build: ./discovery-mfe
+    container_name: discovery-mfe
+    ports: ["3001:80"]
+    environment:
+      VITE_GATEWAY_URL: http://localhost:8080
+    depends_on: [api-gateway]
+    networks: [quickbite]
+    restart: unless-stopped
+
+  checkout-mfe:
+    build: ./checkout-mfe
+    container_name: checkout-mfe
+    ports: ["3002:80"]
+    environment:
+      VITE_GATEWAY_URL: http://localhost:8080
+    depends_on: [api-gateway]
+    networks: [quickbite]
+    restart: unless-stopped
+
+  order-tracking-mfe:
+    build: ./order-tracking-mfe
+    container_name: order-tracking-mfe
+    ports: ["3003:80"]
+    environment:
+      VITE_GATEWAY_URL: http://localhost:8080
+    depends_on: [api-gateway]
+    networks: [quickbite]
+    restart: unless-stopped
+
+  account-mfe:
+    build: ./account-mfe
+    container_name: account-mfe
+    ports: ["3004:80"]
+    environment:
+      VITE_GATEWAY_URL: http://localhost:8080
+    depends_on: [api-gateway]
+    networks: [quickbite]
+    restart: unless-stopped
+
+  restaurant-admin-mfe:
+    build: ./restaurant-admin-mfe
+    container_name: restaurant-admin-mfe
+    ports: ["3005:80"]
+    environment:
+      VITE_GATEWAY_URL: http://localhost:8080
+    depends_on: [api-gateway]
+    networks: [quickbite]
+    restart: unless-stopped
+
+  driver-portal-mfe:
+    build: ./driver-portal-mfe
+    container_name: driver-portal-mfe
+    ports: ["3006:80"]
+    environment:
+      VITE_GATEWAY_URL: http://localhost:8080
+    depends_on: [api-gateway]
+    networks: [quickbite]
+    restart: unless-stopped
+
+networks:
+  quickbite:
+    driver: bridge
+
+volumes:
+  pgdata:

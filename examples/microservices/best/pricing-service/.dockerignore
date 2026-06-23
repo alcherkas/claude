@@ -1,0 +1,10 @@
+target/
+.git/
+.github/
+.gitignore
+*.md
+terraform/
+api/
+.idea/
+*.iml
+.DS_Store
