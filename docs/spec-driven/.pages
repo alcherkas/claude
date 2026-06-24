@@ -1,6 +1,7 @@
 title: Spec-Driven Dev
 nav:
 - index.md
+- openspec-best-practices-claude-code.md
 - anthropic
 - google
 - microsoft-github

@@ -10,6 +10,9 @@ title: Spec-Driven, Constraints-Driven & Test-Driven Development
 - **"Constraints-driven development"** is the thinnest category: it is not a term any of the five priority sources uses as a formal methodology; the closest credible material is third-party (GrayBeam's "Constraint-Driven Development") plus academic arXiv work, while the priority sources address constraints under "spec-anchored," "steering files," "guardrails," and "harness engineering."
 - Below is an organized, link-first deliverable grouped by source, then by topic, with titles, URLs, and publication dates where available.
 
+!!! tip "In-depth report"
+    [**OpenSpec with Claude Code: Best Practices & Efficiency Tips**](openspec-best-practices-claude-code.md) — a deep-research deliverable on the OpenSpec spec-driven workflow (`/opsx:*` commands, delta specs, the `proposal → specs → design → tasks → archive` cycle) and how to run it efficiently inside Claude Code.
+
 ## Key Findings
 - **Anthropic** frames TDD as "the single strongest pattern for working with agentic coding tools" (verbatim from Boris Cherny's "Claude Code: Best practices for agentic coding," orig. April 2025), and publishes best-practices and harness-engineering guidance on its engineering blog and Claude Code docs. Note: the four-step TDD recipe widely quoted online (write tests → confirm they fail → commit → implement until green) traces to that earlier version; the live page now serves revised content.
 - **GitHub/Microsoft** own the flagship SDD tool (Spec Kit) with a Constitution → Specify → Plan → Tasks → Implement workflow, plus GitHub Blog TDD-with-Copilot tutorials and VS Code custom-agent/chat-mode docs. The launch post was authored by Den Delimarsky (GitHub) and published September 2, 2025; the Spec Kit "constitution" defines nine articles (e.g., Article I requires every feature to begin as a standalone, reusable library).
