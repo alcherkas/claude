@@ -1,0 +1,13 @@
+{
+  "hooks": {
+    "PreCompact": [
+      { "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/hooks/log.sh\" PreCompact" } ] }
+    ],
+    "PostCompact": [
+      { "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/hooks/log.sh\" PostCompact" } ] }
+    ],
+    "SubagentStop": [
+      { "hooks": [ { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/hooks/log.sh\" SubagentStop" } ] }
+    ]
+  }
+}
