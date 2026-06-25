@@ -1,40 +1,37 @@
-# Structured return — surviving subagent context overflow
+# Structured return — fan out so nothing overflows
 
-The fix paired with [`../overflow`](../overflow). Same Haiku subagent, same ~40
-overflowing filler files — but here the canary comes back **intact**.
+The fix paired with [`../overflow`](../overflow). There, one Haiku subagent tries to
+hold every file's `MARK` code and **loses the early ones** when its context compacts.
 
-## The idea
+Here we don't make one agent hold them all. The parent **fans out one bounded
+`reader` subagent per file**; each reads only its own file (~40k tokens — nowhere near
+the window) and returns a structured `{"NNN":"code"}`. The parent merges them, so
+**every code survives, early ones included**.
 
-Instead of "read everything, then recall," the parent hands the subagent an
-**output contract**:
-
-```json
-{"canary": "<the CANARY= line from filler/000.txt>", "scanned": <int>}
-```
-
-Because the subagent must *return that shape*, it fills each field from its source
-(re-reading `filler/000.txt`) instead of trusting a transcript that compaction has
-already thinned. The answer lives in the **return value**, not stranded mid-context.
+Two ideas working together:
+- **Scope so nothing overflows** — each fact lives in its own fresh context.
+- **Structured return** — each reader returns a validated object, not prose, so the
+  parent can merge results mechanically instead of scraping paragraphs.
 
 ## Files
 
 | File | Role |
 |------|------|
-| `.claude/agents/extractor.md` | Haiku subagent, `tools: Read`, must emit the JSON contract |
-| `prompt.md` | Tells the main agent to spawn it and print its answer |
-| `run.sh` | Generates filler, runs it, then verifies `.canary` == the planted value |
+| `.claude/agents/reader.md` | The per-file subagent — `model: haiku`, `tools: Read` |
+| `run.sh` | Generates the same filler as `../overflow`, fans out, verifies every code |
 
 ## Run
 
 ```bash
-bash run.sh        # prints RESULT: PASS when the fact survives
+bash run.sh
 ```
 
-Contrast: `../overflow` returns a garbled canary / `CANARY LOST`; this one PASSes.
+The per-file table should be **all `kept`** (contrast `../overflow`, where the early
+files come back `LOST`).
 
 ## In real pipelines
 
-The enforced version of this is the Workflow tool's schema option —
-`agent(prompt, { schema })` forces the subagent to call a `StructuredOutput` tool
-and returns the *validated object*, so a malformed or hallucinated result is
-rejected and retried instead of silently passed up.
+The enforced version is the Workflow tool's schema option —
+`agent(prompt, { schema })` forces each subagent to call a `StructuredOutput` tool and
+returns the *validated object*, so a malformed result is rejected and retried instead
+of silently merged.

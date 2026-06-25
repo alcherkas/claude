@@ -1,18 +1,22 @@
 # Subagent context overflow — what hooks see
 
-Demonstrates, in one run:
+A Haiku `overflower` subagent reads a stack of large files in order — each carrying a
+unique `MARK-### = code` on its first line — then is asked to recall *every* code from
+memory. One run shows:
 
-1. **A subagent overflows its context** — a Haiku `overflower` subagent reads large
-   filler files until it blows past Haiku's window (each file is ~45k tokens, so a
-   handful of reads is enough).
-2. **Mid-task detail can be dropped in the summary** — a `CANARY=` token planted in
-   the *first* file is asked for at the *end*. Once its context compacts, the answer
-   may come back garbled or as `CANARY LOST` (compaction is lossy, not guaranteed to
-   drop any specific line — re-run if it survives).
-3. **`PreCompact` / `PostCompact` never fire for the subagent** — those hooks are
-   main-session only, so the subagent's own compaction is invisible to them.
-4. **`SubagentStop` is the only thing that fires** — and the run prints the *exact*
-   JSON payload it received.
+1. **The subagent overflows and silently compacts** — it reads far more than its
+   window holds (each file ~40k tokens; ~9 reads ≈ 360k vs Haiku's ~200k), so its
+   context is summarized mid-task.
+2. **Early details fall out** — codes from the first files come back `LOST` while the
+   most recent ones survive. Compaction is lossy and recency-biased. (A *single* value
+   the agent is explicitly told to guard usually survives — it keeps restating it —
+   which is why one lone "canary" can't demonstrate loss. You need many incidental
+   facts it can't all cling to.)
+3. **`PreCompact` / `PostCompact` never fire** — those hooks are main-session only, so
+   the subagent's own compaction is invisible to them.
+4. **`SubagentStop` is the only hook that fires** — the run prints its exact payload,
+   which includes `last_assistant_message` (the subagent's final text), `agent_id`,
+   `agent_type`, and `agent_transcript_path`.
 
 ## Files
 
@@ -27,21 +31,16 @@ Demonstrates, in one run:
 ## Run
 
 ```bash
-bash run.sh           # tune size with: LINES=3000 bash run.sh
+bash run.sh           # push harder with: N=16 LINES=3000 bash run.sh
 ```
 
-Requires the `claude` CLI and `jq`. Reads a few hundred k tokens on Haiku — cheap,
-not free.
+Requires the `claude` CLI and `jq`. Reads a few hundred k tokens on Haiku.
 
 ## What to look at afterward
 
-- `logs/fired.log` — should list **SubagentStop** but **not** PreCompact/PostCompact.
-- `logs/last-SubagentStop.json` — the exact payload. It carries `agent_id`,
-  `agent_type`, an `agent_transcript_path`, **and `last_assistant_message`** (the
-  subagent's actual final text — so the hook sees the output, not just a pointer).
-- `logs/run.out` — the subagent's final line vs. the real canary printed below it.
+- The **kept / LOST / WRONG** table `run.sh` prints — early files `LOST`, later kept.
+- `logs/fired.log` — **SubagentStop** only; no PreCompact/PostCompact.
+- `logs/last-SubagentStop.json` — the exact payload the hook received.
 
-A subagent reads only ~10 files before stopping, so overflow has to happen *within*
-those reads — that's why each file is large. If the canary survives, the subagent
-didn't read enough to overflow: raise `LINES` (file size), not `N`. The hook
-evidence (3 + 4) holds regardless.
+If everything is `kept`, the subagent didn't read enough to overflow — raise `LINES`.
+The hook evidence (3 + 4) holds regardless.
