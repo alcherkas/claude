@@ -9,11 +9,15 @@ N="${N:-40}"
 LINES="${LINES:-1500}"
 CANARY="CANARY=magpie-$$"
 
+filler() {                                # print $1 filler lines (no pipe -> safe under pipefail)
+  local i; for ((i = 0; i < $1; i++)); do echo "filler line — ignore me, keep reading"; done
+}
+
 rm -rf filler logs && mkdir -p filler logs
-{ echo "$CANARY"; yes "filler line — ignore me, keep reading" | head -n "$LINES"; } > filler/000.txt
+{ echo "$CANARY"; filler "$LINES"; } > filler/000.txt
 for i in $(seq 1 $((N - 1))); do
   printf -v f 'filler/%03d.txt' "$i"
-  yes "filler line — ignore me, keep reading" | head -n "$LINES" > "$f"
+  filler "$LINES" > "$f"
 done
 echo "Generated $N filler files. Planted: $CANARY"
 echo

@@ -8,11 +8,15 @@ N="${N:-40}"                              # filler files (each ~12k tokens)
 LINES="${LINES:-1500}"                    # lines per file
 CANARY="CANARY=magpie-$$"                 # planted in filler/000.txt, recalled at the end
 
+filler() {                                # print $1 filler lines (no pipe -> safe under pipefail)
+  local i; for ((i = 0; i < $1; i++)); do echo "filler line — ignore me, keep reading"; done
+}
+
 rm -rf filler logs && mkdir -p filler logs
-{ echo "$CANARY"; yes "filler line — ignore me, keep reading" | head -n "$LINES"; } > filler/000.txt
+{ echo "$CANARY"; filler "$LINES"; } > filler/000.txt
 for i in $(seq 1 $((N - 1))); do
   printf -v f 'filler/%03d.txt' "$i"
-  yes "filler line — ignore me, keep reading" | head -n "$LINES" > "$f"
+  filler "$LINES" > "$f"
 done
 echo "Generated $N filler files (~$((N * LINES)) lines total). Planted: $CANARY"
 echo
