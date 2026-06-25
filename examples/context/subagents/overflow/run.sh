@@ -4,12 +4,15 @@
 set -euo pipefail
 cd "$(dirname "$0")"                       # demo dir == project root for this run
 
-N="${N:-40}"                              # filler files (each ~12k tokens)
-LINES="${LINES:-1500}"                    # lines per file
+N="${N:-20}"                              # filler files (a subagent often reads ~10 then stops)
+LINES="${LINES:-2000}"                    # lines per file
 CANARY="CANARY=magpie-$$"                 # planted in filler/000.txt, recalled at the end
 
+# Long lines so a handful of Reads alone blow past Haiku's window (~45k tokens/file),
+# forcing overflow well within the ~10 files the subagent actually reads.
+LINE="filler filler filler — ignore me, the canary lives only in file 000, keep reading the rest"
 filler() {                                # print $1 filler lines (no pipe -> safe under pipefail)
-  local i; for ((i = 0; i < $1; i++)); do echo "filler line — ignore me, keep reading"; done
+  local i; for ((i = 0; i < $1; i++)); do echo "$LINE"; done
 }
 
 rm -rf filler logs && mkdir -p filler logs

@@ -5,12 +5,14 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-N="${N:-40}"
-LINES="${LINES:-1500}"
+N="${N:-20}"
+LINES="${LINES:-2000}"
 CANARY="CANARY=magpie-$$"
 
+# Long lines so a handful of Reads alone blow past Haiku's window (~45k tokens/file).
+LINE="filler filler filler — ignore me, the canary lives only in file 000, keep reading the rest"
 filler() {                                # print $1 filler lines (no pipe -> safe under pipefail)
-  local i; for ((i = 0; i < $1; i++)); do echo "filler line — ignore me, keep reading"; done
+  local i; for ((i = 0; i < $1; i++)); do echo "$LINE"; done
 }
 
 rm -rf filler logs && mkdir -p filler logs

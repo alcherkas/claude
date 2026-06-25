@@ -2,11 +2,13 @@
 
 Demonstrates, in one run:
 
-1. **A subagent overflows its context** — a Haiku `overflower` subagent reads ~40
-   large filler files (far past Haiku's window).
-2. **Mid-task detail is dropped in the summary** — a `CANARY=` token planted in the
-   *first* file is asked for at the *end*. After compaction it comes back garbled or
-   as `CANARY LOST`.
+1. **A subagent overflows its context** — a Haiku `overflower` subagent reads large
+   filler files until it blows past Haiku's window (each file is ~45k tokens, so a
+   handful of reads is enough).
+2. **Mid-task detail can be dropped in the summary** — a `CANARY=` token planted in
+   the *first* file is asked for at the *end*. Once its context compacts, the answer
+   may come back garbled or as `CANARY LOST` (compaction is lossy, not guaranteed to
+   drop any specific line — re-run if it survives).
 3. **`PreCompact` / `PostCompact` never fire for the subagent** — those hooks are
    main-session only, so the subagent's own compaction is invisible to them.
 4. **`SubagentStop` is the only thing that fires** — and the run prints the *exact*
@@ -25,17 +27,21 @@ Demonstrates, in one run:
 ## Run
 
 ```bash
-bash run.sh           # tune size with: N=60 LINES=2000 bash run.sh
+bash run.sh           # tune size with: LINES=3000 bash run.sh
 ```
 
-Requires the `claude` CLI and `jq`. Reads ~400k tokens on Haiku — cheap, not free.
+Requires the `claude` CLI and `jq`. Reads a few hundred k tokens on Haiku — cheap,
+not free.
 
 ## What to look at afterward
 
 - `logs/fired.log` — should list **SubagentStop** but **not** PreCompact/PostCompact.
-- `logs/last-SubagentStop.json` — the exact payload (note it carries a
-  `transcript_path`, not the subagent's output text).
+- `logs/last-SubagentStop.json` — the exact payload. It carries `agent_id`,
+  `agent_type`, an `agent_transcript_path`, **and `last_assistant_message`** (the
+  subagent's actual final text — so the hook sees the output, not just a pointer).
 - `logs/run.out` — the subagent's final line vs. the real canary printed below it.
 
-If nothing compacted (canary came back intact), the filler wasn't big enough —
-bump `N`. The hook evidence (3 + 4) holds regardless.
+A subagent reads only ~10 files before stopping, so overflow has to happen *within*
+those reads — that's why each file is large. If the canary survives, the subagent
+didn't read enough to overflow: raise `LINES` (file size), not `N`. The hook
+evidence (3 + 4) holds regardless.
