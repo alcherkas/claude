@@ -50,6 +50,7 @@ export interface QuoteRequest {
   restaurantId: string;
   items: Array<{ menuItemId: string; qty: number }>;
   promoCode?: string;
+  tipCents?: number;
 }
 
 export interface Quote {
@@ -58,6 +59,7 @@ export interface Quote {
   serviceFeeCents: number;
   taxCents: number;
   discountCents: number;
+  tipCents: number;
   totalCents: number;
   lineItems: QuoteLineItem[];
 }
@@ -77,6 +79,7 @@ export interface PlaceOrderRequest {
   userId: string;
   restaurantId: string;
   promoCode?: string;
+  tipCents?: number;
 }
 
 export interface Order {

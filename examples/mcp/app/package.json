@@ -1,0 +1,16 @@
+{
+  "name": "mcp-apps-explainer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimal MCP App example: an interactive page explaining MCP Apps, served by a stdio MCP server.",
+  "bin": {
+    "mcp-apps-explainer": "server.js"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

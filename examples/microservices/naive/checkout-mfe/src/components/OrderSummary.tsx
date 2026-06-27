@@ -34,6 +34,9 @@ export function OrderSummary({ quote, loading, title }: OrderSummaryProps) {
                 emphasis="discount"
               />
             )}
+            {quote.tipCents > 0 && (
+              <Row label="Courier tip" cents={quote.tipCents} />
+            )}
           </dl>
           <div className="summary__total">
             <span>Total</span>

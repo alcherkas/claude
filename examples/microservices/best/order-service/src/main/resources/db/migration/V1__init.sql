@@ -10,6 +10,7 @@ CREATE TABLE orders (
     service_fee_cents BIGINT          NOT NULL,
     tax_cents         BIGINT          NOT NULL,
     discount_cents    BIGINT          NOT NULL,
+    tip_cents         BIGINT          NOT NULL DEFAULT 0,
     total_cents       BIGINT          NOT NULL,
     currency          VARCHAR(3)      NOT NULL,
     created_at        TIMESTAMPTZ     NOT NULL DEFAULT now(),

@@ -169,6 +169,48 @@ button.primary:disabled {
   border-radius: 8px;
 }
 
+.tip {
+  margin: 1rem 0;
+}
+
+.tip__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.tip__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tip__option {
+  flex: 1;
+  min-width: 4rem;
+  padding: 0.5rem;
+  border: 1px solid var(--qb-border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.tip__option--active {
+  border-color: var(--qb-accent, #2e8b57);
+  background: #effaf0;
+  font-weight: 600;
+}
+
+.tip__custom {
+  margin-top: 0.6rem;
+}
+
+.tip__custom input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--qb-border);
+  border-radius: 8px;
+}
+
 .summary__lines {
   margin: 0;
 }

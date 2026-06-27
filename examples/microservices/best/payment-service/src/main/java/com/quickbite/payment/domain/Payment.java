@@ -37,6 +37,9 @@ public class Payment {
     @Column(name = "amount_cents", nullable = false)
     private long amountCents;
 
+    @Column(name = "tip_cents", nullable = false)
+    private long tipCents;
+
     @Column(nullable = false, length = 3)
     private String currency;
 

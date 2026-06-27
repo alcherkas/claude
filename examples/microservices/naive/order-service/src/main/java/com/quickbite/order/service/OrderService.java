@@ -74,7 +74,8 @@ public class OrderService {
                 cart.items().stream()
                         .map(i -> new PricingQuoteRequest.QuoteLineItem(i.menuItemId(), i.qty()))
                         .toList(),
-                request.promoCode());
+                request.promoCode(),
+                request.tipCents());
         PricingQuoteResponse quote = pricingClient.quote(quoteRequest);
 
         Order order = Order.builder()
@@ -87,6 +88,7 @@ public class OrderService {
                 .serviceFeeCents(quote.serviceFeeCents())
                 .taxCents(quote.taxCents())
                 .discountCents(quote.discountCents())
+                .tipCents(quote.tipCents())
                 .totalCents(quote.totalCents())
                 .currency(quote.currency() != null ? quote.currency() : defaultCurrency)
                 .createdAt(Instant.now())

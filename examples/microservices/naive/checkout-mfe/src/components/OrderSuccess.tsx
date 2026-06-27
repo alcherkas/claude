@@ -17,6 +17,12 @@ export function OrderSuccess() {
       <p>
         Thanks! Your order <strong>#{orderId}</strong> has been placed and paid.
       </p>
+      {order && order.pricing.tipCents > 0 && (
+        <p className="success__tip">
+          Includes a courier tip of{' '}
+          <strong>{formatCents(order.pricing.tipCents)}</strong>
+        </p>
+      )}
       {order && (
         <p className="success__total">
           Total charged: <strong>{formatCents(order.pricing.totalCents)}</strong>

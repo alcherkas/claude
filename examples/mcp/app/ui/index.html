@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MCP Apps — Explainer</title>
+<style>
+  :root { color-scheme: light dark; --fg:#1a1a1a; --muted:#666; --accent:#c8643c; --line:#d8d3cc; --card:#faf8f5; }
+  @media (prefers-color-scheme: dark){ :root{ --fg:#eee; --muted:#9a9a9a; --accent:#e0915f; --line:#333; --card:#1c1c1c; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--fg); padding:24px; max-width:680px; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 20px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:24px 0 10px; }
+  ul { margin:0; padding:0; list-style:none; display:grid; gap:8px; }
+  li { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 12px; }
+  li b { color:var(--accent); }
+  svg { width:100%; height:auto; border:1px solid var(--line); border-radius:8px; background:var(--card); }
+  .flow text { font:11px sans-serif; fill:var(--fg); }
+  .flow .box { fill:var(--card); stroke:var(--accent); stroke-width:1.5; }
+  .flow .lbl { fill:var(--muted); font-size:10px; }
+  .flow line { stroke:var(--accent); stroke-width:1.5; marker-end:url(#arrow); }
+  .demo { margin-top:24px; padding:14px; border:1px dashed var(--accent); border-radius:8px; }
+  button { font:inherit; background:var(--accent); color:#fff; border:0; border-radius:6px; padding:8px 14px; cursor:pointer; }
+  button:active { transform:translateY(1px); }
+  #status { color:var(--muted); margin-left:10px; }
+</style>
+</head>
+<body>
+  <h1>MCP Apps</h1>
+  <p class="sub">Servers return an interactive UI that renders right inside the chat — not just text.</p>
+
+  <h2>Why use them</h2>
+  <ul>
+    <li><b>Context preserved</b> — the UI lives in the conversation; no tab switching.</li>
+    <li><b>Two-way data</b> — the app calls server tools; the host pushes fresh results back.</li>
+    <li><b>Host integration</b> — delegate actions (e.g. "schedule this") to tools the user already connected.</li>
+    <li><b>Sandboxed</b> — runs in an isolated iframe; can't touch the host page, cookies, or storage.</li>
+  </ul>
+
+  <h2>Where they shine</h2>
+  <ul>
+    <li><b>Explore data</b> — "sales by region" → a clickable map you drill into, instead of a wall of numbers.</li>
+    <li><b>Configure with many options</b> — a deploy form with validation &amp; defaults, not a 10-question back-and-forth.</li>
+    <li><b>Rich media</b> — pan/zoom a PDF, rotate a 3D model, or preview generated images inline.</li>
+    <li><b>Live monitoring</b> — a dashboard of metrics or logs that keeps updating without re-asking.</li>
+    <li><b>Multi-step review</b> — triage issues or approve expenses one by one with buttons and saved state.</li>
+  </ul>
+
+  <h2>Data &amp; communication flow</h2>
+  <svg class="flow" viewBox="0 0 660 230" role="img" aria-label="Flow between user, Claude host, MCP App iframe, and MCP server">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
+      </marker>
+    </defs>
+    <!-- columns -->
+    <g class="box-group">
+      <rect class="box" x="20"  y="20" width="120" height="40" rx="6"/>
+      <text x="80"  y="44" text-anchor="middle">User</text>
+      <rect class="box" x="180" y="20" width="120" height="40" rx="6"/>
+      <text x="240" y="44" text-anchor="middle">Claude (host)</text>
+      <rect class="box" x="340" y="20" width="120" height="40" rx="6"/>
+      <text x="400" y="44" text-anchor="middle">MCP App iframe</text>
+      <rect class="box" x="500" y="20" width="140" height="40" rx="6"/>
+      <text x="570" y="44" text-anchor="middle">MCP Server</text>
+    </g>
+    <!-- lifelines -->
+    <g stroke="var(--line)" stroke-width="1">
+      <line x1="80" y1="60" x2="80" y2="220" marker-end=""/>
+      <line x1="240" y1="60" x2="240" y2="220" marker-end=""/>
+      <line x1="400" y1="60" x2="400" y2="220" marker-end=""/>
+      <line x1="570" y1="60" x2="570" y2="220" marker-end=""/>
+    </g>
+    <!-- steps -->
+    <line x1="80"  y1="80"  x2="240" y2="80"/>
+    <text class="lbl" x="86" y="76">1. "show me…"</text>
+    <line x1="240" y1="110" x2="570" y2="110"/>
+    <text class="lbl" x="246" y="106">2. tools/call</text>
+    <line x1="570" y1="140" x2="400" y2="140"/>
+    <text class="lbl" x="410" y="136">3. result + ui:// resource</text>
+    <line x1="400" y1="170" x2="240" y2="170"/>
+    <text class="lbl" x="246" y="166">4. user interacts → tools/call (postMessage)</text>
+    <line x1="240" y1="200" x2="400" y2="200"/>
+    <text class="lbl" x="246" y="196">5. fresh data pushed back to app</text>
+  </svg>
+
+  <div class="demo">
+    <button id="ping">Send a message to Claude</button>
+    <button id="fetch">Call a server tool</button>
+    <span id="status">interactive demo — uses the official MCP Apps bridge</span>
+  </div>
+
+<script>
+  // Self-contained MCP Apps bridge — no external dependencies, so nothing the
+  // sandbox CSP can block. Implements the postMessage handshake from the spec.
+  const status = document.getElementById("status");
+  const set = (t) => (status.textContent = t);
+
+  let nextId = 1;
+  const pending = new Map();
+
+  function send(method, params) { window.parent.postMessage({ jsonrpc: "2.0", method, params }, "*"); }
+
+  // Tell the host how tall our content is, so it sizes the frame (no fixed height).
+  function reportSize() {
+    send("ui/notifications/size-changed", {
+      width: document.documentElement.scrollWidth,
+      height: document.documentElement.scrollHeight,
+    });
+  }
+  function request(method, params) {
+    const id = nextId++;
+    window.parent.postMessage({ jsonrpc: "2.0", id, method, params }, "*");
+    return new Promise((resolve) => pending.set(id, resolve));
+  }
+
+  // Incoming: host replies (with id) and host notifications (tool input/result).
+  window.addEventListener("message", (e) => {
+    const m = e.data || {};
+    if (m.id != null && pending.has(m.id)) { pending.get(m.id)(m.result ?? m.error); pending.delete(m.id); return; }
+    if (m.method === "ui/notifications/tool-input")  set("↩ tool input: "  + JSON.stringify(m.params));
+    if (m.method === "ui/notifications/tool-result") set("↩ tool result: " + JSON.stringify(m.params));
+  });
+
+  // Handshake: initialize → apply theme → signal initialized.
+  (async () => {
+    const result = await request("ui/initialize", {
+      protocolVersion: "2026-01-26",
+      capabilities: { appCapabilities: {} },
+      clientInfo: { name: "mcp-apps-explainer", version: "0.1.0" },
+    });
+    if (result?.hostContext?.theme) document.documentElement.style.colorScheme = result.hostContext.theme;
+    send("ui/notifications/initialized", {});
+    set("✓ connected to host");
+    reportSize();
+    new ResizeObserver(reportSize).observe(document.documentElement);
+  })();
+
+  // Send a user message into the conversation.
+  document.getElementById("ping").addEventListener("click", async () => {
+    set("→ sending message…");
+    await request("ui/message", { role: "user", content: { type: "text", text: "The MCP App says hi 👋" } });
+    set("✓ message sent to Claude");
+  });
+
+  // Call a tool on the server and get fresh data back.
+  document.getElementById("fetch").addEventListener("click", async () => {
+    set("→ calling explain_mcp_apps…");
+    const result = await request("tools/call", { name: "explain_mcp_apps", arguments: {} });
+    set("✓ server returned: " + JSON.stringify(result));
+  });
+</script>
+</body>
+</html>

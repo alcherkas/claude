@@ -16,6 +16,7 @@ import type { Cart, PromoValidation, Quote } from '../types';
 import { currentUserId } from '../lib/session';
 import { CartItemRow } from './CartItemRow';
 import { PromoCodeInput } from './PromoCodeInput';
+import { TipInput } from './TipInput';
 import { OrderSummary } from './OrderSummary';
 
 // Step 1 of the checkout flow: show the cart, let the customer edit quantities
@@ -26,6 +27,7 @@ export function CartView() {
   const userId = currentUserId();
 
   const [promo, setPromo] = useState<PromoValidation | null>(null);
+  const [tipCents, setTipCents] = useState(0);
 
   const cartQuery = useQuery({
     queryKey: ['cart', userId],
@@ -64,6 +66,7 @@ export function CartView() {
           qty: i.qty,
         })),
         promoCode: promo?.valid ? promo.code : undefined,
+        tipCents,
       }),
     onSuccess: (q: Quote) => {
       if (cart) {
@@ -146,6 +149,12 @@ export function CartView() {
               appliedCode={promo?.valid ? promo.code : null}
               onApply={setPromo}
               onClear={() => setPromo(null)}
+            />
+
+            <TipInput
+              subtotalCents={subtotalCents}
+              tipCents={tipCents}
+              onChange={setTipCents}
             />
 
             <button

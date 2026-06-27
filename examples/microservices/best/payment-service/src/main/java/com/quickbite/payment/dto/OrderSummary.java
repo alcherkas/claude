@@ -11,6 +11,7 @@ public record OrderSummary(
         UUID userId,
         UUID restaurantId,
         String status,
+        long tipCents,
         long totalCents,
         String currency
 ) {

@@ -17,6 +17,7 @@ public record OrderResponse(
         long serviceFeeCents,
         long taxCents,
         long discountCents,
+        long tipCents,
         long totalCents,
         String currency,
         Instant createdAt,

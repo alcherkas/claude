@@ -10,6 +10,7 @@ public record OrderSummaryResponse(
         UUID userId,
         UUID restaurantId,
         OrderStatus status,
+        long tipCents,
         long totalCents,
         String currency
 ) {

@@ -201,17 +201,18 @@ deployable and owns its own Terraform.
   Re-prices items against menu `/internal`. Checkout returns an immutable cart snapshot.
 - **promotion-service** — `Promotion{code,type(PERCENT|FIXED|FREE_DELIVERY),value,minSubtotalCents,validFrom,validTo,maxRedemptions,perUserLimit,active}`.
   Validates a code; `/internal/promotions/apply` reserves a redemption.
-- **pricing-service** — stateless. `POST /pricing/quote` takes `{userId,restaurantId,items[],promoCode?}`,
+- **pricing-service** — stateless. `POST /pricing/quote` takes `{userId,restaurantId,items[],promoCode?,tipCents?}`,
   fetches authoritative prices from menu `/internal`, applies promotion `/internal`, returns
-  `{subtotalCents,deliveryFeeCents,serviceFeeCents,taxCents,discountCents,totalCents,lineItems[]}`.
+  `{subtotalCents,deliveryFeeCents,serviceFeeCents,taxCents,discountCents,tipCents,totalCents,lineItems[]}`.
+  `tipCents` is the optional courier tip (absolute cents, untaxed): echoed back and added to `totalCents` *after* tax.
 - **order-service** — `Order{id,userId,restaurantId,status(CREATED|CONFIRMED|PREPARING|READY|PICKED_UP|DELIVERED|CANCELLED),
   items[],pricing(snapshot),createdAt}`. Creation flow: load cart snapshot → call pricing quote →
   validate restaurant/menu → persist → emit `OrderCreated` on `orders.events`. Internal endpoint
   exposes order summary + amount for payment/review/delivery.
 - **wallet-service** — `Wallet{userId,balanceCents,currency}` + `WalletTxn`. Internal debit/credit.
-- **payment-service** — `Payment{id,orderId,userId,amountCents,method(CARD|WALLET),status(AUTHORIZED|CAPTURED|REFUNDED|FAILED),provider}`.
+- **payment-service** — `Payment{id,orderId,userId,amountCents,tipCents,method(CARD|WALLET),status(AUTHORIZED|CAPTURED|REFUNDED|FAILED),provider}`.
   Validates order amount via order `/internal`, optionally debits wallet, "captures" via a mock PSP,
-  emits `PaymentCaptured` on `payments.events`.
+  emits `PaymentCaptured` on `payments.events`. `amountCents` is the order total (tip included); `tipCents` is recorded for the receipt.
 - **driver-service** — `Driver{id,userId,name,vehicle,status(OFFLINE|AVAILABLE|ON_DELIVERY),geo}` + location pings.
 - **delivery-service** — `Delivery{id,orderId,driverId,status(PENDING|ASSIGNED|EN_ROUTE_TO_PICKUP|PICKED_UP|EN_ROUTE_TO_CUSTOMER|DELIVERED|FAILED),trackingPoints[]}`.
   Assigns an available driver (driver `/internal`), reads order (order `/internal`), emits
@@ -271,8 +272,9 @@ code thin and resilient (log + skip on deserialize errors).
 1. Customer registers/logs in (`identity`) → JWT.
 2. Browses via `discovery-mfe` → `search`/`restaurant`/`menu`.
 3. Adds items (`cart`, re-priced against `menu`).
-4. Checkout (`checkout-mfe`): `pricing` quote (+ `promotion`) → `order` created (snapshot) →
-   `payment` captured (optionally `wallet`) → `OrderCreated`/`PaymentCaptured` events.
+4. Checkout (`checkout-mfe`): customer may add an optional courier **tip** → `pricing` quote
+   (+ `promotion`, + `tipCents` in `totalCents`) → `order` created (snapshot incl. `tipCents`) →
+   `payment` captured for the tip-inclusive total (optionally `wallet`) → `OrderCreated`/`PaymentCaptured` events.
 5. `delivery` assigns a `driver`; `order-tracking-mfe` shows live status from `deliveries.events`.
 6. `notification` emails the customer at each step.
 7. After delivery, customer leaves a `review` (verified against `order`).

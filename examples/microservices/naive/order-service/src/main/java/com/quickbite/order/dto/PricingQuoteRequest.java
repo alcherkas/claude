@@ -8,7 +8,8 @@ public record PricingQuoteRequest(
         UUID userId,
         UUID restaurantId,
         List<QuoteLineItem> items,
-        String promoCode
+        String promoCode,
+        Long tipCents
 ) {
     public record QuoteLineItem(
             UUID menuItemId,

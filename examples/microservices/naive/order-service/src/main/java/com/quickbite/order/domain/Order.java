@@ -58,6 +58,9 @@ public class Order {
     @Column(name = "discount_cents", nullable = false)
     private long discountCents;
 
+    @Column(name = "tip_cents", nullable = false)
+    private long tipCents;
+
     @Column(name = "total_cents", nullable = false)
     private long totalCents;
 

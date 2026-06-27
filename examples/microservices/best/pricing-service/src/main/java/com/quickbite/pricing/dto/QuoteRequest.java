@@ -13,12 +13,14 @@ import java.util.List;
  * @param restaurantId the restaurant the cart belongs to
  * @param items        the cart line items to price
  * @param promoCode    optional promotion code to apply
+ * @param tipCents     optional courier tip in cents (null treated as 0); added to the total after tax
  */
 public record QuoteRequest(
         @NotNull Long userId,
         @NotNull Long restaurantId,
         @NotEmpty @Valid List<QuoteItem> items,
-        String promoCode
+        String promoCode,
+        @jakarta.validation.constraints.PositiveOrZero Long tipCents
 ) {
     /**
      * A single requested cart line.

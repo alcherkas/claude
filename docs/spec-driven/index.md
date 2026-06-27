@@ -120,6 +120,17 @@ title: Spec-Driven, Constraints-Driven & Test-Driven Development
 - [Constraint-Driven Development: A New Paradigm for AI-Assisted Software Engineering](other/constraint-driven-development-a-new-paradigm-for-ai-assisted-software.md) — GrayBeam Engineering / Claude
 - [Spec-Driven Development: From Code to Contract in the Age of AI Coding Assistants](other/spec-driven-development-from-code-to-contract-in-the-age-of-ai-coding-assistants.md) — arXiv
 - [Constraint decay: The Fragility of LLM Agents in Backend Code Generation](other/constraint-decay-the-fragility-of-llm-agents-in-backend-code-generation.md) — arXiv
+- [Constitutional Spec-Driven Development: Enforcing Security by Construction in AI-Assisted Code Generation](https://arxiv.org/abs/2602.02584) — arXiv; embeds non-negotiable security principles into the specification layer before code generation.
+- [Spec Kit Agents: Context-Grounded Agentic Workflows](https://arxiv.org/abs/2604.05278) — arXiv; connects Spec Kit-style phases with repository grounding and validation hooks.
+- [From Prompt to Process: a Process Taxonomy and Comparative Assessment of Frameworks Supporting AI Software Development Agents](https://arxiv.org/abs/2606.04967) — arXiv; compares Spec Kit, OpenSpec, BMAD, GSD, Spec Kitty, and Reversa as process frameworks for AI development agents.
+- [BaxBench: Can LLMs Generate Correct and Secure Backends?](https://arxiv.org/abs/2502.11844) — arXiv; closest backend-generation benchmark to "Constraint Decay," focused on correct and secure backend services.
+- [NL2Repo-Bench: Towards Long-Horizon Repository Generation Evaluation of Coding Agents](https://arxiv.org/abs/2512.12730) — arXiv; evaluates repo generation from natural-language requirements, relevant to spec-to-code coherence.
+- [FeatBench: Towards More Realistic Evaluation of Feature-level Code Generation](https://arxiv.org/abs/2509.22237) — arXiv; studies feature implementation from natural-language requirements, including scope creep and regressions.
+- [SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?](https://arxiv.org/abs/2509.16941) — arXiv; long-horizon SWE-agent benchmark with enterprise-style task complexity and failure analysis.
+- [Instruction-Following Evaluation for Large Language Models](https://arxiv.org/abs/2311.07911) — arXiv; introduces verifiable instruction constraints, useful as a model for checking spec adherence.
+- [FollowBench: A Multi-level Fine-grained Constraints Following Benchmark for Large Language Models](https://arxiv.org/abs/2310.20410) — arXiv; incrementally adds constraints, a direct analogue for measuring constraint accumulation.
+- [InFoBench: Evaluating Instruction Following Ability in Large Language Models](https://arxiv.org/abs/2401.03601) — arXiv; decomposes instructions into requirements and measures per-requirement following.
+- [ComplexBench: Benchmarking Complex Instruction-Following with Multiple Constraints Composition](https://arxiv.org/abs/2407.03978) — arXiv; evaluates composed constraints, relevant to specs that combine API contracts, architecture, data, security, and test gates.
 - [Beyond Vibe Coding: Amazon Introduces Kiro, the Spec-Driven Agentic AI IDE](other/beyond-vibe-coding-amazon-introduces-kiro-the-spec-driven-agentic-ai-ide.md) — InfoQ, Aug 2025
 - [Kiro Documentation](other/kiro-documentation.md) — AWS
 - [Kiro Docs - Specs](other/kiro-specs.md) — requirements/design/tasks workflow for spec-driven agentic development
@@ -135,4 +146,4 @@ title: Spec-Driven, Constraints-Driven & Test-Driven Development
 - Some Google and Anthropic SDD/TDD write-ups are on Medium (Google Cloud Community) or claude.com rather than the core corporate blog; they are official-adjacent but author-attributed.
 - Anthropic's best-practices engineering URL still resolves but now serves revised content canonicalized to code.claude.com; the explicit four-step TDD recipe widely quoted online traces to the earlier (April 2025) version of the post/docs.
 - Dates are included where reliably verified; living documentation pages (Claude Code docs, VS Code docs) carry no fixed publication date.
-- The two arXiv papers (2602.00180, 2605.06445) carry forward-dated identifiers consistent with 2026 submissions; treat them as recent preprints, not peer-reviewed publications.
+- The arXiv papers carry recent or forward-dated identifiers consistent with fast-moving 2025–2026 submissions; treat them as recent preprints, not peer-reviewed publications unless the linked source states otherwise.

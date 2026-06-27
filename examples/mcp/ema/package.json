@@ -1,0 +1,20 @@
+{
+  "name": "mcp-enterprise-managed-authorization-example",
+  "version": "1.0.0",
+  "description": "Minimal runnable example of the MCP Enterprise-Managed Authorization extension (ID-JAG flow)",
+  "type": "module",
+  "scripts": {
+    "idp": "node src/idp/idp.js",
+    "mas": "node src/mcp/mas.js",
+    "mrs:files": "node src/mcp/mrs.js files",
+    "mrs:payroll": "node src/mcp/mrs.js payroll",
+    "servers": "node src/servers.js",
+    "client": "node src/mcp/client.js",
+    "token": "node src/mcp/client.js alice files --token-only",
+    "demo": "node src/demo.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "jose": "^5.9.6"
+  }
+}

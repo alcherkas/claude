@@ -6,6 +6,7 @@ CREATE TABLE payments (
     order_id     UUID         NOT NULL,
     user_id      UUID         NOT NULL,
     amount_cents BIGINT       NOT NULL,
+    tip_cents    BIGINT       NOT NULL DEFAULT 0,
     currency     VARCHAR(3)   NOT NULL,
     method       VARCHAR(16)  NOT NULL,
     status       VARCHAR(16)  NOT NULL,

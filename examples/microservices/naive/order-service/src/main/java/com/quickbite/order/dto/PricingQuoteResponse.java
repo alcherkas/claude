@@ -10,6 +10,7 @@ public record PricingQuoteResponse(
         long serviceFeeCents,
         long taxCents,
         long discountCents,
+        long tipCents,
         long totalCents,
         String currency,
         List<PricedLineItem> lineItems

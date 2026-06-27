@@ -37,7 +37,7 @@ class PricingControllerTest {
     @Test
     void returnsQuoteForValidRequest() throws Exception {
         QuoteResponse response = new QuoteResponse(
-                2000L, 299L, 200L, 160L, 0L, 2659L, "USD",
+                2000L, 299L, 200L, 160L, 0L, 300L, 2959L, "USD",
                 List.of(new QuoteResponse.LineItem(42L, "Margherita", 2, 1000L, 2000L)));
         when(pricingService.quote(any())).thenReturn(response);
 
@@ -51,7 +51,8 @@ class PricingControllerTest {
                         .content(objectMapper.writeValueAsString(body)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.subtotalCents").value(2000))
-                .andExpect(jsonPath("$.totalCents").value(2659))
+                .andExpect(jsonPath("$.tipCents").value(300))
+                .andExpect(jsonPath("$.totalCents").value(2959))
                 .andExpect(jsonPath("$.currency").value("USD"))
                 .andExpect(jsonPath("$.lineItems[0].name").value("Margherita"));
     }

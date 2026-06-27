@@ -63,6 +63,7 @@ export interface PricingSnapshot {
   serviceFeeCents: number;
   taxCents: number;
   discountCents: number;
+  tipCents: number;
   totalCents: number;
   currency: string;
 }

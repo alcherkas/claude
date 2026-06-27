@@ -83,6 +83,17 @@ export function OrderHistory() {
               <strong>
                 Total{' '}
                 {formatMoney(order.pricing.totalCents, order.pricing.currency)}
+                {order.pricing.tipCents > 0 && (
+                  <span className="acct-order__tip">
+                    {' '}
+                    (incl.{' '}
+                    {formatMoney(
+                      order.pricing.tipCents,
+                      order.pricing.currency,
+                    )}{' '}
+                    tip)
+                  </span>
+                )}
               </strong>
               {order.status === 'DELIVERED' && (
                 <button

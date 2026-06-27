@@ -5,6 +5,7 @@ import { getCart, placeOrder } from '../api/client';
 import type { Cart, Order, Quote } from '../types';
 import { currentUserId } from '../lib/session';
 import { OrderSummary } from './OrderSummary';
+import { TipSelector } from './TipSelector';
 
 // Step 2 of the flow: confirm the priced cart, capture delivery details, and
 // create the order (order-service snapshots cart + pricing). On success we
@@ -15,8 +16,20 @@ export function CheckoutForm() {
   const userId = currentUserId();
 
   const [notes, setNotes] = useState('');
+  const [tipCents, setTipCents] = useState(0);
 
   const quote = queryClient.getQueryData<Quote>(['quote', userId]);
+
+  // The tip is added on top of the order untaxed, exactly as pricing-service
+  // computes it, so we can preview the new total against the authoritative
+  // (tip-free) quote without another round-trip.
+  const displayQuote: Quote | undefined = quote
+    ? {
+        ...quote,
+        tipCents,
+        totalCents: quote.totalCents - quote.tipCents + tipCents,
+      }
+    : undefined;
 
   const cartQuery = useQuery({
     queryKey: ['cart', userId],
@@ -30,6 +43,7 @@ export function CheckoutForm() {
       placeOrder({
         userId: userId as string,
         restaurantId: cart!.restaurantId,
+        tipCents,
         // The promo applied during pricing is re-resolved server-side from the
         // cart; pricing already baked the discount into the quote snapshot.
       }),
@@ -80,6 +94,12 @@ export function CheckoutForm() {
           onChange={(e) => setNotes(e.target.value)}
         />
 
+        <TipSelector
+          subtotalCents={quote.subtotalCents}
+          tipCents={tipCents}
+          onChange={setTipCents}
+        />
+
         <div className="checkout-actions">
           <button type="button" onClick={() => navigate('/')}>
             Back
@@ -100,7 +120,7 @@ export function CheckoutForm() {
         )}
       </form>
 
-      <OrderSummary quote={quote} title="Confirm & pay" />
+      <OrderSummary quote={displayQuote} title="Confirm & pay" />
     </section>
   );
 }

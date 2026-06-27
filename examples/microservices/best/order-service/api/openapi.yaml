@@ -141,6 +141,12 @@ components:
         promoCode:
           type: string
           nullable: true
+        tipCents:
+          type: integer
+          format: int64
+          nullable: true
+          minimum: 0
+          description: Optional courier tip in cents; forwarded to pricing and included in totalCents.
     UpdateStatusRequest:
       type: object
       required: [status]
@@ -190,6 +196,9 @@ components:
           type: integer
           format: int64
         discountCents:
+          type: integer
+          format: int64
+        tipCents:
           type: integer
           format: int64
         totalCents:

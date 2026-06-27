@@ -26,6 +26,7 @@ public class OrderMapper {
                 order.getServiceFeeCents(),
                 order.getTaxCents(),
                 order.getDiscountCents(),
+                order.getTipCents(),
                 order.getTotalCents(),
                 order.getCurrency(),
                 order.getCreatedAt(),
@@ -38,6 +39,7 @@ public class OrderMapper {
                 order.getUserId(),
                 order.getRestaurantId(),
                 order.getStatus(),
+                order.getTipCents(),
                 order.getTotalCents(),
                 order.getCurrency());
     }

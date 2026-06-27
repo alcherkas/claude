@@ -91,6 +91,7 @@ export interface OrderPricing {
   serviceFeeCents: number;
   taxCents: number;
   discountCents: number;
+  tipCents: number;
   totalCents: number;
 }
 

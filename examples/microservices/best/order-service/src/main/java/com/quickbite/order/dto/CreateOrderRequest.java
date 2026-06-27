@@ -7,6 +7,7 @@ import java.util.UUID;
 /** Public request body for POST /api/orders. */
 public record CreateOrderRequest(
         @NotNull UUID userId,
-        String promoCode
+        String promoCode,
+        Long tipCents
 ) {
 }

@@ -26,6 +26,7 @@ import java.util.List;
  *     <li>delivery fee — flat 299 (waived when the promotion grants free delivery)</li>
  *     <li>service fee — 10% of subtotal, capped at 500</li>
  *     <li>tax — 8% of the taxable base (subtotal − discount, floored at 0)</li>
+ *     <li>tip — optional courier tip, added on top untaxed (floored at 0)</li>
  * </ul>
  */
 @Slf4j
@@ -83,7 +84,10 @@ public class PricingService {
         long taxableBase = Math.max(0L, subtotalCents - discountCents);
         long taxCents = taxableBase * TAX_RATE_PERCENT / 100L;
 
-        long totalCents = taxableBase + deliveryFeeCents + serviceFeeCents + taxCents;
+        // Courier tip is added on top of the order and is not taxed.
+        long tipCents = Math.max(0L, request.tipCents() == null ? 0L : request.tipCents());
+
+        long totalCents = taxableBase + deliveryFeeCents + serviceFeeCents + taxCents + tipCents;
 
         return new QuoteResponse(
                 subtotalCents,
@@ -91,6 +95,7 @@ public class PricingService {
                 serviceFeeCents,
                 taxCents,
                 discountCents,
+                tipCents,
                 totalCents,
                 currency,
                 lineItems);

@@ -12,6 +12,7 @@ public record QuoteResponse(
         long serviceFeeCents,
         long taxCents,
         long discountCents,
+        long tipCents,
         long totalCents,
         String currency,
         List<LineItem> lineItems

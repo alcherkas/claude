@@ -50,6 +50,8 @@ export interface QuoteRequest {
   restaurantId: string;
   items: Array<{ menuItemId: string; qty: number }>;
   promoCode?: string;
+  // Optional courier tip in cents; pricing adds it to totalCents after tax.
+  tipCents?: number;
 }
 
 export interface Quote {
@@ -58,6 +60,7 @@ export interface Quote {
   serviceFeeCents: number;
   taxCents: number;
   discountCents: number;
+  tipCents: number;
   totalCents: number;
   lineItems: QuoteLineItem[];
 }
@@ -77,6 +80,8 @@ export interface PlaceOrderRequest {
   userId: string;
   restaurantId: string;
   promoCode?: string;
+  // Courier tip in cents; forwarded to pricing so the persisted order total matches the quote.
+  tipCents?: number;
 }
 
 export interface Order {
@@ -121,6 +126,7 @@ export interface Payment {
   orderId: string;
   userId: string;
   amountCents: number;
+  tipCents: number;
   method: PaymentMethod;
   status: PaymentStatus;
   provider: string;

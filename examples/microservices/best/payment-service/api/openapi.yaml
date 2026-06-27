@@ -151,6 +151,9 @@ components:
         amountCents:
           type: integer
           format: int64
+        tipCents:
+          type: integer
+          format: int64
         currency:
           type: string
         method:

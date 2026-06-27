@@ -32,6 +32,9 @@ export function CheckoutForm() {
         restaurantId: cart!.restaurantId,
         // The promo applied during pricing is re-resolved server-side from the
         // cart; pricing already baked the discount into the quote snapshot.
+        // Forward the tip the customer chose so order-service re-prices to the
+        // same total they confirmed.
+        tipCents: quote.tipCents,
       }),
     onSuccess: (order: Order) => {
       queryClient.setQueryData(['order', order.id], order);

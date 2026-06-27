@@ -54,6 +54,7 @@ public class PaymentService {
                 .orderId(order.id())
                 .userId(request.userId())
                 .amountCents(amountCents)
+                .tipCents(order.tipCents())
                 .currency(order.currency())
                 .method(request.method())
                 .status(PaymentStatus.AUTHORIZED)
