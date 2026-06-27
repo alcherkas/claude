@@ -98,6 +98,23 @@ title: Solution-Level Context Engineering Across Multiple Repositories
 - [Optimizing GitHub Copilot for Multi-Repository Teams in VS Code](other/optimizing-github-copilot-for-multi-repository-teams-in-vs-code.md) — community discussion
 - [Monorepo vs Multi-Repo AI: Architecture-based AI Tool Selection](other/monorepo-vs-multi-repo-ai-architecture-based-ai-tool-selection.md) — Augment Code
 
+### Tools
+Three approaches to feeding agents codebase context — **packing** (simple, local, zero-infra, dumps the repo), **indexing/retrieval** (token-efficient, queryable, sometimes needs a vector DB or LSP/SCIP infra), and **cross-repo** platforms.
+
+*Packing — repo → single file:*
+- [Repomix: Pack your codebase into AI-friendly formats](other/repomix-pack-your-codebase-into-ai-friendly-formats.md) — packs one or more repos into a single token-optimized file; MCP server, Tree-sitter compression (MIT)
+- [code2prompt: Convert your codebase into a single LLM prompt](other/code2prompt-convert-your-codebase-into-a-single-llm-prompt.md) — Rust CLI with templating + token counting; also ships an MCP server and Python SDK for RAG (MIT)
+
+*Indexing / semantic retrieval:*
+- [CodeGraph: Pre-indexed knowledge graph for AI code context](other/codegraph-pre-indexed-knowledge-graph-for-ai-code-context.md) — local SQLite index of symbols/dependencies/call paths; surgical context in one tool call; per-project multi-repo via `projectPath` (MIT)
+- [Serena: Semantic MCP toolkit for coding agents](other/serena-semantic-mcp-toolkit-for-coding-agents.md) — symbol-level retrieval/editing over LSP backends (40+ languages); no extra infra (MIT)
+- [Aider's repository map: PageRank-ranked codebase context](other/aider-repository-map-pagerank-ranked-codebase-context.md) — in-tool, token-budgeted, dependency-ranked symbol selection (reference design)
+- [Claude Context: Semantic code-search MCP for Claude Code](other/claude-context-semantic-code-search-mcp-for-claude-code.md) — hybrid BM25 + dense-vector search; requires a vector DB + embedding provider
+
+*Multi-repo / cross-repo:*
+- [code-review-graph: Multi-repo code knowledge graph over MCP](other/code-review-graph-multi-repo-code-knowledge-graph-over-mcp.md) — multi-repo registry + background daemon watching several repos; ~30 MCP tools incl. cross-repo search (MIT)
+- [Sourcegraph / Cody: Cross-repository context via SCIP code graph](other/sourcegraph-cody-cross-repository-context-via-scip-code-graph.md) — true cross-repo navigation via SCIP, scales to 300k+ repos; full multi-repo largely Enterprise-tier
+
 ## Recommendations
 - **Start here for the core concept:** Anthropic's "Effective context engineering for AI agents" and ThoughtWorks' Technology Radar "Context engineering" + "Progressive context disclosure" blips. These define the discipline and its key techniques (write/select/compress/isolate, just-in-time retrieval, compaction).
 - **For the multi-repo / solution-level angle specifically:** read the practitioner cluster (Repo-of-Repos, Spine Pattern, root-repository, Arinco multi-repo instructions) alongside GitHub's "Connect agents to external tools" docs and Microsoft's "Search Less, Build More" ADO MCP post — together these cover the realistic toolkit (shared instruction repos, multi-root workspaces, widened MCP/PAT scope, cross-repo code search via MCP).
