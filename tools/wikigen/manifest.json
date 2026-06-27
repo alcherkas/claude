@@ -8961,5 +8961,253 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://github.com/yamadashy/repomix",
+    "canonical_url": "https://github.com/yamadashy/repomix",
+    "slug": "repomix-pack-your-codebase-into-ai-friendly-formats",
+    "org_slug": "other",
+    "title": "Repomix: Pack your codebase into AI-friendly formats",
+    "annotation": "Packs one or more repos into a single token-optimized file (XML/MD/JSON) with Tree-sitter compression and an MCP server — whole-repo, and by packing several, cross-repo context within an LLM's window.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/repomix-pack-your-codebase-into-ai-friendly-formats.md",
+    "content_sha1": "168c95fefdebf91e4787287b74079669925277cc",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-27",
+      "archived_path": "archive/raw/168c95fefdebf91e4787287b74079669925277cc.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/colbymchenry/codegraph",
+    "canonical_url": "https://github.com/colbymchenry/codegraph",
+    "slug": "codegraph-pre-indexed-knowledge-graph-for-ai-code-context",
+    "org_slug": "other",
+    "title": "CodeGraph: Pre-indexed knowledge graph for AI code context",
+    "annotation": "Builds a local SQLite index of symbols, dependencies and call paths; an MCP tool returns relevant source plus call paths and a blast-radius summary in one call. Per-project multi-repo via projectPath.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/codegraph-pre-indexed-knowledge-graph-for-ai-code-context.md",
+    "content_sha1": "52b03674c398defef86a32e816c8eecf41d222f1",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-27",
+      "archived_path": "archive/raw/52b03674c398defef86a32e816c8eecf41d222f1.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/mufeedvh/code2prompt",
+    "canonical_url": "https://github.com/mufeedvh/code2prompt",
+    "slug": "code2prompt-convert-your-codebase-into-a-single-llm-prompt",
+    "org_slug": "other",
+    "title": "code2prompt: Convert your codebase into a single LLM prompt",
+    "annotation": "Rust CLI that turns a repo into one token-counted prompt with templating; also ships an MCP server and Python SDK, bridging the packing approach into agent/RAG workflows.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/code2prompt-convert-your-codebase-into-a-single-llm-prompt.md",
+    "content_sha1": "81c40dc227ae4aa743741a5dca71a6c9361dc93b",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-27",
+      "archived_path": "archive/raw/81c40dc227ae4aa743741a5dca71a6c9361dc93b.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/oraios/serena",
+    "canonical_url": "https://github.com/oraios/serena",
+    "slug": "serena-semantic-mcp-toolkit-for-coding-agents",
+    "org_slug": "other",
+    "title": "Serena: Semantic MCP toolkit for coding agents",
+    "annotation": "Symbol-level semantic retrieval and editing over LSP backends (40+ languages), served to any client via MCP — targeted context on demand instead of whole-repo dumps, with no extra infrastructure.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/serena-semantic-mcp-toolkit-for-coding-agents.md",
+    "content_sha1": "87faa78ea224c3c21fa0127e4a339f9bca99c461",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-27",
+      "archived_path": "archive/raw/87faa78ea224c3c21fa0127e4a339f9bca99c461.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/tirth8205/code-review-graph",
+    "canonical_url": "https://github.com/tirth8205/code-review-graph",
+    "slug": "code-review-graph-multi-repo-code-knowledge-graph-over-mcp",
+    "org_slug": "other",
+    "title": "code-review-graph: Multi-repo code knowledge graph over MCP",
+    "annotation": "Tree-sitter AST to a local SQLite graph; ~30 MCP tools (impact radius, review context). A multi-repo registry plus a background daemon watch several repos at once, with cross-repo search.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/code-review-graph-multi-repo-code-knowledge-graph-over-mcp.md",
+    "content_sha1": "ad18a56beeeddea5aed3dd77cb357521867cdb63",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-27",
+      "archived_path": "archive/raw/ad18a56beeeddea5aed3dd77cb357521867cdb63.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/zilliztech/claude-context",
+    "canonical_url": "https://github.com/zilliztech/claude-context",
+    "slug": "claude-context-semantic-code-search-mcp-for-claude-code",
+    "org_slug": "other",
+    "title": "Claude Context: Semantic code-search MCP for Claude Code",
+    "annotation": "Hybrid BM25 + dense-vector search over AST-chunked code, retrieved on demand over MCP (~40% token reduction). Requires an external vector DB plus an embedding provider.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/claude-context-semantic-code-search-mcp-for-claude-code.md",
+    "content_sha1": "15f3cb7a81b700b4c5be9d7a3df1bab7a55d8a58",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-27",
+      "archived_path": "archive/raw/15f3cb7a81b700b4c5be9d7a3df1bab7a55d8a58.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://aider.chat/docs/repomap.html",
+    "canonical_url": "https://aider.chat/docs/repomap.html",
+    "slug": "aider-repository-map-pagerank-ranked-codebase-context",
+    "org_slug": "other",
+    "title": "Aider's repository map: PageRank-ranked codebase context",
+    "annotation": "An in-tool (not MCP) pre-indexed context mechanism: Tree-sitter symbol extraction plus PageRank over a file-dependency graph, token-budgeted — a reference design for surfacing just the relevant symbols.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/aider-repository-map-pagerank-ranked-codebase-context.md",
+    "content_sha1": "f78f90167edad17c4c6ddef1ea854ae202510c24",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-27",
+      "archived_path": "archive/raw/f78f90167edad17c4c6ddef1ea854ae202510c24.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://sourcegraph.com/docs/cody/core-concepts/context",
+    "canonical_url": "https://sourcegraph.com/docs/cody/core-concepts/context",
+    "slug": "sourcegraph-cody-cross-repository-context-via-scip-code-graph",
+    "org_slug": "other",
+    "title": "Sourcegraph / Cody: Cross-repository context via SCIP code graph",
+    "annotation": "Strongest cross-repo / solution-level context: true SCIP-indexed navigation across repository boundaries, scaling to 300k+ repos. Full multi-repo is largely Enterprise-tier.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/sourcegraph-cody-cross-repository-context-via-scip-code-graph.md",
+    "content_sha1": "a0bb115ffcd4fcf0195b415eedf18a4117453d09",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-27",
+      "archived_path": "archive/raw/a0bb115ffcd4fcf0195b415eedf18a4117453d09.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]
