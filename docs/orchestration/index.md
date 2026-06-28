@@ -108,6 +108,47 @@ title: Agentic Orchestration & Workflows
 
 ---
 
+## Tools
+
+Frameworks and runtimes for orchestrating multi-agent and multi-step LLM workflows, split by layer: **application frameworks** (which orchestration patterns are first-class, and how they pass state/context between agents and steps) and the **durable-execution substrate** (the reliability layer beneath agent loops — journal-and-replay so a crash resumes instead of restarting). Two focused research passes (June 2026) anchored each entry to primary/official docs where possible; vendor-blog-only entries are marked.
+
+### Application frameworks
+- [OpenAI Agents SDK — Agent orchestration](other/openai-agents-sdk-agent-orchestration.md) — MIT, official; successor to Swarm. Splits **LLM-driven vs code-driven** orchestration; two multi-agent patterns — **handoffs** (delegated ownership) and **agents-as-tools** (a manager keeps control via `Agent.as_tool()`).
+- [Microsoft Agent Framework — overview](microsoft-github/microsoft-agent-framework-overview.md) · [workflow orchestrations](microsoft-github/workflow-orchestrations-in-agent-framework.md) · [GitHub](microsoft-github/microsoft-agent-framework.md) — open-source (MIT), the unification of **Semantic Kernel + AutoGen**; five named orchestrations: sequential, concurrent, group chat, handoff, magentic.
+- [langgraph-supervisor](other/langgraph-supervisor-hierarchical-multi-agent-systems-on-langgraph.md) — LangChain (MIT); the **supervisor/hierarchical** topology over LangGraph; an `output_mode` parameter (`full_history` vs `last_message`) controls how much worker context flows back.
+- [Google ADK — multi-agent patterns](../context-engineering/google/developer-s-guide-to-multi-agent-patterns-in-adk.md) · [orchestration primitives](google/adk-custom-agents-orchestration-primitives.md) — `SequentialAgent` / `ParallelAgent` / `LoopAgent` deterministic templates plus `LlmAgent`-driven routing.
+- [OpenAI Swarm](other/openai-swarm-lightweight-multi-agent-orchestration-educational.md) — the experimental, *educational* predecessor to the Agents SDK; included for lineage. *(Not for production.)*
+
+### Durable-execution substrate
+- [Temporal](other/temporal-durable-execution-for-ai-agents.md) — records an Event History and replays it to resume after a crash; holds workflow state for years without hand-built state machines; configurable retries.
+- [Restate](other/restate-durable-execution-for-agentic-loops.md) — explicitly **framework-agnostic** journal-and-replay; runnable examples across the OpenAI Agents SDK, Vercel AI SDK, Google ADK, Pydantic AI, and LangChain.
+- [Dapr Agents](other/dapr-agents-durable-agentic-workflows.md) — CNCF, Apache-2.0; a `DurableAgent` over Dapr Workflows supporting the full pattern set, with three pluggable memory backends.
+- [Inngest](other/inngest-durable-execution-for-ai-agents.md) — step-level checkpointing + automatic retries as the substrate for reliable agent loops. *(Vendor blog — backfill, not separately verified.)*
+
+## Patterns & Techniques
+
+Named orchestration patterns, graded by how well they are evidenced. The first three groups rest on **authoritative / vendor-primary** sources; the final group is the contrarian / failure-mode literature that says when *not* to orchestrate. (Anthropic's "Building Effective Agents," listed under Anthropic above, is the canonical taxonomy underpinning this whole section.)
+
+### Composition patterns & the core distinction (authoritative)
+- [Building Effective Agents](anthropic/building-effective-agents.md) — the foundational **workflows vs agents** distinction and the five composable patterns: prompt chaining, routing, parallelization (sectioning/voting), orchestrator-workers, evaluator-optimizer.
+- [AI Agent Orchestration Patterns (Azure Architecture Center)](microsoft-github/ai-agent-orchestration-patterns-azure-architecture-center-the-canonical-named.md) · [Semantic Kernel orchestration](microsoft-github/semantic-kernel-agent-orchestration.md) — the cleanest vendor-neutral naming: sequential, concurrent, group chat, handoff, magentic.
+
+### Multi-agent topologies (authoritative)
+- [How we built our multi-agent research system](anthropic/how-we-built-our-multi-agent-research-system.md) — the canonical **orchestrator-worker** production case study (lead agent + parallel subagents, each with its own context window).
+- [Magentic-One](microsoft-github/magentic-one-a-generalist-multi-agent-system.md) — a reference orchestrator/planner directing specialized worker agents.
+- [OpenAI Agents SDK — Handoffs](other/openai-agents-sdk-handoffs.md) — **agent handoffs** as a first-class, model-directed routing tool (`transfer_to_<agent>`); by default transfers the entire prior history — a named context-pollution lever.
+- [Managed Agents](anthropic/managed-agents.md) — an infrastructure-level pattern that decouples the agent's **brain / hands / session** so each layer can fail and recover independently.
+
+### Context engineering within orchestration (authoritative)
+- [Effective context engineering for AI agents](../context-engineering/anthropic/effective-context-engineering-for-ai-agents.md) — per-subagent **context isolation** (subagents return ~1–2K-token summaries), **compaction**, and **structured note-taking** as the three long-horizon levers.
+- [Effective harnesses for long-running agents](../context-engineering/anthropic/effective-harnesses-for-long-running-agents.md) — **durable/resumable execution** via git commits + a progress file to survive fresh context windows; compaction alone is shown to be insufficient.
+
+### When NOT to use / failure modes
+- [Don't Build Multi-Agents](other/don-t-build-multi-agents.md) — Cognition's (Devin) case for single-threaded, continuous-context agents over multi-agent topologies for coding work. *(Vendor blog / opinion — backfill.)*
+- [Why Do Multi-Agent LLM Systems Fail?](other/why-do-multi-agent-llm-systems-fail.md) — the empirical **MAST** failure taxonomy (14 failure modes in 3 categories). *(arXiv preprint — backfill; early research.)*
+
+---
+
 ## Recommendations
 1. **Read first for vocabulary (1 hour):** Anthropic "Building Effective Agents" → "How we built our multi-agent research system." These give you the workflow/agent distinction and the orchestrator-worker + planner/sub-agent patterns that every other source builds on.
 2. **For pattern naming and architecture decisions:** Microsoft's Azure Architecture Center "AI Agent Orchestration Patterns" is the cleanest vendor-neutral taxonomy (sequential/concurrent/group-chat/handoff/magentic); pair it with the Magentic-One paper for a concrete planner/executor implementation.

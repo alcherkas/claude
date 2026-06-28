@@ -9953,5 +9953,346 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://openai.github.io/openai-agents-python/multi_agent/",
+    "canonical_url": "https://openai.github.io/openai-agents-python/multi_agent",
+    "slug": "openai-agents-sdk-agent-orchestration",
+    "org_slug": "other",
+    "title": "OpenAI Agents SDK - Agent orchestration",
+    "annotation": "OpenAI's official agent framework (MIT; successor to Swarm). Splits orchestration into LLM-driven vs code-driven and offers two multi-agent patterns: handoffs and agents-as-tools.",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/openai-agents-sdk-agent-orchestration.md",
+    "content_sha1": "b927e78239de17489f284f6dc7768fbb93a43702",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/langchain-ai/langgraph-supervisor-py",
+    "canonical_url": "https://github.com/langchain-ai/langgraph-supervisor-py",
+    "slug": "langgraph-supervisor-hierarchical-multi-agent-systems-on-langgraph",
+    "org_slug": "other",
+    "title": "langgraph-supervisor: Hierarchical multi-agent systems on LangGraph",
+    "annotation": "LangChain library (MIT) implementing the supervisor/hierarchical pattern over LangGraph; an output_mode parameter controls how much worker context flows back.",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/langgraph-supervisor-hierarchical-multi-agent-systems-on-langgraph.md",
+    "content_sha1": "4aae5dd816196d4bfb6dcdb60439e95f7254fc85",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://temporal.io/solutions/ai",
+    "canonical_url": "https://temporal.io/solutions/ai",
+    "slug": "temporal-durable-execution-for-ai-agents",
+    "org_slug": "other",
+    "title": "Temporal: Durable execution for AI agents",
+    "annotation": "Durable-execution engine: records an Event History and replays it to resume after a crash, holding workflow state for years without hand-built state machines.",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/temporal-durable-execution-for-ai-agents.md",
+    "content_sha1": "a27b6a9609d182583f9ddc08b722c3a56b44d44d",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://docs.restate.dev/concepts/durable_execution",
+    "canonical_url": "https://docs.restate.dev/concepts/durable_execution",
+    "slug": "restate-durable-execution-for-agentic-loops",
+    "org_slug": "other",
+    "title": "Restate: Durable execution for agentic loops",
+    "annotation": "Framework-agnostic durable execution: journals intermediate step results and replays to recover to the point of failure; demonstrated across OpenAI Agents SDK, Vercel AI SDK, ADK, LangChain.",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/restate-durable-execution-for-agentic-loops.md",
+    "content_sha1": "a97ba90b526265552f6f1eb8f9d1e04978aaf50c",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://docs.dapr.io/developing-ai/dapr-agents/dapr-agents-core-concepts/",
+    "canonical_url": "https://docs.dapr.io/developing-ai/dapr-agents/dapr-agents-core-concepts",
+    "slug": "dapr-agents-durable-agentic-workflows",
+    "org_slug": "other",
+    "title": "Dapr Agents: Durable agentic workflows",
+    "annotation": "CNCF project (Apache-2.0): a DurableAgent over Dapr Workflows supporting the full pattern set, with three pluggable memory backends (in-memory / vector / Dapr state store).",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/dapr-agents-durable-agentic-workflows.md",
+    "content_sha1": "5850da6da0da4dc875f9359fefa2727912e061e1",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.inngest.com/blog/durable-execution-key-to-harnessing-ai-agents",
+    "canonical_url": "https://inngest.com/blog/durable-execution-key-to-harnessing-ai-agents",
+    "slug": "inngest-durable-execution-for-ai-agents",
+    "org_slug": "other",
+    "title": "Inngest: Durable execution for AI agents",
+    "annotation": "Durable-execution platform positioning step-level checkpointing and automatic retries as the substrate for reliable agent loops. (Vendor blog — backfill; not separately verified.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/inngest-durable-execution-for-ai-agents.md",
+    "content_sha1": "b6e4694248d548de6ff7756c72e29f7155f7d065",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/openai/swarm",
+    "canonical_url": "https://github.com/openai/swarm",
+    "slug": "openai-swarm-lightweight-multi-agent-orchestration-educational",
+    "org_slug": "other",
+    "title": "OpenAI Swarm: Lightweight multi-agent orchestration (educational)",
+    "annotation": "OpenAI's experimental, educational multi-agent framework built on routines + handoffs; now superseded by the production Agents SDK. (Backfill for lineage.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/openai-swarm-lightweight-multi-agent-orchestration-educational.md",
+    "content_sha1": "6d1a298b79160521bf6c92f54bb3aa625f593324",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.anthropic.com/engineering/managed-agents",
+    "canonical_url": "https://anthropic.com/engineering/managed-agents",
+    "slug": "managed-agents",
+    "org_slug": "anthropic",
+    "title": "Managed Agents",
+    "annotation": "Infrastructure-level orchestration pattern that decouples the agent's 'brain' (model + harness) from its 'hands' (sandboxes/tools) and 'session' (event log) so each can scale, fail, and recover independently.",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Anthropic",
+    "subtopic": "Patterns & Techniques",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Anthropic",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/anthropic/managed-agents.md",
+    "content_sha1": "8bdc6d329b3dddd1f01fc079a36f48846f4f30dd",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://openai.github.io/openai-agents-python/handoffs/",
+    "canonical_url": "https://openai.github.io/openai-agents-python/handoffs",
+    "slug": "openai-agents-sdk-handoffs",
+    "org_slug": "other",
+    "title": "OpenAI Agents SDK: Handoffs",
+    "annotation": "Handoffs as a first-class, model-directed routing mechanism (transfer_to_<agent>); by default the receiving agent sees the entire prior history unless filtered — a named context-pollution lever.",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Patterns & Techniques",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/other/openai-agents-sdk-handoffs.md",
+    "content_sha1": "4396c220282e11777e3de4ffcd5deb0362a1a810",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://cognition.com/blog/dont-build-multi-agents",
+    "canonical_url": "https://cognition.com/blog/dont-build-multi-agents",
+    "slug": "don-t-build-multi-agents",
+    "org_slug": "other",
+    "title": "Don't Build Multi-Agents",
+    "annotation": "Cognition's (Devin) contrarian case for single-threaded, continuous-context agents over multi-agent topologies for coding: 'share context' and beware conflicting implicit decisions. (Vendor blog/opinion — backfill.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Patterns & Techniques",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/other/don-t-build-multi-agents.md",
+    "content_sha1": "266e6149780880e5556ffff4e6bd1b0ee58a5481",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2503.13657",
+    "canonical_url": "https://arxiv.org/abs/2503.13657",
+    "slug": "why-do-multi-agent-llm-systems-fail",
+    "org_slug": "other",
+    "title": "Why Do Multi-Agent LLM Systems Fail?",
+    "annotation": "Empirical MAST failure taxonomy (Cemri et al., UC Berkeley): 14 failure modes across specification, inter-agent misalignment, and task verification. (arXiv preprint — backfill; treat as early research.)",
+    "source_type": "arxiv",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Patterns & Techniques",
+    "source_file": "compass_artifact_wf-b31d71b8-11e9-4f07-b60b-aa5e3aa9698f_text_markdown.md",
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/other/why-do-multi-agent-llm-systems-fail.md",
+    "content_sha1": "9eaf642dafbdc3b1ef451cf52d1192b6068d161d",
+    "fetch": {
+      "status": "arxiv",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]
