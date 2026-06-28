@@ -10294,5 +10294,532 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://github.com/confident-ai/deepeval",
+    "canonical_url": "https://github.com/confident-ai/deepeval",
+    "slug": "deepeval",
+    "org_slug": "other",
+    "title": "DeepEval: Pytest-style LLM eval framework",
+    "annotation": "Open-source (Apache-2.0) Pytest-style LLM eval framework; 50+ metrics (G-Eval/DAG LLM-judge, RAG faithfulness/contextual precision-recall, agentic Task Completion/Tool Correctness/Plan Adherence); `deepeval test run` CI gates; Confident AI MCP server lets Claude Code/Cursor run evals.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/deepeval.md",
+    "content_sha1": "58b39f139b7e43a98b25fdebedd2c03b1a1aa8db",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.promptfoo.dev/docs/integrations/ci-cd/",
+    "canonical_url": "https://www.promptfoo.dev/docs/integrations/ci-cd",
+    "slug": "promptfoo",
+    "org_slug": "other",
+    "title": "Promptfoo: CI/CD eval runner & quality gate",
+    "annotation": "MIT CLI + official GitHub Action; runs prompt/agent/RAG evals on PR/push; gates via --fail-on-error and fail-on-threshold (0-100%); supports GitLab CI, Jenkins, Azure Pipelines, CircleCI, Bitbucket, Travis.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/promptfoo.md",
+    "content_sha1": "3a3899549b932977f9502a92985a268847d0ef8b",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/braintrustdata/eval-action",
+    "canonical_url": "https://github.com/braintrustdata/eval-action",
+    "slug": "braintrust-eval-action",
+    "org_slug": "other",
+    "title": "Braintrust eval-action: evals in CI with PR-comment regressions",
+    "annotation": "Official GitHub Action runs `braintrust eval` and posts a Score/Average/Improvements/Regressions PR comment linking the dashboard. Open-source action; Braintrust platform commercial.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/braintrust-eval-action.md",
+    "content_sha1": "d071e84b5f0515a17c136c804c801c0073cf6f70",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/guardrails-ai/guardrails",
+    "canonical_url": "https://github.com/guardrails-ai/guardrails",
+    "slug": "guardrails-ai",
+    "org_slug": "other",
+    "title": "Guardrails AI",
+    "annotation": "Apache-2.0 Python framework; Input/Output Guards that detect, quantify and mitigate LLM risks, plus a Guardrails Hub of validators. Runtime guardrail/validation layer.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/guardrails-ai.md",
+    "content_sha1": "2dd4d5501b194cbd4fee74ba8bdd4b568896343a",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/NVIDIA-NeMo/Guardrails",
+    "canonical_url": "https://github.com/NVIDIA-NeMo/Guardrails",
+    "slug": "nemo-guardrails",
+    "org_slug": "other",
+    "title": "NVIDIA NeMo Guardrails",
+    "annotation": "Apache-2.0 NVIDIA toolkit for programmable guardrails (Colang input/output/dialog/retrieval/execution rails). Surfaced in the quality-gates search but not independently verified as a finding this pass.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/nemo-guardrails.md",
+    "content_sha1": "5391b29ae2d97bbb1d78b10b908db6f55c6babd8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.datadoghq.com/blog/llm-otel-semantic-convention/",
+    "canonical_url": "https://www.datadoghq.com/blog/llm-otel-semantic-convention",
+    "slug": "datadog-llm-observability",
+    "org_slug": "other",
+    "title": "Datadog LLM Observability: native OpenTelemetry GenAI support",
+    "annotation": "Commercial; natively supports OpenTelemetry GenAI Semantic Conventions (v1.37+), auto-mapping gen_ai.* attributes; OTLP-based ingest via direct exporter, Datadog Agent, or OTel Collector.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/datadog-llm-observability.md",
+    "content_sha1": "e30a9f4417d75e450febd848ab6c857affd84159",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.traceloop.com/docs/openllmetry/",
+    "canonical_url": "https://www.traceloop.com/docs/openllmetry",
+    "slug": "openllmetry",
+    "org_slug": "other",
+    "title": "OpenLLMetry (Traceloop): OTel-based LLM instrumentation",
+    "annotation": "Apache-2.0 OpenTelemetry instrumentations emitting gen_ai.* spans (prompts, completions, token usage) to any OTel backend. (Claim that Traceloop leads the OTel LLM working group was refuted.)",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/openllmetry.md",
+    "content_sha1": "d6c50a16a1bf9f9d1513154f305768220fc59ad8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.langchain.com/langsmith/observability",
+    "canonical_url": "https://www.langchain.com/langsmith/observability",
+    "slug": "langsmith-observability",
+    "org_slug": "other",
+    "title": "LangSmith: framework-agnostic agent tracing & observability",
+    "annotation": "Commercial; step-by-step agent trace/span capture + token/cost/latency (P50/P99); SDKs (Python/TS/Go/Java) plus OpenTelemetry; works beyond LangChain (OpenAI/Anthropic/Vercel AI/LlamaIndex).",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/langsmith-observability.md",
+    "content_sha1": "5dafe46a889719f22aa3f7ea1bcd1f1d82e7ca81",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://opentelemetry.io/blog/2026/genai-observability/",
+    "canonical_url": "https://opentelemetry.io/blog/2026/genai-observability",
+    "slug": "opentelemetry-genai-observability",
+    "org_slug": "other",
+    "title": "Inside the LLM Call: GenAI Observability with OpenTelemetry",
+    "annotation": "OSS (OpenTelemetry/CNCF). An agent run surfaces as a top-level invoke_agent span with child chat and execute_tool spans; standardized gen_ai.* token/latency attributes. VS Code Copilot, OpenAI Codex, and Claude Code emit OTel GenAI telemetry. Semconv pages still experimental.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/opentelemetry-genai-observability.md",
+    "content_sha1": "6174aa94bfc6454c3911a124a832e12508183d9e",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-agent-evaluation-in-vertex-ai-gen-ai-evaluation-service",
+    "canonical_url": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-agent-evaluation-in-vertex-ai-gen-ai-evaluation-service",
+    "slug": "introducing-agent-evaluation-in-vertex-ai-gen-ai-evaluation-service",
+    "org_slug": "google",
+    "title": "Introducing Agent Evaluation in Vertex AI Gen AI evaluation service",
+    "annotation": "Vertex AI groups agent metrics into final-response vs trajectory; ships six trajectory metrics (exact/in-order/any-order match, precision, recall, single-tool-use). Trajectory precision/recall are tool-trajectory metrics, not RAG retrieval.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Google",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Google",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/google/introducing-agent-evaluation-in-vertex-ai-gen-ai-evaluation-service.md",
+    "content_sha1": "d6ab52bf6349819ecd3667de27508889cb30f21f",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/evaluating-ai-agents-a-practical-guide-with-microsoft-foundry/4500224",
+    "canonical_url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/evaluating-ai-agents-a-practical-guide-with-microsoft-foundry/4500224",
+    "slug": "evaluating-ai-agents-a-practical-guide-with-microsoft-foundry",
+    "org_slug": "microsoft-github",
+    "title": "Evaluating AI Agents: a practical guide with Microsoft Foundry",
+    "annotation": "Two-loop eval model (inner pre-ship CI gates / outer post-ship production); prioritize outcomes over paths; a failing eval blocks the merge, with statistical analysis to separate real regressions from run-to-run noise.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Microsoft/GitHub",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Microsoft/GitHub",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/microsoft-github/evaluating-ai-agents-a-practical-guide-with-microsoft-foundry.md",
+    "content_sha1": "7512fc5e8a3ec78e5136d2bb28d7e64ef1682273",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/continuous-evaluation-agents",
+    "canonical_url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/continuous-evaluation-agents",
+    "slug": "continuous-evaluation-of-agents-microsoft-foundry",
+    "org_slug": "microsoft-github",
+    "title": "Continuous evaluation of agents (Microsoft Foundry)",
+    "annotation": "Continuously evaluates live agent interactions at a configurable sampling rate (AgentEvaluationSamplingConfiguration); metrics on the Foundry Observability dashboard; evaluations linked to traces for root-cause. Some features public preview.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Microsoft/GitHub",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Microsoft/GitHub",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/microsoft-github/continuous-evaluation-of-agents-microsoft-foundry.md",
+    "content_sha1": "8eff0e29640b705006634be89dbb41eafe3e2631",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.trychroma.com/research/context-rot",
+    "canonical_url": "https://www.trychroma.com/research/context-rot",
+    "slug": "context-rot",
+    "org_slug": "other",
+    "title": "Context Rot: how increasing input tokens impacts LLM performance",
+    "annotation": "Chroma (2025) controlled study across 18 models: performance grows unreliable as input length grows, often before the window limit, and worse as query-target similarity drops; focused prompts beat full ones, evidence that curating context improves accuracy.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/context-rot.md",
+    "content_sha1": "78cc2112e633e5c8ea4ec5f529ed78d279c0400c",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2410.02736",
+    "canonical_url": "https://arxiv.org/abs/2410.02736",
+    "slug": "calm-quantifying-biases-in-llm-as-a-judge",
+    "org_slug": "other",
+    "title": "Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge (CALM)",
+    "annotation": "Peer-reviewed (ICLR 2025): identifies twelve LLM-judge bias types; all judges significantly affected by position bias; self-enhancement model-dependent. Basis for judge-calibration and order-swap mitigations.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/calm-quantifying-biases-in-llm-as-a-judge.md",
+    "content_sha1": "9bfb7df188223bdd165d532949c1c576502e5495",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2411.15594",
+    "canonical_url": "https://arxiv.org/abs/2411.15594",
+    "slug": "a-survey-on-llm-as-a-judge",
+    "org_slug": "other",
+    "title": "A Survey on LLM-as-a-Judge",
+    "annotation": "Formalizes LLM-as-a-judge as E <- P_LLM(x (+) C); catalogues position/verbosity/self-enhancement biases and mitigations (e.g., swap contents and average in pairwise evaluation).",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/a-survey-on-llm-as-a-judge.md",
+    "content_sha1": "a6a44668b84fe7e94dd8e948d5bd15b1743699a0",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2406.07791",
+    "canonical_url": "https://arxiv.org/abs/2406.07791",
+    "slug": "judging-the-judges",
+    "org_slug": "other",
+    "title": "Judging the Judges: evaluating alignment and vulnerabilities in LLMs-as-judges",
+    "annotation": "Peer-reviewed: position bias in LLM judges is systematic, not random (MT-Bench lineage); judges need human calibration before gating releases or feeding training.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/judging-the-judges.md",
+    "content_sha1": "3091b43561f031ec08140614ecf0ab8b668c80d2",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://docs.langchain.com/langsmith/trajectory-evals",
+    "canonical_url": "https://docs.langchain.com/langsmith/trajectory-evals",
+    "slug": "langsmith-trajectory-evals",
+    "org_slug": "other",
+    "title": "LangSmith: trajectory evaluations",
+    "annotation": "Vendor docs: score the full sequence of agent steps/tool calls (trajectory) vs only the final answer, tooling for trajectory-vs-final-answer evaluation.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/langsmith-trajectory-evals.md",
+    "content_sha1": "268c4f8f5a0b5229c4294debea3e26c940631dbd",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

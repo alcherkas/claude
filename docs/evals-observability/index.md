@@ -9,6 +9,7 @@ title: Evaluations, Observability & Quality Gates
 - The strongest single primary sources are Anthropic's "Demystifying evals for AI agents" (Jan 2026), Martin Fowler's "Exploring Gen AI" series (especially Böckeler's *Harness Engineering* and Doernenburg's internal-quality memo), ThoughtWorks' Technology Radar entries (Feedback sensors, Complacency, LLM-as-a-judge), Google's Gemini Enterprise Agent Platform + ADK eval/observability, and Microsoft Foundry's tracing/evals plus GitHub Copilot code review.
 - Links are grouped by source (Anthropic, Martin Fowler, ThoughtWorks, Google, Microsoft/GitHub), then by subtopic (Evaluations / Observability / Quality gates), prioritizing 2024–2026 material.
 - All five named sources are well covered; a short list of high-value adjacent primary sources (Eval-Driven Development, OpenTelemetry GenAI conventions, SWE-bench Verified) appears at the end.
+- Two cross-cutting categories follow the source list: **Tools** (concrete eval/observability/quality-gate products) and **Patterns / Techniques** (named methods), both populated from two adversarially-verified research passes (June 2026), with a **Gaps** section recording what those passes could *not* substantiate.
 
 ---
 
@@ -141,6 +142,55 @@ title: Evaluations, Observability & Quality Gates
 
 ---
 
+## Tools
+Concrete eval/observability/quality-gate products, from two adversarially-verified research passes (June 2026). Most are **general LLM/agent platforms** adaptable to coding agents; the few genuinely coding-agent-targeted signals are flagged. (Vendor-native eval/observability — Google Vertex/ADK, Microsoft Foundry, GitHub Copilot — lives in the source sections above.)
+
+### Evaluation frameworks & harnesses
+- [DeepEval](other/deepeval.md) — Apache-2.0, Pytest-style; 50+ metrics (G-Eval/DAG LLM-judge, RAG, agentic/trajectory); `deepeval test run` CI gates; **MCP server for Claude Code/Cursor** *(coding-agent-targeted)*
+- [Ragas available metrics](other/ragas-available-metrics.md) — open-source RAG/agent eval; AWS uses it to evaluate Bedrock Agents *(existing page)*
+- [Promptfoo](other/promptfoo.md) — MIT eval runner; CLI + GitHub Action *(also a CI quality gate, below)*
+- [Braintrust eval-action](other/braintrust-eval-action.md) — official GitHub Action; PR-comment regression surfacing *(also a CI quality gate)*
+- [OpenAI Evals guide](other/openai-evals-guide.md) · [openai/evals](other/openai-evals-repository.md) — eval construction concepts + repo *(existing pages; not re-verified this pass)*
+
+### Observability & tracing
+- [Inside the LLM Call: GenAI Observability with OpenTelemetry](other/opentelemetry-genai-observability.md) — vendor-neutral span model; **VS Code Copilot, OpenAI Codex, and Claude Code emit OTel GenAI telemetry** *(coding-agent-targeted)*
+- [OpenTelemetry GenAI semantic conventions](other/opentelemetry-genai-semantic-conventions.md) · [repository](other/opentelemetry-semantic-conventions-genai-repository.md) — the standardized `gen_ai.*` attribute/metric backbone *(existing pages)*
+- [Datadog LLM Observability](other/datadog-llm-observability.md) — commercial; native OTel GenAI semconv (v1.37+), OTLP ingest
+- [OpenLLMetry (Traceloop)](other/openllmetry.md) — Apache-2.0 OTel instrumentation emitting `gen_ai.*` spans
+- [LangSmith observability](other/langsmith-observability.md) — commercial; framework-agnostic agent tracing + OTel · [Langfuse tracing](other/langfuse-observability-application-tracing.md) *(existing)*
+
+### Quality gates & guardrails (CI/CD)
+- [Promptfoo](other/promptfoo.md) — fail-on-threshold / pass-rate gates across GitHub Actions, GitLab CI, Jenkins, Azure Pipelines, CircleCI, Bitbucket, Travis
+- [Braintrust eval-action](other/braintrust-eval-action.md) — runs `braintrust eval` in CI, posts a Score/Improvements/Regressions PR comment
+- [Guardrails AI](other/guardrails-ai.md) — Apache-2.0 Input/Output Guards; runtime validation
+- [NVIDIA NeMo Guardrails](other/nemo-guardrails.md) — Apache-2.0 programmable rails (Colang) *(surfaced in search; not verified this pass)*
+
+## Patterns / Techniques
+Named methods for evaluating, observing, and gating agentic systems — framed for context engineering (curating/measuring the context an agent works from). Grouped by evidence strength.
+
+### Well-evidenced (vendor-primary + peer-reviewed)
+- **Eval-driven (evaluation-first) development; capability-vs-regression split** — build evals before the agent can pass them; capability evals start low and "graduate" into a continuously-run regression suite. [Demystifying evals for AI agents](anthropic/demystifying-evals-for-ai-agents.md) · [Eval-Driven Development](other/eval-driven-development.md)
+- **Grade the outcome/end-state, not the exact path** (use trajectory eval for *diagnosis*) — [Vertex AI agent evaluation](google/introducing-agent-evaluation-in-vertex-ai-gen-ai-evaluation-service.md) (final-response vs. trajectory metrics) · [LangSmith trajectory evals](other/langsmith-trajectory-evals.md) · [Foundry practical guide](microsoft-github/evaluating-ai-agents-a-practical-guide-with-microsoft-foundry.md)
+- **Two-loop offline/online evaluation; continuous production eval** — inner pre-ship loop (dev + CI) / outer post-ship loop (live-traffic sampling + scheduled golden runs). [Foundry practical guide](microsoft-github/evaluating-ai-agents-a-practical-guide-with-microsoft-foundry.md) · [Continuous evaluation of agents](microsoft-github/continuous-evaluation-of-agents-microsoft-foundry.md)
+- **CI quality gates that block merges on eval regressions** — failing eval blocks the merge, with significance testing to separate regressions from noise. [Foundry practical guide](microsoft-github/evaluating-ai-agents-a-practical-guide-with-microsoft-foundry.md) · [Feedback sensors for coding agents](thoughtworks/feedback-sensors-for-coding-agents.md)
+- **Trace/transcript inspection; eval linked to traces** — "read the transcripts"; production eval scores link straight to the trace for root-cause. [Continuous evaluation of agents](microsoft-github/continuous-evaluation-of-agents-microsoft-foundry.md) · [Demystifying evals](anthropic/demystifying-evals-for-ai-agents.md)
+- **LLM-as-a-judge as a formal paradigm** (E ← P_LLM(x ⊕ C)) — [A Survey on LLM-as-a-Judge](other/a-survey-on-llm-as-a-judge.md) · [LLM as a judge (ThoughtWorks Radar, Trial→Assess)](thoughtworks/llm-as-a-judge.md)
+- **Quantified LLM-judge biases & mitigations** — twelve bias types; position bias affects all judges; mitigate via human calibration and order-swapping. [CALM: Quantifying Biases in LLM-as-a-Judge](other/calm-quantifying-biases-in-llm-as-a-judge.md) · [Judging the Judges](other/judging-the-judges.md)
+- **Evaluating context quality itself** — "lost in the middle" (U-shaped utilization) and "context rot" (degradation with input length / lower query-target similarity); focused context beats full. [Lost in the Middle](../context-engineering/other/lost-in-the-middle-how-language-models-use-long-contexts.md) · [Context Rot](other/context-rot.md) *(vendor-primary; see caveat)*
+- **Maintainability / feedback "sensors" for coding agents** — deterministic quality gates wired into the agent loop for self-correction. [Maintainability sensors for coding agents](../context-engineering/martin-fowler/maintainability-sensors-for-coding-agents.md) · [Feedback sensors](thoughtworks/feedback-sensors-for-coding-agents.md)
+
+## Gaps
+What the June 2026 research passes searched for but could **not** substantiate with a verified primary source — recorded for honesty, mirroring the context-engineering topic's evidence discipline. Absence here reflects the verified-claim corpus, not evidence these are unimportant.
+
+- **RAG-specific metrics** (faithfulness, groundedness, context precision/recall in the RAGAS sense) — requested but no claim survived verification in the Patterns pass; partially covered by the existing [Ragas metrics](other/ragas-available-metrics.md) page. (Vertex's precision/recall are *tool-trajectory*, not retrieval, metrics.)
+- **Guardrails / validation-assertion gates** and **dedicated human-in-the-loop review gates** (beyond LLM-judge calibration) — not substantiated as distinct, well-evidenced *patterns* this pass, though [Guardrails AI](other/guardrails-ai.md) / [NeMo Guardrails](other/nemo-guardrails.md) cover the tooling.
+- **OpenTelemetry GenAI semantic conventions are still evolving** — several pages remain "Development/experimental," the spec relocated to a dedicated `semantic-conventions-genai` repo, and token attribute names are mid-rename (`prompt_tokens`→`usage.input_tokens`).
+- **Named-but-unverified tools** (real, relevant, but no verified claim surfaced this pass): **Arize Phoenix, Langfuse\*, Helicone, W&B Weave, Galileo, Patronus, Inspect (UK AISI), OpenAI Evals\***. *(\*Langfuse and OpenAI Evals already have pages above.)* A dedicated follow-up research pass on these is in progress.
+- **Refuted in verification** (for transparency): the Ragas↔Bedrock LLM-as-judge *integration mechanism* (1–2 vote) and the claim that *Traceloop leads the OTel LLM semantic-convention working group* (0–3).
+- **Coding-agent-specific vs. general:** only OTel telemetry emission (VS Code Copilot / OpenAI Codex / Claude Code) and DeepEval's MCP server were confirmed genuinely coding-agent-targeted; everything else is general LLM/agent tooling adaptable to coding agents.
+
+---
+
 ## Recommendations (how to use this list)
 - **Start here for the conceptual frame:** Read ThoughtWorks' "LLM benchmarks, evals and tests: A mental model" + Anthropic's "Demystifying evals for AI agents" together — they establish the vocabulary (benchmark vs. eval vs. test; task vs. trial vs. transcript vs. outcome) you will reuse everywhere.
 - **For SDLC quality gates specifically:** Pair Martin Fowler/Böckeler's "Harness engineering for coding agent users" with ThoughtWorks' "Feedback sensors for coding agents" and GitHub's "What's new with Copilot coding agent" (self-review + security scanning) and "60 million Copilot code reviews." These four describe the same pattern — deterministic gates (linters, type checks, tests, scanners) wired into the agent loop, plus an LLM/second-model reviewer — from complementary vendor and practitioner angles.
@@ -153,3 +203,4 @@ title: Evaluations, Observability & Quality Gates
 - **Vendor framing:** Google Cloud, Microsoft/GitHub, and Anthropic posts are partly product marketing; the quantitative claims (90.2% multi-agent lift, 67.9% coding-agent merge rate, 71% actionable-review rate, 68% AutoCommenter coverage) come from the vendors' own internal evals and should be read as directional, not independently audited.
 - **Benchmark limitations:** SWE-bench Verified remains the de facto coding-agent benchmark, but multiple labs now report training-data contamination and saturation concerns — scores are useful for broad directional comparison only.
 - A few cited URLs point to docs/landing indexes (e.g., the Radar techniques/tools quadrants, the Exploring Gen AI series index) that aggregate multiple sub-articles; drill into the linked sub-pages for the specific technique you need.
+- **Tools / Patterns evidence basis:** the **Tools** and **Patterns / Techniques** sections come from adversarially-verified research passes (3-vote, June 2026), but evidence quality is mixed: open-source frameworks (DeepEval, Promptfoo, Guardrails AI, Ragas) and the OTel standard rest on primary repos/specs, whereas **LangSmith and Datadog capability claims are vendor self-description** (appropriate for a capability census, not independent verification), and **Context Rot is vendor-primary** (Chroma sells a retrieval product) though its core is corroborated by peer-reviewed lost-in-the-middle work. See **Gaps** for what the passes could not substantiate.
