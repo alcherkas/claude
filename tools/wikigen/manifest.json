@@ -9209,5 +9209,36 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2508.00031",
+    "canonical_url": "https://arxiv.org/abs/2508.00031",
+    "slug": "git-context-controller-git-like-memory-management-for-llm-agents",
+    "org_slug": "other",
+    "title": "Git Context Controller: Git-like memory management for LLM agents",
+    "annotation": "Research framework for the git-as-memory / context-repository pattern: manage agent context with COMMIT/BRANCH/MERGE/CONTEXT operations over a versioned .GCC/ file tree.",
+    "source_type": "arxiv",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/git-context-controller-git-like-memory-management-for-llm-agents.md",
+    "content_sha1": "5055af60091f4409767cda67317619ef699ee396",
+    "fetch": {
+      "status": "pending",
+      "http_status": null,
+      "fetched_at": null,
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

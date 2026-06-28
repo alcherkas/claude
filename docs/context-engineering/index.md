@@ -116,6 +116,28 @@ Three approaches to feeding agents codebase context — **packing** (simple, loc
 - [code-review-graph: Multi-repo code knowledge graph over MCP](other/code-review-graph-multi-repo-code-knowledge-graph-over-mcp.md) — multi-repo registry + background daemon watching several repos; ~30 MCP tools incl. cross-repo search (MIT)
 - [Sourcegraph / Cody: Cross-repository context via SCIP code graph](other/sourcegraph-cody-cross-repository-context-via-scip-code-graph.md) — true cross-repo navigation via SCIP, scales to 300k+ repos; full multi-repo largely Enterprise-tier
 
+## Patterns
+Named cross-repo / solution-level context patterns, grouped by how well-evidenced they are. Two focused research passes (June 2026) found the first two groups are backed by authoritative or vendor-primary sources; the **Lightly documented** group produced no verifiable primary-source support and should be read as practitioner coinages, not established practice.
+
+### Well-evidenced (authoritative / vendor-primary)
+- [Curated shared instructions for software teams](thoughtworks/curated-shared-instructions-for-software-teams-technology-radar.md) — **shared instruction repos**: commit `CLAUDE.md`/`AGENTS.md`/`.cursorrules` as a version-controlled team asset, distributed via repo/service templates (ThoughtWorks Radar Vol. 34, **Adopt**). Failure mode: "instruction drift" when templates *copy* rather than live-link.
+- [AGENTS.md open format](microsoft-github/agents-md-open-format.md) — the standardized "README for agents" distributed across repos; now under the Linux Foundation's Agentic AI Foundation.
+- [Connect agents to external tools](microsoft-github/connect-agents-to-external-tools.md) — **widened MCP/PAT scope**: Copilot's agent defaults to read-only on the current repo; cross-repo access is opt-in via a fine-grained PAT (`COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN`).
+- [Search Less, Build More: inner sourcing with Copilot + ADO MCP](microsoft-github/search-less-build-more-inner-sourcing-with-github-copilot-and-ado-mcp-server.md) — **cross-repo code search**: the `code_search` extension unlocks searching code content across all repos, steered by a "search-first" instructions file. (MS-hosted single-author workflow; underpinnings authoritative.)
+
+### Git-based agent memory ("memory-as-git")
+- [Introducing Context Repositories: Git-based memory for coding agents](other/introducing-context-repositories-git-based-memory-for-coding-agents.md) — Letta: agent memory as version-controlled markdown; git worktrees let subagents edit memory concurrently. *(Single-vendor.)*
+- [Git Context Controller: Git-like memory management for LLM agents](other/git-context-controller-git-like-memory-management-for-llm-agents.md) — academic framework: COMMIT/BRANCH/MERGE/CONTEXT over a `.GCC/` tree. *(arXiv preprint, self-reported benchmarks.)*
+- [RepoSwarm: Give AI Agents Context Across All Your Repos](other/reposwarm-give-ai-agents-context-across-all-your-repos.md) — **per-repo distillation**: generates standardized `.arch.md` files per repo for use as agent context. *(Single-project.)*
+
+### Lightly documented — practitioner coinages (no verified primary-source support)
+- [Repo-of-Repos: Tony's Multi-Repo Workspace](other/repo-of-repos-tony-s-multi-repo-workspace-for-ai-coding-agents.md) — umbrella/workspace repo aggregating many repos for agents.
+- [The Spine Pattern: Multi-Repo Context](other/the-spine-pattern-multi-repo-context-for-ai-assisted-development.md) — thin coordinating/meta-repo linking others.
+- [Setting Up AI Assistants for Large Multi-Repo Solutions](other/setting-up-ai-coding-assistants-for-large-multi-repo-solutions.md) — **root-repository** pattern: a root repo pulling in sibling repos.
+- [Patterns for providing an AI agent context from other internal repos](other/patterns-for-providing-an-ai-agent-context-from-other-internal-repos.md) — **git submodules / distillation** of other repos into compact context.
+- [How Copilot understands your workspace](other/how-copilot-understands-your-workspace.md) · [Optimizing Copilot for multi-repo teams in VS Code](other/optimizing-github-copilot-for-multi-repository-teams-in-vs-code.md) — **multi-root workspaces** for cross-repo agent context.
+- [GitHub Copilot Multi-Repo Instructions](other/github-copilot-multi-repo-instructions.md) · [Agentic Tooling Across Multiple Repositories](other/agentic-tooling-across-multiple-repositories.md) — shared-Copilot-repo + multi-root setups (practitioner write-ups).
+
 ## Recommendations
 - **Start here for the core concept:** Anthropic's "Effective context engineering for AI agents" and ThoughtWorks' Technology Radar "Context engineering" + "Progressive context disclosure" blips. These define the discipline and its key techniques (write/select/compress/isolate, just-in-time retrieval, compaction).
 - **For the multi-repo / solution-level angle specifically:** read the practitioner cluster (Repo-of-Repos, Spine Pattern, root-repository, Arinco multi-repo instructions) alongside GitHub's "Connect agents to external tools" docs and Microsoft's "Search Less, Build More" ADO MCP post — together these cover the realistic toolkit (shared instruction repos, multi-root workspaces, widened MCP/PAT scope, cross-repo code search via MCP).
