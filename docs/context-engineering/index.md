@@ -18,6 +18,7 @@ title: Solution-Level Context Engineering Across Multiple Repositories
 - [Equipping agents for the real world with Agent Skills](anthropic/equipping-agents-for-the-real-world-with-agent-skills.md)
 - [Anthropic Engineering](anthropic/anthropic-engineering.md) — blog index
 - [Claude Code overview / docs](anthropic/claude-code-overview-docs.md) — CLAUDE.md, memory, multi-dir support
+- [Claude Code prompt caching: what invalidates the cache mid-session](anthropic/claude-code-prompt-caching-deep-dive.md) — cache key (model/effort/fast), full vs partial vs cache-safe actions, TTL & pricing
 - [Memory tool — Claude API Docs](anthropic/memory-tool-claude-api-docs.md)
 - [How Anthropic teams use Claude Code](anthropic/how-anthropic-teams-use-claude-code.md) — PDF
 

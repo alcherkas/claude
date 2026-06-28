@@ -10976,5 +10976,67 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://code.claude.com/docs/en/prompt-caching",
+    "canonical_url": "https://code.claude.com/docs/en/prompt-caching",
+    "slug": "claude-code-prompt-caching-deep-dive",
+    "org_slug": "anthropic",
+    "title": "Claude Code prompt caching: what invalidates the cache mid-session",
+    "annotation": "what is cached, what busts it mid-session, TTL & pricing",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Anthropic",
+    "subtopic": "",
+    "source_file": "manual",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Anthropic",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/anthropic/claude-code-prompt-caching-deep-dive.md",
+    "content_sha1": "036bdf9b544d1904cbd7cc7796d8b3b49aedf887",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/o11y-dev/opentelemetry-hooks",
+    "canonical_url": "https://github.com/o11y-dev/opentelemetry-hooks",
+    "slug": "opentelemetry-hooks",
+    "org_slug": "other",
+    "title": "opentelemetry-hooks: one OTel layer across all coding agents",
+    "annotation": "Hook-based OpenTelemetry (GenAI-semconv) integration spanning all major coding agents — Claude Code, Codex, Cursor (IDE/CLI), Gemini CLI, GitHub Copilot, OpenCode, Antigravity; the only verified option uniformly covering Copilot and Cursor, which lack first-party OTel/MCP eval-observability integrations.",
+    "source_type": "repo",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/opentelemetry-hooks.md",
+    "content_sha1": "9b7d220db658e20b18280f859828d739661b0fc1",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]
