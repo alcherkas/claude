@@ -185,6 +185,14 @@ Named methods for evaluating, observing, and gating agentic systems — framed f
 - **Evaluating context quality itself** — "lost in the middle" (U-shaped utilization) and "context rot" (degradation with input length / lower query-target similarity); focused context beats full. [Lost in the Middle](../context-engineering/other/lost-in-the-middle-how-language-models-use-long-contexts.md) · [Context Rot](other/context-rot.md) *(vendor-primary; see caveat)*
 - **Maintainability / feedback "sensors" for coding agents** — deterministic quality gates wired into the agent loop for self-correction. [Maintainability sensors for coding agents](../context-engineering/martin-fowler/maintainability-sensors-for-coding-agents.md) · [Feedback sensors](thoughtworks/feedback-sensors-for-coding-agents.md)
 
+### Cross-repo / retrieval-quality evaluation (emerging)
+How to measure whether an agent retrieved the *right* context — directly relevant to validating multi-repo context systems (see the [context-engineering topic](../context-engineering/index.md)). Key finding (June 2026 pass): **no public benchmark tests true simultaneous cross-repo retrieval** — every one is single-repo (cross-*file*), so you must build gold-context ground truth yourself (static dependency closure / PR history / CODEOWNERS) and score it.
+- [ContextBench](other/contextbench-gold-context-retrieval-benchmark.md) — human-annotated gold contexts (file/AST/line) scored with **Context Recall/Precision/F1**; finds LLMs over-retrieve (recall ≫ precision). Single-repo, but the methodology ports to multi-repo.
+- [Hydra: dependency-aware retriever](other/hydra-dependency-aware-retriever.md) — **dependency-closure recall** is the cross-repo-relevant metric, and it is structurally high-recall/low-precision (graph-aware ~doubles recall over BM25/dense).
+- [CodeRAG-Bench](other/coderag-bench-retrieval-augmented-code-generation.md) — retrieval-augmented code-gen over a ~25M-doc multi-source corpus; *partial* cross-source, ground truth still within-repo.
+- [CoderEval](other/codereval-pragmatic-code-generation-benchmark.md) — six dependency levels incl. third-party (`plib_runnable`) — the closest a benchmark gets to cross-repo dependency, but it does not require retrieving external source.
+- Score with reference-free judges via the existing [Ragas metrics](other/ragas-available-metrics.md) page (context precision/recall, adapted with code-specific prompts).
+
 ## Gaps
 What the June 2026 research passes searched for but could **not** substantiate with a verified primary source — recorded for honesty, mirroring the context-engineering topic's evidence discipline. Absence here reflects the verified-claim corpus, not evidence these are unimportant.
 

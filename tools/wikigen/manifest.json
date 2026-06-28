@@ -11410,5 +11410,470 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://www.augmentcode.com/blog/context-engine-mcp-now-live",
+    "canonical_url": "https://www.augmentcode.com/blog/context-engine-mcp-now-live",
+    "slug": "augment-context-engine-mcp-cross-repo-context",
+    "org_slug": "other",
+    "title": "Augment Code — Context Engine MCP: cross-repo context for any agent",
+    "annotation": "Persistent semantic index + cross-repo dependency graph over entire orgs (GitHub/GitLab/Bitbucket), served as a GA hosted MCP server to any agent; remote mode delivers cross-repo context. Gated SaaS; vendor performance numbers self-reported.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "context-engineering/other/augment-context-engine-mcp-cross-repo-context.md",
+    "content_sha1": "aa46a5a4b8f7e2a64bcd143e277d2f431492dfb2",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/aa46a5a4b8f7e2a64bcd143e277d2f431492dfb2.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/sourcegraph/zoekt",
+    "canonical_url": "https://github.com/sourcegraph/zoekt",
+    "slug": "zoekt-multi-repo-trigram-code-search",
+    "org_slug": "other",
+    "title": "Zoekt: trigram-based multi-repo code search index",
+    "annotation": "Trigram-based shared index across whole orgs; index server pulls from code hosts, web/gRPC API serves queries. Apache-2.0, mature, self-hostable. Lexical/regex, not semantic; needs an MCP wrapper for agents.",
+    "source_type": "repo",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "context-engineering/other/zoekt-multi-repo-trigram-code-search.md",
+    "content_sha1": "17753e8797f53168b80d69dd2b35c20605562f39",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/17753e8797f53168b80d69dd2b35c20605562f39.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/sourcebot-dev/sourcebot",
+    "canonical_url": "https://github.com/sourcebot-dev/sourcebot",
+    "slug": "sourcebot-multi-repo-code-search-mcp",
+    "org_slug": "other",
+    "title": "Sourcebot: multi-repo code search with an MCP server",
+    "annotation": "Zoekt-backed multi-host regex search + goto-def/find-refs + NL chat, shipping a production MCP server (@sourcebot/mcp); single Docker Compose. Source-available (Fair Source), not OSI open source.",
+    "source_type": "repo",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "context-engineering/other/sourcebot-multi-repo-code-search-mcp.md",
+    "content_sha1": "1076c69550b4f216755759a2280038926793e40f",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/1076c69550b4f216755759a2280038926793e40f.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://scip-code.org/",
+    "canonical_url": "https://scip-code.org/",
+    "slug": "scip-source-code-intelligence-protocol",
+    "org_slug": "other",
+    "title": "SCIP: Source Code Intelligence Protocol (cross-repo symbol IDs)",
+    "annotation": "Open Apache-2.0 code-index format (LSIF successor) whose symbol IDs encode package+version, resolving an import to the exact def in the dependency repo. The mechanism behind true cross-repo navigation; inert without a broker layer (usually Sourcegraph).",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "context-engineering/other/scip-source-code-intelligence-protocol.md",
+    "content_sha1": "dab05c32dd1db2a537d42c45ea1505fd54bfb137",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/dab05c32dd1db2a537d42c45ea1505fd54bfb137.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://kythe.io/docs/kythe-overview.html",
+    "canonical_url": "https://kythe.io/docs/kythe-overview.html",
+    "slug": "kythe-cross-repo-code-graph",
+    "org_slug": "other",
+    "title": "Kythe: Google's cross-repo code graph (VName 5-tuple)",
+    "annotation": "Language-agnostic code graph; VName 5-tuple (corpus,root,path,language,signature) lets multiple repos index into one store. Apache-2.0. Cross-repo in principle but tied to a unified build (Bazel); maintenance-risk hedge.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "context-engineering/other/kythe-cross-repo-code-graph.md",
+    "content_sha1": "f6d901546e7e6abb74e483a50f5463b1db91a8b1",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/f6d901546e7e6abb74e483a50f5463b1db91a8b1.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents",
+    "canonical_url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents",
+    "slug": "stripe-minions-one-shot-coding-agents",
+    "org_slug": "other",
+    "title": "Stripe \"Minions\": one-shot end-to-end coding agents at scale",
+    "annotation": "Autonomous coding agents (Goose fork) over 100M+ LOC repos; central 'Toolshed' MCP server (400+ tools, curated subsets), Sourcegraph retrieval via MCP, 'blueprint' orchestration, capped CI; 1,300+ merged PRs/week. Strongest public large-estate case study.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/stripe-minions-one-shot-coding-agents.md",
+    "content_sha1": "246753b15065c32df804a8b8f758758c659b4c7b",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/246753b15065c32df804a8b8f758758c659b4c7b.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://engineering.atspotify.com/2025/11/spotifys-background-coding-agent-part-1",
+    "canonical_url": "https://engineering.atspotify.com/2025/11/spotifys-background-coding-agent-part-1",
+    "slug": "spotify-honk-background-coding-agents",
+    "org_slug": "other",
+    "title": "Spotify \"Honk\": background coding agents across thousands of repos",
+    "annotation": "Background coding agent across thousands of repos on Fleet Management + Backstage; Claude Agent SDK, deterministic verifiers + LLM-as-judge, restricted tool access. Candid failure modes: 'dumping entire repos reduced accuracy'; favored static prompts over MCP retrieval.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/spotify-honk-background-coding-agents.md",
+    "content_sha1": "1ab47dc543f6ebdb1f1d50a903f1764bf1db3bd7",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/1ab47dc543f6ebdb1f1d50a903f1764bf1db3bd7.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://newsletter.pragmaticengineer.com/p/how-uber-uses-ai-for-development",
+    "canonical_url": "https://newsletter.pragmaticengineer.com/p/how-uber-uses-ai-for-development",
+    "slug": "uber-how-uber-uses-ai-for-development",
+    "org_slug": "other",
+    "title": "How Uber uses AI for development (Minion, Shepherd, MCP Gateway)",
+    "annotation": "AI agents over a monorepo: Minion/Shepherd/uReview/Autocover behind an MCP Gateway centralizing authz/telemetry/logging. Company-reported adoption metrics (unaudited); primary source paywalled, corroborated by ShiftMag.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/uber-how-uber-uses-ai-for-development.md",
+    "content_sha1": "c42e8a3659e746e6bd01f8e95d5185c0792ec846",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/c42e8a3659e746e6bd01f8e95d5185c0792ec846.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://docs.cloud.google.com/gemini/docs/codeassist/overview",
+    "canonical_url": "https://docs.cloud.google.com/gemini/docs/codeassist/overview",
+    "slug": "gemini-code-assist-enterprise-codebase-context",
+    "org_slug": "other",
+    "title": "Gemini Code Assist Enterprise: codebase-wide context indexing",
+    "annotation": "Enterprise codebase context: 1M-token window + Developer Connect per-customer isolated index, daily batch re-index (up to 24h), ~100 repos/1TB cap. A vendor cross-repo index layer (not the full pipeline); vendor-stated figures.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "context-engineering/other/gemini-code-assist-enterprise-codebase-context.md",
+    "content_sha1": "0ee9f61c4725eabb9fcfc06dc5169f90c938613f",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/0ee9f61c4725eabb9fcfc06dc5169f90c938613f.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/mateodelnorte/meta",
+    "canonical_url": "https://github.com/mateodelnorte/meta",
+    "slug": "meta-repo-virtual-monorepo-mateodelnorte",
+    "org_slug": "other",
+    "title": "meta: the meta-repo / virtual monorepo tool",
+    "annotation": "mateodelnorte/meta (~2015, ~2.2k stars): manages many repos as one via a parent meta-repo + CLI. The canonical tooling behind the 'meta-repo / virtual monorepo' umbrella — the one multi-repo topology term with multiple-independent backing, predating AI.",
+    "source_type": "repo",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/meta-repo-virtual-monorepo-mateodelnorte.md",
+    "content_sha1": "e83af7bdbe24cc0219076e82ec28e867307303af",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/e83af7bdbe24cc0219076e82ec28e867307303af.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://medium.com/devops-ai/the-virtual-monorepo-pattern-how-i-gave-claude-code-full-system-context-across-35-repos-43b310c97db8",
+    "canonical_url": "https://medium.com/devops-ai/the-virtual-monorepo-pattern-how-i-gave-claude-code-full-system-context-across-35-repos-43b310c97db8",
+    "slug": "virtual-monorepo-pattern-claude-code",
+    "org_slug": "other",
+    "title": "The Virtual Monorepo Pattern: full system context across 35 repos for Claude Code",
+    "annotation": "Owen Zanzal: gives Claude Code full system context across 35 repos via a virtual monorepo (parent workspace aggregating many repos). A representative independent re-derivation of the meta-repo umbrella for agent context.",
+    "source_type": "html",
+    "theme": "context-engineering",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "context-engineering",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "context-engineering/other/virtual-monorepo-pattern-claude-code.md",
+    "content_sha1": "da3ef1a3d9c15fb7e2ed7e2a32a5c2783dd21ddb",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/da3ef1a3d9c15fb7e2ed7e2a32a5c2783dd21ddb.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2602.05892",
+    "canonical_url": "https://arxiv.org/abs/2602.05892",
+    "slug": "contextbench-gold-context-retrieval-benchmark",
+    "org_slug": "other",
+    "title": "ContextBench: gold-context retrieval benchmark for code agents",
+    "annotation": "arXiv:2602.05892 (Feb 2026): 1,136 tasks / 66 repos / 8 langs with human-annotated gold contexts at file/AST/line; scores Context Recall/Precision/F1. Findings: LLMs over-retrieve (recall >> precision); explore-vs-utilize gap. Single-repo, but methodology reusable for multi-repo eval.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/contextbench-gold-context-retrieval-benchmark.md",
+    "content_sha1": "9618547c063696b6864bfa3f38bb2f60965a43c8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/9618547c063696b6864bfa3f38bb2f60965a43c8.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2602.11671",
+    "canonical_url": "https://arxiv.org/abs/2602.11671",
+    "slug": "hydra-dependency-aware-retriever",
+    "org_slug": "other",
+    "title": "Hydra: a dependency-aware retriever for repo-level code",
+    "annotation": "arXiv:2602.11671 (FSE 2026): Dependency-Aware Retriever on RepoExec — Recall 0.9223 / Precision 0.1086 vs BM25 (0.54/0.08) and dense (0.55/0.08). Shows dependency-closure recall is structurally high-recall/low-precision.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/hydra-dependency-aware-retriever.md",
+    "content_sha1": "d43b2ff27b714ee6180b9eca06bbc4363cedec81",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/d43b2ff27b714ee6180b9eca06bbc4363cedec81.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2406.14497",
+    "canonical_url": "https://arxiv.org/abs/2406.14497",
+    "slug": "coderag-bench-retrieval-augmented-code-generation",
+    "org_slug": "other",
+    "title": "CodeRAG-Bench: can retrieval augment code generation?",
+    "annotation": "arXiv:2406.14497: retrieval-augmented code generation over a ~25M-doc multi-source corpus; partial cross-source retrieval, but ground truth stays within-repo. Useful for retrieve-then-generate methodology.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/coderag-bench-retrieval-augmented-code-generation.md",
+    "content_sha1": "3c349a81521d9a18c31ee9041046f4b61a3f9c7c",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/3c349a81521d9a18c31ee9041046f4b61a3f9c7c.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2302.00288",
+    "canonical_url": "https://arxiv.org/abs/2302.00288",
+    "slug": "codereval-pragmatic-code-generation-benchmark",
+    "org_slug": "other",
+    "title": "CoderEval: pragmatic code generation with dependency levels",
+    "annotation": "arXiv:2302.00288: code generation across 6 dependency levels incl. third-party (plib_runnable) — the closest a benchmark gets to cross-repo dependency, but it does not require retrieving external source.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "evals-observability/other/codereval-pragmatic-code-generation-benchmark.md",
+    "content_sha1": "a6df6d4da77bedbade474434809b63bd74d0e068",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/a6df6d4da77bedbade474434809b63bd74d0e068.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

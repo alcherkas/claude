@@ -5,6 +5,9 @@ title: Solution-Level Context Engineering Across Multiple Repositories
 # Solution-Level Context Engineering Across Multiple Repositories
 
 
+!!! tip "Start here"
+    📐 **[Reference architecture — solution-level context across repositories](reference-architecture.md)** — the assembled 8-layer pipeline, how the Stripe/Spotify/Uber case studies map onto it, and the two immature seams (no published blueprint; no cross-repo retrieval benchmark).
+
 **TL;DR**
 
 - The strongest authoritative material comes from **Anthropic** (the foundational "Effective context engineering for AI agents" guide, which defines context engineering as "the set of strategies for curating and maintaining the optimal set of tokens during LLM inference"), **ThoughtWorks** (Technology Radar blips + Birgitta Böckeler's "Exploring Gen AI" series), and **Martin Fowler's** site; **Google** (ADK context stack) and **Microsoft/GitHub** (AGENTS.md, custom instructions, MCP) cover the agent-context tooling layer.
@@ -116,9 +119,14 @@ Three approaches to feeding agents codebase context — **packing** (simple, loc
 ### Multi-repo / cross-repo
 - [code-review-graph: Multi-repo code knowledge graph over MCP](other/code-review-graph-multi-repo-code-knowledge-graph-over-mcp.md) — multi-repo registry + background daemon watching several repos; ~30 MCP tools incl. cross-repo search (MIT)
 - [Sourcegraph / Cody: Cross-repository context via SCIP code graph](other/sourcegraph-cody-cross-repository-context-via-scip-code-graph.md) — true cross-repo navigation via SCIP, scales to 300k+ repos; full multi-repo largely Enterprise-tier
+- [Augment Code — Context Engine MCP](other/augment-context-engine-mcp-cross-repo-context.md) — persistent semantic index + cross-repo dependency graph over whole orgs, served as a GA hosted MCP server to any agent (remote mode = cross-repo). Strongest dedicated *agent-facing* option; gated SaaS, perf numbers vendor-reported
+- [Zoekt](other/zoekt-multi-repo-trigram-code-search.md) — mature OSS (Apache-2.0) trigram index across whole orgs; the retrieval substrate under Sourcegraph/Sourcebot. Lexical, not semantic; needs an MCP wrapper for agents
+- [Sourcebot](other/sourcebot-multi-repo-code-search-mcp.md) — Zoekt-backed multi-host search + code nav + a production MCP server (`@sourcebot/mcp`), single Docker Compose. Source-available (Fair Source), **not** OSI OSS
+- [SCIP: Source Code Intelligence Protocol](other/scip-source-code-intelligence-protocol.md) — open Apache-2.0 format whose symbol IDs encode package+version; the mechanism behind true cross-repo navigation, but inert without a broker layer (usually Sourcegraph)
+- [Kythe](other/kythe-cross-repo-code-graph.md) — Google's VName-based cross-repo code graph; cross-repo in principle but tied to a unified build (Bazel) and carrying maintenance risk
 
 ## Patterns
-Named cross-repo / solution-level context patterns, grouped by how well-evidenced they are. Two focused research passes (June 2026) found the first two groups are backed by authoritative or vendor-primary sources; the **Lightly documented** group produced no verifiable primary-source support and should be read as practitioner coinages, not established practice.
+Named cross-repo / solution-level context patterns, grouped by how well-evidenced they are. Focused research passes (June 2026) found the first groups are backed by authoritative or vendor-primary sources, and that one topology term — **meta-repo / virtual monorepo** — has genuine *multiple-independent* backing (and predates the AI era), while the remaining named patterns (**spine**, **repo-of-repos**, **root-repository**, **polyrepo synthesis**) are single-coinage *relabels of that same idea*, not established practice.
 
 ### Well-evidenced (authoritative / vendor-primary)
 - [Curated shared instructions for software teams](thoughtworks/curated-shared-instructions-for-software-teams-technology-radar.md) — **shared instruction repos**: commit `CLAUDE.md`/`AGENTS.md`/`.cursorrules` as a version-controlled team asset, distributed via repo/service templates (ThoughtWorks Radar Vol. 34, **Adopt**). Failure mode: "instruction drift" when templates *copy* rather than live-link.
@@ -131,13 +139,35 @@ Named cross-repo / solution-level context patterns, grouped by how well-evidence
 - [Git Context Controller: Git-like memory management for LLM agents](other/git-context-controller-git-like-memory-management-for-llm-agents.md) — academic framework: COMMIT/BRANCH/MERGE/CONTEXT over a `.GCC/` tree. *(arXiv preprint, self-reported benchmarks.)*
 - [RepoSwarm: Give AI Agents Context Across All Your Repos](other/reposwarm-give-ai-agents-context-across-all-your-repos.md) — **per-repo distillation**: generates standardized `.arch.md` files per repo for use as agent context. *(Single-project.)*
 
-### Lightly documented — practitioner coinages (no verified primary-source support)
+### Convergent practice — meta-repo / virtual monorepo (multiple-independent)
+The one multi-repo topology term with genuine cross-practitioner backing, and the only one that predates the AI-agent era. ~6 practitioners independently re-derived the same structure — a single coordination point (a parent repo or workspace file) over many independent repos, carrying layered context files.
+
+- [meta: the meta-repo / virtual monorepo tool](other/meta-repo-virtual-monorepo-mateodelnorte.md) — `mateodelnorte/meta` (~2015, ~2.2k★): manage many repos as one via a parent meta-repo + CLI. The canonical, pre-AI tooling for the umbrella.
+- [The Virtual Monorepo Pattern](other/virtual-monorepo-pattern-claude-code.md) — Owen Zanzal: full system context across 35 repos for Claude Code; a representative independent re-derivation for agent context.
+
+### Single-coinage relabels of the meta-repo idea (practitioner blogs)
+The June 2026 passes confirmed these are **the same idea under different names** — single coinages with no vendor-blessed standing — *except* **multi-root workspaces**, which has genuine vendor-primary backing (VS Code, plus Cline / Claude Code / Cursor adoption).
 - [Repo-of-Repos: Tony's Multi-Repo Workspace](other/repo-of-repos-tony-s-multi-repo-workspace-for-ai-coding-agents.md) — umbrella/workspace repo aggregating many repos for agents.
 - [The Spine Pattern: Multi-Repo Context](other/the-spine-pattern-multi-repo-context-for-ai-assisted-development.md) — thin coordinating/meta-repo linking others.
 - [Setting Up AI Assistants for Large Multi-Repo Solutions](other/setting-up-ai-coding-assistants-for-large-multi-repo-solutions.md) — **root-repository** pattern: a root repo pulling in sibling repos.
 - [Patterns for providing an AI agent context from other internal repos](other/patterns-for-providing-an-ai-agent-context-from-other-internal-repos.md) — **git submodules / distillation** of other repos into compact context.
 - [How Copilot understands your workspace](other/how-copilot-understands-your-workspace.md) · [Optimizing Copilot for multi-repo teams in VS Code](other/optimizing-github-copilot-for-multi-repository-teams-in-vs-code.md) — **multi-root workspaces** for cross-repo agent context.
 - [GitHub Copilot Multi-Repo Instructions](other/github-copilot-multi-repo-instructions.md) · [Agentic Tooling Across Multiple Repositories](other/agentic-tooling-across-multiple-repositories.md) — shared-Copilot-repo + multi-root setups (practitioner write-ups).
+
+## Production case studies
+First-hand accounts of coding agents running across multi-repo / large-estate codebases (June 2026 research). These substantiate that solution-level multi-repo agent context is **real in production** — but note that none publishes a full end-to-end *reference architecture*; each discloses some pipeline layers and hides others.
+
+- [Stripe "Minions": one-shot end-to-end coding agents at scale](other/stripe-minions-one-shot-coding-agents.md) — Goose fork; "Toolshed" MCP server (400+ tools), Sourcegraph retrieval via MCP, "blueprint" orchestration, capped CI; 1,300+ merged PRs/week over 100M+ LOC. Strongest public large-estate case.
+- [Spotify "Honk": background coding agents across thousands of repos](other/spotify-honk-background-coding-agents.md) — poly-repo on Fleet Management + Backstage; Claude Agent SDK, deterministic verifiers + LLM-as-judge. Candid: "dumping entire repos reduced accuracy"; chose static prompts over dynamic MCP retrieval.
+- [How Uber uses AI for development](other/uber-how-uber-uses-ai-for-development.md) — monorepo; Minion/Shepherd/uReview/Autocover behind an **MCP Gateway** (centralized authz/telemetry/logging). Company-reported metrics (unaudited).
+- [Gemini Code Assist Enterprise](other/gemini-code-assist-enterprise-codebase-context.md) — vendor cross-repo **index layer**: 1M-token window + per-customer isolated index, daily batch re-index (up to 24h), ~100 repos/1TB cap.
+
+## Anti-pattern: more context ≠ better
+A recurring, independently-confirmed finding (June 2026 research): **flooding an agent with more repository context degrades accuracy** — relevance and precision matter more than volume.
+
+- **Production signal:** Spotify's "Honk" team reports that *"dumping entire repositories into the context window reduced accuracy,"* and chose large *curated* static prompts over broad dynamic retrieval ("predictability over flexibility"). See [Spotify "Honk"](other/spotify-honk-background-coding-agents.md).
+- **Benchmark signal:** [ContextBench](../evals-observability/other/contextbench-gold-context-retrieval-benchmark.md) finds LLMs structurally **over-retrieve** (recall ≫ precision), and that what an agent *utilizes* lags what it *explores*. Corroborated by [Lost in the Middle](other/lost-in-the-middle-how-language-models-use-long-contexts.md).
+- **Implication for multi-repo:** the goal is *selecting the right cross-repo slice* (dependency closure, just-in-time retrieval), not packing every repo. Cross-repo retrieval is inherently high-recall / low-precision (see [Hydra](../evals-observability/other/hydra-dependency-aware-retriever.md)) — manage the precision cost, don't ignore it.
 
 ## Recommendations
 - **Start here for the core concept:** Anthropic's "Effective context engineering for AI agents" and ThoughtWorks' Technology Radar "Context engineering" + "Progressive context disclosure" blips. These define the discipline and its key techniques (write/select/compress/isolate, just-in-time retrieval, compaction).
