@@ -1,6 +1,7 @@
 title: Security & Governance
 nav:
 - index.md
+- reference-architecture.md
 - anthropic
 - google
 - microsoft-github

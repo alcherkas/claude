@@ -5,6 +5,10 @@ title: Security, Governance & Safe Autonomy for AI Coding Agents
 # Security, Governance & Safe Autonomy for AI Coding Agents
 
 
+!!! tip "Start here"
+    📐 **[Reference architecture — safe autonomy for AI coding agents](reference-architecture.md)** — the assembled defense-in-depth pipeline (identity → policy PDP → harness permissions → sandbox → injection guards → runtime monitoring → incident response), how Claude Code / Copilot / Codex / the Microsoft control plane map onto it, and the three immature seams (injection contained-not-prevented; no agent-native rollback of bash/merged changes; vendor-asserted policy-as-code wiring).
+
+
 ## TL;DR
 - This is a link-first reference delivering the most authoritative and recent materials from **Anthropic, Google, Microsoft/GitHub, Thoughtworks, and Martin Fowler** on securing and governing AI coding agents across the SDLC, plus dedicated **PCI DSS** sources.
 - The strongest primary sources are vendor docs and engineering blogs (Anthropic Claude Code security, sandboxing & managed settings; GitHub coding-agent firewall docs; Microsoft Learn agent governance; Google **SAIF 2.0**, announced October 2025 with an agent risk map, alongside CodeMender and the new AI Vulnerability Reward Program) plus Thoughtworks/Martin Fowler "harness engineering."
