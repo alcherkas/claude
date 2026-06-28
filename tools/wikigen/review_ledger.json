@@ -13,6 +13,27 @@
     "dest_path": "evals-observability/google/evaluate-agents-adk.md",
     "reviewed_at": "2026-06-21"
   },
+  "https://anthropic.com/engineering/managed-agents": {
+    "decision": "approved",
+    "review_hash": "635facb4bf9f9d8cbfc6fcf10ad43d75489c8bcb",
+    "title": "Managed Agents",
+    "dest_path": "orchestration/anthropic/managed-agents.md",
+    "reviewed_at": "2026-06-28"
+  },
+  "https://arxiv.org/abs/2503.13657": {
+    "decision": "approved",
+    "review_hash": "4470b4fb0d35d25aa25e2f5a19190079a19360d8",
+    "title": "Why Do Multi-Agent LLM Systems Fail?",
+    "dest_path": "orchestration/other/why-do-multi-agent-llm-systems-fail.md",
+    "reviewed_at": "2026-06-28"
+  },
+  "https://cognition.com/blog/dont-build-multi-agents": {
+    "decision": "approved",
+    "review_hash": "60591ec997d4d5f786a9cad16654038a55ade6be",
+    "title": "Don't Build Multi-Agents",
+    "dest_path": "orchestration/other/don-t-build-multi-agents.md",
+    "reviewed_at": "2026-06-28"
+  },
   "https://developers.openai.com/api/docs/guides/evals": {
     "decision": "approved",
     "review_hash": "a248dea8aad9e6a3b088e7e1569e997a79ba2ff8",
@@ -27,6 +48,13 @@
     "dest_path": "context-engineering/other/lost-in-the-middle-how-language-models-use-long-contexts.md",
     "reviewed_at": "2026-06-21"
   },
+  "https://docs.dapr.io/developing-ai/dapr-agents/dapr-agents-core-concepts": {
+    "decision": "approved",
+    "review_hash": "5eca4ecfeb7627653cc0381416e3af8e328e7592",
+    "title": "Dapr Agents: Durable agentic workflows",
+    "dest_path": "orchestration/other/dapr-agents-durable-agentic-workflows.md",
+    "reviewed_at": "2026-06-28"
+  },
   "https://docs.langchain.com/langsmith/evaluation-concepts": {
     "decision": "approved",
     "review_hash": "f2cea9c1cc163d6b56edd6525b55351c5e74b5c6",
@@ -40,6 +68,13 @@
     "title": "Ragas available metrics",
     "dest_path": "evals-observability/other/ragas-available-metrics.md",
     "reviewed_at": "2026-06-21"
+  },
+  "https://docs.restate.dev/concepts/durable_execution": {
+    "decision": "approved",
+    "review_hash": "9fc12a0b1ff76f5d15ed9a736cb2a005470a6406",
+    "title": "Restate: Durable execution for agentic loops",
+    "dest_path": "orchestration/other/restate-durable-execution-for-agentic-loops.md",
+    "reviewed_at": "2026-06-28"
   },
   "https://genai.owasp.org/llm-top-10/": {
     "decision": "approved",
@@ -69,6 +104,13 @@
     "dest_path": "spec-driven/microsoft-github/spec-kit-spec-template.md",
     "reviewed_at": "2026-06-21"
   },
+  "https://github.com/langchain-ai/langgraph-supervisor-py": {
+    "decision": "approved",
+    "review_hash": "b4042694668f5dbfc37dedbd7fc60499ed3f3f3d",
+    "title": "langgraph-supervisor: Hierarchical multi-agent systems on LangGraph",
+    "dest_path": "orchestration/other/langgraph-supervisor-hierarchical-multi-agent-systems-on-langgraph.md",
+    "reviewed_at": "2026-06-28"
+  },
   "https://github.com/open-telemetry/semantic-conventions-genai": {
     "decision": "approved",
     "review_hash": "6a83db3ddaf302b8894bcfcac86956ffca818cab",
@@ -83,12 +125,26 @@
     "dest_path": "evals-observability/other/openai-evals-repository.md",
     "reviewed_at": "2026-06-21"
   },
+  "https://github.com/openai/swarm": {
+    "decision": "approved",
+    "review_hash": "544a5b9efcb4a63f90760fb28851258d2c83622e",
+    "title": "OpenAI Swarm: Lightweight multi-agent orchestration (educational)",
+    "dest_path": "orchestration/other/openai-swarm-lightweight-multi-agent-orchestration-educational.md",
+    "reviewed_at": "2026-06-28"
+  },
   "https://github.com/swe-bench/SWE-bench": {
     "decision": "approved",
     "review_hash": "21ee284b49ea92afb38f6032d5356f9deda4e1c0",
     "title": "SWE-bench repository",
     "dest_path": "evals-observability/other/swe-bench-repository.md",
     "reviewed_at": "2026-06-21"
+  },
+  "https://inngest.com/blog/durable-execution-key-to-harnessing-ai-agents": {
+    "decision": "approved",
+    "review_hash": "d4130b37fdb758dc6b494110e60918ec12216e8e",
+    "title": "Inngest: Durable execution for AI agents",
+    "dest_path": "orchestration/other/inngest-durable-execution-for-ai-agents.md",
+    "reviewed_at": "2026-06-28"
   },
   "https://kiro.dev/docs/specs/": {
     "decision": "approved",
@@ -132,12 +188,19 @@
     "dest_path": "context-engineering/other/model-context-protocol-specification-2025-06-18.md",
     "reviewed_at": "2026-06-21"
   },
+  "https://openai.github.io/openai-agents-python/handoffs": {
+    "decision": "approved",
+    "review_hash": "fcf1c910a0a3e47eccf0a03f558c6f3e75e63ded",
+    "title": "OpenAI Agents SDK: Handoffs",
+    "dest_path": "orchestration/other/openai-agents-sdk-handoffs.md",
+    "reviewed_at": "2026-06-28"
+  },
   "https://openai.github.io/openai-agents-python/multi_agent/": {
     "decision": "approved",
-    "review_hash": "66b994553f0bef54add98ff8d63ee39e59d57f63",
+    "review_hash": "e35ab4045e90d1c8a670fe12e8af2ff097fc03b6",
     "title": "OpenAI Agents SDK - Agent orchestration",
     "dest_path": "orchestration/other/openai-agents-sdk-agent-orchestration.md",
-    "reviewed_at": "2026-06-21"
+    "reviewed_at": "2026-06-28"
   },
   "https://openreview.net/forum?id=VTF8yNQM66": {
     "decision": "approved",
@@ -152,6 +215,13 @@
     "title": "OWASP Top 10 for LLM Applications",
     "dest_path": "security-governance/other/owasp-top-10-for-llm-applications.md",
     "reviewed_at": "2026-06-21"
+  },
+  "https://temporal.io/solutions/ai": {
+    "decision": "approved",
+    "review_hash": "a99fa08f8cfd67571210d8cd7f0878e7af37e570",
+    "title": "Temporal: Durable execution for AI agents",
+    "dest_path": "orchestration/other/temporal-durable-execution-for-ai-agents.md",
+    "reviewed_at": "2026-06-28"
   },
   "https://www.anthropic.com/claude-opus-4-8-system-card": {
     "decision": "approved",
