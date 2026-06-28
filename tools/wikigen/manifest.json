@@ -10821,5 +10821,160 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://github.com/Arize-ai/phoenix",
+    "canonical_url": "https://github.com/Arize-ai/phoenix",
+    "slug": "arize-phoenix",
+    "org_slug": "other",
+    "title": "Arize Phoenix: open AI observability & evaluation",
+    "annotation": "Open-source AI observability/eval platform under Elastic License 2.0 (source-available, not OSI-approved). OpenTelemetry via OpenInference; Python/TS SDKs; MCP server (@arizeai/phoenix-mcp) plus Claude Code/Cursor skills. General LLM apps + coding agents.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/arize-phoenix.md",
+    "content_sha1": "d34532e6a0f6daff82dcf2645d790fd509b88efb",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/Helicone/helicone",
+    "canonical_url": "https://github.com/Helicone/helicone",
+    "slug": "helicone",
+    "org_slug": "other",
+    "title": "Helicone: open AI gateway & LLM observability",
+    "annotation": "AI gateway + LLM observability (trace/session inspection, cost/latency/quality analytics, prompt versioning) routing across 100+ models. Core repo Apache-2.0; separate ai-gateway component GPL-3.0. General LLM apps.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/helicone.md",
+    "content_sha1": "30c766a8b928b5739b5f85d56d596693542b7d32",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/wandb/weave",
+    "canonical_url": "https://github.com/wandb/weave",
+    "slug": "wandb-weave",
+    "org_slug": "other",
+    "title": "Weights & Biases Weave: tracing & evaluation toolkit",
+    "annotation": "Apache-2.0 toolkit to log/debug LLM inputs/outputs/traces and build evaluations; accepts OpenTelemetry trace data via a dedicated OTLP HTTP endpoint. General LLM apps.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/wandb-weave.md",
+    "content_sha1": "83481b5c6d2d7112dfaf04526e65851ad6dc4a4e",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/UKGovernmentBEIS/inspect_ai",
+    "canonical_url": "https://github.com/UKGovernmentBEIS/inspect_ai",
+    "slug": "inspect-ai",
+    "org_slug": "other",
+    "title": "Inspect: UK AISI framework for LLM & agent evals",
+    "annotation": "MIT framework by the UK AI Security Institute (with Meridian Labs) for LLM/agent evals; built for coding & agentic tasks; supports MCP tools and runs Claude Code/Codex CLI/Gemini CLI in Docker/Kubernetes sandboxes.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/inspect-ai.md",
+    "content_sha1": "22f0f872fd6d354385678862475e2a9516a6eade",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/UKGovernmentBEIS/inspect_evals",
+    "canonical_url": "https://github.com/UKGovernmentBEIS/inspect_evals",
+    "slug": "inspect-evals",
+    "org_slug": "other",
+    "title": "Inspect Evals: community benchmark suite on Inspect",
+    "annotation": "MIT repository of dozens of community benchmark evals built on Inspect AI (UK AISI, Arcadia Impact, Vector Institute); includes coding-agent benchmarks (SWE-Bench, Cybench) plus GAIA, GDM CTF. Benchmarking, not production observability.",
+    "source_type": "html",
+    "theme": "evals-observability",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "evals-observability",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "evals-observability/other/inspect-evals.md",
+    "content_sha1": "2bc69600367750091efa23be91402a43dd210d1d",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

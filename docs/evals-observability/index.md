@@ -150,14 +150,19 @@ Concrete eval/observability/quality-gate products, from two adversarially-verifi
 - [Ragas available metrics](other/ragas-available-metrics.md) — open-source RAG/agent eval; AWS uses it to evaluate Bedrock Agents *(existing page)*
 - [Promptfoo](other/promptfoo.md) — MIT eval runner; CLI + GitHub Action *(also a CI quality gate, below)*
 - [Braintrust eval-action](other/braintrust-eval-action.md) — official GitHub Action; PR-comment regression surfacing *(also a CI quality gate)*
-- [OpenAI Evals guide](other/openai-evals-guide.md) · [openai/evals](other/openai-evals-repository.md) — eval construction concepts + repo *(existing pages; not re-verified this pass)*
+- [Inspect (UK AISI)](other/inspect-ai.md) — MIT; **built for coding & agentic evals**; MCP tools; runs Claude Code / Codex CLI / Gemini CLI in sandboxes *(coding-agent-targeted)* · [Inspect Evals](other/inspect-evals.md) — MIT benchmark suite (SWE-Bench, Cybench, GAIA)
+- [OpenAI Evals guide](other/openai-evals-guide.md) · [openai/evals](other/openai-evals-repository.md) — MIT eval framework + registry of benchmark evals
 
 ### Observability & tracing
 - [Inside the LLM Call: GenAI Observability with OpenTelemetry](other/opentelemetry-genai-observability.md) — vendor-neutral span model; **VS Code Copilot, OpenAI Codex, and Claude Code emit OTel GenAI telemetry** *(coding-agent-targeted)*
 - [OpenTelemetry GenAI semantic conventions](other/opentelemetry-genai-semantic-conventions.md) · [repository](other/opentelemetry-semantic-conventions-genai-repository.md) — the standardized `gen_ai.*` attribute/metric backbone *(existing pages)*
 - [Datadog LLM Observability](other/datadog-llm-observability.md) — commercial; native OTel GenAI semconv (v1.37+), OTLP ingest
 - [OpenLLMetry (Traceloop)](other/openllmetry.md) — Apache-2.0 OTel instrumentation emitting `gen_ai.*` spans
-- [LangSmith observability](other/langsmith-observability.md) — commercial; framework-agnostic agent tracing + OTel · [Langfuse tracing](other/langfuse-observability-application-tracing.md) *(existing)*
+- [LangSmith observability](other/langsmith-observability.md) — commercial; framework-agnostic agent tracing + OTel
+- [Arize Phoenix](other/arize-phoenix.md) — **Elastic License 2.0** (source-available, not OSI-approved); OpenTelemetry via OpenInference; MCP server + Claude Code/Cursor skills *(coding-agent-targeted)*
+- [Helicone](other/helicone.md) — AI gateway + observability; core Apache-2.0, gateway component GPL-3.0
+- [Weights & Biases Weave](other/wandb-weave.md) — Apache-2.0 tracing/eval toolkit; OTLP HTTP endpoint
+- [Langfuse](other/langfuse-observability-application-tracing.md) — MIT open-core (only `/ee` enterprise modules are commercial); OTel-native SDKs · [Langfuse evaluation](other/langfuse-evaluation-overview.md) *(existing pages; license verified this pass)*
 
 ### Quality gates & guardrails (CI/CD)
 - [Promptfoo](other/promptfoo.md) — fail-on-threshold / pass-rate gates across GitHub Actions, GitLab CI, Jenkins, Azure Pipelines, CircleCI, Bitbucket, Travis
@@ -185,7 +190,8 @@ What the June 2026 research passes searched for but could **not** substantiate w
 - **RAG-specific metrics** (faithfulness, groundedness, context precision/recall in the RAGAS sense) — requested but no claim survived verification in the Patterns pass; partially covered by the existing [Ragas metrics](other/ragas-available-metrics.md) page. (Vertex's precision/recall are *tool-trajectory*, not retrieval, metrics.)
 - **Guardrails / validation-assertion gates** and **dedicated human-in-the-loop review gates** (beyond LLM-judge calibration) — not substantiated as distinct, well-evidenced *patterns* this pass, though [Guardrails AI](other/guardrails-ai.md) / [NeMo Guardrails](other/nemo-guardrails.md) cover the tooling.
 - **OpenTelemetry GenAI semantic conventions are still evolving** — several pages remain "Development/experimental," the spec relocated to a dedicated `semantic-conventions-genai` repo, and token attribute names are mid-rename (`prompt_tokens`→`usage.input_tokens`).
-- **Named-but-unverified tools** (real, relevant, but no verified claim surfaced this pass): **Arize Phoenix, Langfuse\*, Helicone, W&B Weave, Galileo, Patronus, Inspect (UK AISI), OpenAI Evals\***. *(\*Langfuse and OpenAI Evals already have pages above.)* A dedicated follow-up research pass on these is in progress.
+- **Named tools — mostly resolved by a follow-up pass (June 2026):** Arize Phoenix, Helicone, W&B Weave, and Inspect / Inspect Evals are now catalogued in **Tools** above, and Langfuse + OpenAI Evals (existing pages) were license-verified. Still unverified: **Galileo** (no confirmed data this pass — function, license, or integration), and **Patronus AI** (described only via TechCrunch / its own announcement — a June 2026 $50M Series B to build simulated "digital worlds" that stress-test agents; license, SDK, and OTel/MCP/CI support all unconfirmed and time-sensitive).
+- **CI/CD hooks for the observability/eval platforms** (Phoenix, Helicone, Weave, Langfuse, Inspect) were not confirmed by the follow-up pass — surviving evidence centered on SDK / OpenTelemetry / MCP integration paths.
 - **Refuted in verification** (for transparency): the Ragas↔Bedrock LLM-as-judge *integration mechanism* (1–2 vote) and the claim that *Traceloop leads the OTel LLM semantic-convention working group* (0–3).
 - **Coding-agent-specific vs. general:** only OTel telemetry emission (VS Code Copilot / OpenAI Codex / Claude Code) and DeepEval's MCP server were confirmed genuinely coding-agent-targeted; everything else is general LLM/agent tooling adaptable to coding agents.
 
