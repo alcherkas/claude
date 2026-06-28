@@ -11038,5 +11038,377 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://docs.permit.io/permit-mcp-gateway/guide/",
+    "canonical_url": "https://docs.permit.io/permit-mcp-gateway/guide/",
+    "slug": "permit-io-mcp-gateway-agent-authorization",
+    "org_slug": "other",
+    "title": "Permit.io MCP Gateway: per-tool authorization for coding agents",
+    "annotation": "The most direct policy-as-code enforcement point that names coding agents explicitly \u2014 a Policy Decision Point in front of each MCP tool invocation, enforced out-of-model. Vendor docs describe capability/architecture, not independently-verified production efficacy.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/permit-io-mcp-gateway-agent-authorization.md",
+    "content_sha1": "daccbb918281a3a3ae55d8ad7a9b1a2c6804690f",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://microsoft.github.io/agent-governance-toolkit/tutorials/08-opa-rego-cedar-policies/",
+    "canonical_url": "https://microsoft.github.io/agent-governance-toolkit/tutorials/08-opa-rego-cedar-policies/",
+    "slug": "agent-governance-toolkit-opa-cedar-policy-backends",
+    "org_slug": "microsoft-github",
+    "title": "Microsoft Agent Governance Toolkit: pluggable OPA/Rego & Cedar policy backends",
+    "annotation": "An open-source (MIT) way to wire mature policy engines (OPA + Cedar) into the agent action path behind one interface \u2014 the clearest first-party bridge between governance frameworks and runtime gates.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Microsoft/GitHub",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Microsoft/GitHub",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/microsoft-github/agent-governance-toolkit-opa-cedar-policy-backends.md",
+    "content_sha1": "52d93f074228a0e335b3437b76bf410fe5b1809f",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.openpolicyagent.org/docs/integration",
+    "canonical_url": "https://www.openpolicyagent.org/docs/integration",
+    "slug": "open-policy-agent-opa-rego-and-opal",
+    "org_slug": "other",
+    "title": "Open Policy Agent (OPA/Rego) & OPAL: general-purpose policy enforcement",
+    "annotation": "The foundational, production-grade enforcement primitive under agent-governance products (Permit.io, the Microsoft toolkit, TrueFoundry). Mature for authorization, but not agent-specific \u2014 agent-action policies are hand-authored in Rego.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/open-policy-agent-opa-rego-and-opal.md",
+    "content_sha1": "ebd23a8c85ce5be27d0b328348447954bc04606d",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://docs.cedarpolicy.com/auth/authorization.html",
+    "canonical_url": "https://docs.cedarpolicy.com/auth/authorization.html",
+    "slug": "aws-cedar-amazon-verified-permissions",
+    "org_slug": "other",
+    "title": "AWS Cedar & Amazon Verified Permissions: formally-verified authorization",
+    "annotation": "A formally-verified authorization engine usable as the decision point for agent actions, and a pluggable backend in the Microsoft Agent Governance Toolkit. AWS reportedly added a natural-language-to-Cedar capability in Bedrock AgentCore (March 2026), not deeply verified here.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/aws-cedar-amazon-verified-permissions.md",
+    "content_sha1": "8c34e6348416fe9dec0ab5414eb50e6d14b526b9",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/NVIDIA-NeMo/Guardrails",
+    "canonical_url": "https://github.com/NVIDIA-NeMo/Guardrails",
+    "slug": "nvidia-nemo-guardrails",
+    "org_slug": "other",
+    "title": "NVIDIA NeMo Guardrails: programmable runtime rails for LLM systems",
+    "annotation": "Content/behavioral guardrailing, not authorization. Execution rails are the most agent-relevant surface for gating tool calls, but the toolkit targets conversational LLMs generally rather than coding agents specifically. Colang 2.0 is beta with 1.0 still default.",
+    "source_type": "repo",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/nvidia-nemo-guardrails.md",
+    "content_sha1": "5391b29ae2d97bbb1d78b10b908db6f55c6babd8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/guardrails-ai/guardrails",
+    "canonical_url": "https://github.com/guardrails-ai/guardrails",
+    "slug": "guardrails-ai-validators-and-guards",
+    "org_slug": "other",
+    "title": "Guardrails AI: composable input/output validation for LLMs",
+    "annotation": "Content/output validation rather than authorization, and general-purpose rather than coding-agent-specific \u2014 a complement to, not a substitute for, policy-as-code authorization at the tool-call layer.",
+    "source_type": "repo",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/guardrails-ai-validators-and-guards.md",
+    "content_sha1": "2dd4d5501b194cbd4fee74ba8bdd4b568896343a",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://machinelearning.apple.com/research/prose2policy",
+    "canonical_url": "https://machinelearning.apple.com/research/prose2policy",
+    "slug": "guardrails-as-code-nl-to-rego-research",
+    "org_slug": "other",
+    "title": "Guardrails-as-code: natural-language to Rego/policy (research)",
+    "annotation": "Demonstrates that guardrails-as-code (NL->policy) is feasible and quantified, but remains research-stage and aimed at IaC/access-control \u2014 no production NL-to-Rego coding-agent governance product was confirmed. Answers the standing open question: NL->Rego is still research-only; the engines it targets (OPA/Cedar) are production-ready.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/guardrails-as-code-nl-to-rego-research.md",
+    "content_sha1": "0d14ed423bf17a5616dfc8542cd4b38ff20b40ce",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://code.claude.com/docs/en/checkpointing",
+    "canonical_url": "https://code.claude.com/docs/en/checkpointing",
+    "slug": "claude-code-checkpointing-and-rewind",
+    "org_slug": "anthropic",
+    "title": "Claude Code checkpointing & /rewind: session-level rollback",
+    "annotation": "Agent-native, session-level undo for blast-radius recovery \u2014 but bounded to model-driven edits, so it is not a substitute for version control or filesystem-level rollback of destructive bash operations.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Anthropic",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Anthropic",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/anthropic/claude-code-checkpointing-and-rewind.md",
+    "content_sha1": "ccf312ac52a1d67e107a3254c16692f3dcd35fd4",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/defender-endpoint/ai-agent-runtime-protection-overview",
+    "canonical_url": "https://learn.microsoft.com/en-us/defender-endpoint/ai-agent-runtime-protection-overview",
+    "slug": "defender-ai-agent-runtime-protection",
+    "org_slug": "microsoft-github",
+    "title": "Microsoft Defender: AI agent runtime protection & pre-tool-call blocking",
+    "annotation": "The most complete enterprise runtime kill/contain control surfaced \u2014 pre-tool-call interception that can block a risky action before execution, plus incident correlation for blast-radius understanding. Almost entirely Preview; behavior and availability may change.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Microsoft/GitHub",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Microsoft/GitHub",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/microsoft-github/defender-ai-agent-runtime-protection.md",
+    "content_sha1": "ac092fa017274bec3ee61e8d4b5e7023d74e6023",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/entra/id-governance/agent-id-governance-overview",
+    "canonical_url": "https://learn.microsoft.com/en-us/entra/id-governance/agent-id-governance-overview",
+    "slug": "entra-agent-id-governance-and-kill-switch",
+    "org_slug": "microsoft-github",
+    "title": "Microsoft Entra Agent ID: identity kill switch, auto-expiry & least privilege",
+    "annotation": "Credential revocation and least-privilege blast-radius containment via agent identity \u2014 the \"revoke\" axis of incident response, complementing Defender's runtime \"halt/contain.\"",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Microsoft/GitHub",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Microsoft/GitHub",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/microsoft-github/entra-agent-id-governance-and-kill-switch.md",
+    "content_sha1": "c72a9bf4fffa82e5202d738a5a1c169559afd381",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://cloud.google.com/security-command-center/docs/findings/threats/agent-engine-iam-anomalous-behavior-service-account-gets-own-iam-policy",
+    "canonical_url": "https://cloud.google.com/security-command-center/docs/findings/threats/agent-engine-iam-anomalous-behavior-service-account-gets-own-iam-policy",
+    "slug": "scc-agent-credential-detection-and-revocation",
+    "org_slug": "google",
+    "title": "Google SCC: AI-agent credential-compromise detection & revocation",
+    "annotation": "The detection + credential-revocation half of agent incident response on GCP. Validated by Unit 42's \"Double Agents\" Vertex AI exploit, which demonstrated agent service-account credentials are a real, revocable attack surface.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Google",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Google",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/google/scc-agent-credential-detection-and-revocation.md",
+    "content_sha1": "14015e32bfc87617e4bc2618b406dda599a325bf",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://unit42.paloaltonetworks.com/double-agents-vertex-ai/",
+    "canonical_url": "https://unit42.paloaltonetworks.com/double-agents-vertex-ai/",
+    "slug": "unit42-double-agents-vertex-ai",
+    "org_slug": "other",
+    "title": "Unit 42 \"Double Agents\": exploiting Vertex AI agent credentials",
+    "annotation": "Independent (non-vendor) evidence that an overprivileged agent identity is a concrete, exploitable, and revocable attack surface \u2014 the empirical case for least-privilege agent credentials and fast revocation.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/unit42-double-agents-vertex-ai.md",
+    "content_sha1": "8ae2bdfeae12d56ca1fff1f01ee98d836f3e4800",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]
