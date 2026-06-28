@@ -11875,5 +11875,129 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2310.08560",
+    "canonical_url": "https://arxiv.org/abs/2310.08560",
+    "slug": "memgpt-letta-llm-operating-system-agent-memory",
+    "org_slug": "other",
+    "title": "MemGPT / Letta: LLMs as Operating Systems (tiered agent memory)",
+    "annotation": "MemGPT's OS-inspired tiered agent memory (core/recall/archival, 'RAM vs disk'), self-managed by the agent via tool calls; now the open-source Letta runtime. (Architecture high-confidence; no independent accuracy benchmark surfaced.)",
+    "source_type": "arxiv",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/memgpt-letta-llm-operating-system-agent-memory.md",
+    "content_sha1": "a7bf3f1e18652174f6819ec6f929da86f88130dc",
+    "fetch": {
+      "status": "arxiv",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2501.13956",
+    "canonical_url": "https://arxiv.org/abs/2501.13956",
+    "slug": "zep-graphiti-temporal-knowledge-graph-agent-memory",
+    "org_slug": "other",
+    "title": "Zep / Graphiti: A Temporal Knowledge Graph Architecture for Agent Memory",
+    "annotation": "Zep's memory layer built on Graphiti, an open-source bi-temporal knowledge graph: facts carry validity windows and are invalidated (not deleted), enabling point-in-time queries. (Architecture high-confidence; LongMemEval/LoCoMo numbers vendor-self-reported and disputed.)",
+    "source_type": "arxiv",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/zep-graphiti-temporal-knowledge-graph-agent-memory.md",
+    "content_sha1": "cc2574d8f41a465f314d971a56b9b4466c2499f5",
+    "fetch": {
+      "status": "arxiv",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2504.19413",
+    "canonical_url": "https://arxiv.org/abs/2504.19413",
+    "slug": "mem0-scalable-long-term-memory-for-ai-agents",
+    "org_slug": "other",
+    "title": "Mem0: Scalable Long-Term Memory for Production AI Agents",
+    "annotation": "Mem0's vector-first/hybrid memory: an LLM extracts atomic facts on write, multi-signal retrieval (semantic + BM25 + entity); ~7k tokens/retrieval. (Architecture high-confidence; accuracy/efficiency numbers vendor-self-reported, several cross-vendor claims refuted in verification.)",
+    "source_type": "arxiv",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/mem0-scalable-long-term-memory-for-ai-agents.md",
+    "content_sha1": "442f8d52be31eb7fdb0f379a714652ea77d07fe2",
+    "fetch": {
+      "status": "arxiv",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2511.10523",
+    "canonical_url": "https://arxiv.org/abs/2511.10523",
+    "slug": "convomem-first-150-conversations-dont-need-rag",
+    "org_slug": "other",
+    "title": "ConvoMem: Why Your First 150 Conversations Don't Need RAG",
+    "annotation": "Salesforce vendor-independent benchmark: under ~150 interactions, simple full-context beats RAG-style memory (70-82% vs 30-45%) \u2014 memory frameworks pay off only at scale. (Single non-peer-reviewed preprint; directional.)",
+    "source_type": "arxiv",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/convomem-first-150-conversations-dont-need-rag.md",
+    "content_sha1": "8dda5af43948db45f8cd1b1e2aad9f243cb9b7be",
+    "fetch": {
+      "status": "arxiv",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

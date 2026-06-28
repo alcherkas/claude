@@ -125,6 +125,17 @@ Frameworks and runtimes for orchestrating multi-agent and multi-step LLM workflo
 - [Dapr Agents](other/dapr-agents-durable-agentic-workflows.md) — CNCF, Apache-2.0; a `DurableAgent` over Dapr Workflows supporting the full pattern set, with three pluggable memory backends.
 - [Inngest](other/inngest-durable-execution-for-ai-agents.md) — step-level checkpointing + automatic retries as the substrate for reliable agent loops. *(Vendor blog — backfill, not separately verified.)*
 
+### Agent memory & long-term state
+
+The persistence layer beneath the frameworks — where agent state and facts live *across* context windows (distinct from in-context working memory, which the [context-engineering topic](../context-engineering/index.md) covers via compaction and note-taking). Three architecturally distinct systems dominate; choose by **how memory is managed**, not by benchmark scores (see caveat). A focused research pass (June 2026) anchored each to its primary paper/repo.
+
+- [MemGPT / Letta](other/memgpt-letta-llm-operating-system-agent-memory.md) — **OS-inspired, agent-managed** tiers: core (in-context "RAM"), recall (searchable history), archival (external vector store, "disk"), self-managed via tool calls. The canonical stateful-agent runtime.
+- [Zep / Graphiti](other/zep-graphiti-temporal-knowledge-graph-agent-memory.md) — **temporal knowledge graph** (open-source Graphiti engine): facts carry bi-temporal validity windows and are *invalidated, not deleted*, enabling point-in-time queries. Best fit when memory needs temporal reasoning + provenance.
+- [Mem0](other/mem0-scalable-long-term-memory-for-ai-agents.md) — **vector-first / hybrid** (vector + graph + key-value): an LLM extracts atomic facts on write; multi-signal retrieval (semantic + BM25 + entity linking). The lowest-friction drop-in layer; tradeoff is an LLM call per write.
+- [ConvoMem — "your first 150 conversations don't need RAG"](other/convomem-first-150-conversations-dont-need-rag.md) — the **vendor-independent** counterweight (Salesforce): under ~150 interactions, full context beats all RAG-style memory; adopt a memory system only at scales where full context is infeasible.
+
+> **Evidence caveat (read before choosing).** The *architecture* descriptions above are high-confidence (primary papers + repos, unanimous in verification). The *benchmark* numbers are not: each vendor publishes self-favorable results on self-selected baselines, and the cross-vendor LoCoMo comparison is an open dispute — Zep's original ~84% was alleged by Mem0 to be inflated to a corrected 58.44%, and Zep rebuts with ~75% citing a misconfigured integration ([getzep/zep-papers#5](https://github.com/getzep/zep-papers/issues/5)). Ten head-to-head superiority claims were *refuted* during 3-vote verification. Treat all single-vendor accuracy/latency/token figures as directional marketing data, and default to ConvoMem's framing: agent memory is a **scale-triggered** layer, not a default.
+
 ## Patterns & Techniques
 
 Named orchestration patterns, graded by how well they are evidenced. The first three groups rest on **authoritative / vendor-primary** sources; the final group is the contrarian / failure-mode literature that says when *not* to orchestrate. (Anthropic's "Building Effective Agents," listed under Anthropic above, is the canonical taxonomy underpinning this whole section.)
