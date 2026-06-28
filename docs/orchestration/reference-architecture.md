@@ -69,6 +69,10 @@ The strongest cross-cutting finding is Anthropic's own cost guidance: **agents u
 
 When you *do* pay that cost, a **model gateway** is the lever to control it: provider-agnostic routing, fallbacks, and semantic caching across the whole orchestration — self-hosted ([LiteLLM](other/litellm-self-hosted-llm-gateway.md)), hosted ([OpenRouter](other/openrouter-hosted-llm-marketplace-gateway.md)), or managed ([Portkey](other/portkey-managed-llm-gateway-semantic-cache.md)). See [Model gateway & cost routing](index.md#model-gateway-cost-routing).
 
+## Scaling to a fleet
+
+The pipeline above builds *one* orchestration. Running *many* agents over time adds a fleet layer: **topology** (flat / hierarchical / team / society / hybrid), **lifecycle primitives** (warm pools, scale-to-zero-with-resume, stable network identity), and a **registry** for discovery and governance. Flat all-to-all communication is **O(n²)** and doesn't scale, so the field's answer is **hierarchical decomposition**. But the binding constraint is *reliability, not agent count* — SOTA multi-agent systems fail 41–86.7% of the time and ~79% of failures are coordination defects — so harden orchestration mechanism design (and the eval+observe loop) before scaling out. See [Fleet lifecycle, swarms & registries](index.md#fleet-lifecycle-swarms-registries).
+
 ## A pragmatic starting path
 
 1. **Start with a single agent or a deterministic [workflow](anthropic/building-effective-agents.md)** (layers 0–1) — cheapest, highest leverage; most tasks never need more.

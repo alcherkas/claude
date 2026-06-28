@@ -12495,5 +12495,129 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://kubernetes.io/blog/2026/03/20/running-agents-on-kubernetes-with-agent-sandbox/",
+    "canonical_url": "https://kubernetes.io/blog/2026/03/20/running-agents-on-kubernetes-with-agent-sandbox/",
+    "slug": "kubernetes-agent-sandbox-fleet-lifecycle",
+    "org_slug": "other",
+    "title": "Kubernetes Agent Sandbox: fleet-lifecycle primitives for agents",
+    "annotation": "Kubernetes Agent Sandbox (kubernetes-sigs): four CRDs giving production fleet-lifecycle primitives \u2014 warm pools (no cold start), scale-to-zero-with-resume, and stable network identity for agent discovery. (High-confidence, primary k8s blog + repo; very recent.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/kubernetes-agent-sandbox-fleet-lifecycle.md",
+    "content_sha1": "e71ad171c927ece2d7b748a901163df8b7e31dc8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://aws.amazon.com/about-aws/whats-new/2026/04/aws-agent-registry-in-agentcore-preview/",
+    "canonical_url": "https://aws.amazon.com/about-aws/whats-new/2026/04/aws-agent-registry-in-agentcore-preview/",
+    "slug": "aws-agentcore-agent-registry",
+    "org_slug": "other",
+    "title": "AWS AgentCore Agent Registry: governed catalog for agent discovery",
+    "annotation": "AgentCore Agent Registry (Preview, Apr 2026): a centralized governed catalog for discovering/managing agents, MCP servers, tools and skills via publish/review/approve. The platform form of registry/discovery. (High-confidence; Preview, not GA.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/aws-agentcore-agent-registry.md",
+    "content_sha1": "4c0ba4d8a4b3a1b5eccf9415d0e88ae9964f1ad6",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2502.14321",
+    "canonical_url": "https://arxiv.org/abs/2502.14321",
+    "slug": "beyond-self-talk-multi-agent-communication-survey",
+    "org_slug": "other",
+    "title": "Beyond Self-Talk: a survey of multi-agent communication structures",
+    "annotation": "2025 survey of LLM agent-fleet structure: five communication architectures (flat/hierarchical/team/society/hybrid), three turn-taking strategies, and static-vs-dynamic membership (DyLAN deactivates low performers). The academic taxonomy under the swarm vocabulary. (High-confidence, cross-corroborated surveys.)",
+    "source_type": "arxiv",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/beyond-self-talk-multi-agent-communication-survey.md",
+    "content_sha1": "517ee6b4e5def9b552eb3b2853ef7f61922f4008",
+    "fetch": {
+      "status": "arxiv",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2603.19431",
+    "canonical_url": "https://arxiv.org/abs/2603.19431",
+    "slug": "swarm-plus-hierarchical-agent-fleet-scaling",
+    "org_slug": "other",
+    "title": "SWARM+: hierarchical-tree scaling and resilience for agent fleets",
+    "annotation": "SWARM+ scales fleets past O(n^2) flat communication via a configurable-depth hierarchical tree + shared workload pool (97% faster selection), with health-check/heartbeat failure detection, adaptive quorum, and coordinator failover. (Scaling 3-0; resilience split 2-1, single preprint \u2014 worked design, not standard.)",
+    "source_type": "arxiv",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/swarm-plus-hierarchical-agent-fleet-scaling.md",
+    "content_sha1": "b28ff57a3490c0cb2d1efd3e3a6f503a49d9066b",
+    "fetch": {
+      "status": "arxiv",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

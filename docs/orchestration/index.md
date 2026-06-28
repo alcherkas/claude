@@ -159,6 +159,17 @@ The control plane an orchestration calls *through* to reach model providers — 
 
 > **Cost crossover:** OpenRouter's 5.5% scales linearly with spend; a self-hosted LiteLLM at ~$200/mo infra **breaks even around ~$3,600/mo of model spend** and is cheaper above that. *Refuted in verification (don't repeat): per-request latency benchmarks, semantic-caching exclusivity, and an outdated "5% markup" framing for OpenRouter.*
 
+### Fleet lifecycle, swarms & registries
+
+Operating *many* agents over time (provisioning, scaling, discovery, health) — distinct from building one orchestration. From a June 2026 research pass (24 claims verified; architecture/lifecycle findings high-confidence, swarm-resilience medium).
+
+- **Topology & coordination (the academic taxonomy under "swarm"):** [Beyond Self-Talk survey](other/beyond-self-talk-multi-agent-communication-survey.md) — five architectures (flat / hierarchical / team / society / hybrid), three turn-taking strategies, and **static-vs-dynamic membership** (runtime activate/deactivate of agents).
+- **Scaling & resilience:** [SWARM+](other/swarm-plus-hierarchical-agent-fleet-scaling.md) — flat all-to-all communication is **O(n²)** and doesn't scale; the answer is a configurable-depth **hierarchical tree** with a shared workload pool, plus health-check/heartbeat failure detection, adaptive quorum, and coordinator failover. *(Single preprint; resilience split-voted.)*
+- **Production lifecycle primitives:** [Kubernetes Agent Sandbox](other/kubernetes-agent-sandbox-fleet-lifecycle.md) — warm pools (no cold start), **scale-to-zero-with-resume**, stable network identity (self-hostable, four CRDs).
+- **Registry & discovery:** [AWS AgentCore Agent Registry](other/aws-agentcore-agent-registry.md) (governed publish/review/approve catalog, Preview) — the *platform* form; complemented by the *protocol* form (A2A [Agent Cards](google/agent2agent-protocol-specification.md)) and the *infrastructure* form (Agent Sandbox stable identity).
+
+> **The binding constraint is coordination, not agent count.** Rigorous evaluation ([MAST / Why Multi-Agent Systems Fail](other/why-do-multi-agent-llm-systems-fail.md)) finds SOTA multi-agent systems fail **41–86.7%** of the time with often-minimal gains over a single agent, and **~79% of failures are themselves orchestration/coordination defects** (step repetition, missed termination, reasoning–action mismatch). Scaling to a swarm multiplies this — invest in orchestration mechanism design (and the reliability levers above) before agent count. *(Refuted: that a serverless runtime "fully removes infrastructure management" for the fleet.)*
+
 ## Patterns & Techniques
 
 Named orchestration patterns, graded by how well they are evidenced. The first three groups rest on **authoritative / vendor-primary** sources; the final group is the contrarian / failure-mode literature that says when *not* to orchestrate. (Anthropic's "Building Effective Agents," listed under Anthropic above, is the canonical taxonomy underpinning this whole section.)
