@@ -5,6 +5,9 @@ title: Agentic Orchestration & Workflows
 # Agentic Orchestration & Workflows
 
 
+!!! tip "Start here"
+    📐 **[Reference architecture — an end-to-end agentic orchestration system](reference-architecture.md)** — the assembled six-layer build pipeline (pattern → framework → interop → context → memory → durable execution), gated by a decision step and closed by an evaluate+observe loop, how the canonical implementations (Anthropic multi-agent research, Magentic-One, Google ADK) map onto it, and the three immature seams (no published blueprint; scale-triggered memory; no multi-agent eval standard).
+
 **TL;DR**
 - The single most authoritative starting point is Anthropic's "Building Effective Agents," which establishes the field's foundational vocabulary (workflows vs. agents; the orchestrator-worker pattern), complemented by their "How we built our multi-agent research system" for a production planner/sub-agent case study.
 - Across all five prioritized sources, the dominant documented patterns converge: planner/executor (plan-then-execute), orchestrator-worker (lead agent + sub-agents), and a small set of named orchestration topologies (sequential, concurrent, group chat, handoff, magentic/supervisor).
