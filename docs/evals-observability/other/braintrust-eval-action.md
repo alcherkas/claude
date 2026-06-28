@@ -21,7 +21,7 @@ also_in: null
 
 **License:** Open-source GitHub Action; the Braintrust eval platform itself is commercial (free tier available).
 
-**Integration / coding-agent relevance:** Drop-in GitHub Actions step; the PR-comment regression/improvement surface is the quality-gate pattern (block or flag on eval regression). General LLM/agent eval tooling, not coding-agent-specific.
+**Integration / coding-agent relevance:** Drop-in GitHub Actions step; the PR-comment regression/improvement surface is the quality-gate pattern (block or flag on eval regression). The eval-action itself is general LLM/agent tooling, but Braintrust *also* ships a hosted **MCP server** (US `https://api.braintrust.dev/mcp` / EU `https://api-eu.braintrust.dev/mcp`) with documented per-client config for ~10 coding agents — Claude Code, Cursor, VS Code, Codex, Gemini CLI, Windsurf, OpenCode — exposing tools (`sql_query`, `search_docs`, `list_recent_objects`) to query experiments and production logs from inside the agent. That MCP path is a **verified coding-agent-native integration** (3-vote, 2026-06-28). See also [opentelemetry-hooks](opentelemetry-hooks.md) for a vendor-neutral OTel bridge.
 
 [Read the original →](https://github.com/braintrustdata/eval-action)
 
