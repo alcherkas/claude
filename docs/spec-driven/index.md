@@ -5,6 +5,10 @@ title: Spec-Driven, Constraints-Driven & Test-Driven Development
 # Spec-Driven, Constraints-Driven & Test-Driven Development
 
 
+!!! tip "Start here"
+    📐 **[Reference architecture — an end-to-end spec-driven & test-driven system](reference-architecture.md)** — the assembled spec→code pipeline (specify → constrain → plan → implement → verify), gated by a rigor decision and closed by review + spec-adherence evaluation, how the canonical tools (Spec Kit, Kiro, Antigravity, Claude Code) each implement a subset, and the two seams (the unnamed constraint layer; spec-as-source rarely realized).
+
+
 ## TL;DR
 - The richest, most credible recent material clusters around **spec-driven development (SDD)** — GitHub Spec Kit, Amazon Kiro, Google Conductor/Antigravity — and **TDD adapted for agents**, with Anthropic, GitHub/Microsoft, Google, ThoughtWorks, and Martin Fowler all publishing primary-source guidance in 2025–2026.
 - **"Constraints-driven development"** is the thinnest category: it is not a term any of the five priority sources uses as a formal methodology; the closest credible material is third-party (GrayBeam's "Constraint-Driven Development") plus academic arXiv work, while the priority sources address constraints under "spec-anchored," "steering files," "guardrails," and "harness engineering."
