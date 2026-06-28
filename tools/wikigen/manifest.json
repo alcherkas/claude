@@ -9240,5 +9240,160 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://github.com/Fission-AI/OpenSpec",
+    "canonical_url": "https://github.com/Fission-AI/OpenSpec",
+    "slug": "openspec-spec-driven-development-for-ai-coding-assistants",
+    "org_slug": "other",
+    "title": "OpenSpec: Spec-driven development for AI coding assistants",
+    "annotation": "Lightweight, MIT-licensed SDD framework for AI coding assistants (Fission-AI); /opsx slash-command workflow, npm @fission-ai/openspec.",
+    "source_type": "html",
+    "theme": "spec-driven",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "spec-driven",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "spec-driven/other/openspec-spec-driven-development-for-ai-coding-assistants.md",
+    "content_sha1": "aab5296bb2be6d762ebd950ed874d1b39bb1f5a3",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/aab5296bb2be6d762ebd950ed874d1b39bb1f5a3.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/qodo-ai/qodo-cover",
+    "canonical_url": "https://github.com/qodo-ai/qodo-cover",
+    "slug": "qodo-cover-ai-test-generation-and-coverage-agent",
+    "org_slug": "other",
+    "title": "Qodo-Cover: AI agent for automated test generation and coverage",
+    "annotation": "AI test-generation agent wiring a test-runner + coverage-parser feedback loop (AGPL-3.0; formerly CodiumAI Cover-Agent); repo deprecated / 'no longer maintained' 2025-06-15.",
+    "source_type": "html",
+    "theme": "spec-driven",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "spec-driven",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "spec-driven/other/qodo-cover-ai-test-generation-and-coverage-agent.md",
+    "content_sha1": "793c7e140b4dbae458856e4e5a974fde51af859a",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/793c7e140b4dbae458856e4e5a974fde51af859a.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/NVIDIA-NeMo/Guardrails",
+    "canonical_url": "https://github.com/NVIDIA-NeMo/Guardrails",
+    "slug": "nvidia-nemo-guardrails-programmable-guardrails-for-llm-systems",
+    "org_slug": "other",
+    "title": "NVIDIA NeMo Guardrails: Programmable guardrails for LLM systems",
+    "annotation": "NVIDIA open-source guardrail/policy engine; five rail categories (input/dialog/retrieval/execution/output), execution rails cover tool calls (Apache-2.0).",
+    "source_type": "html",
+    "theme": "spec-driven",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "spec-driven",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "spec-driven/other/nvidia-nemo-guardrails-programmable-guardrails-for-llm-systems.md",
+    "content_sha1": "5391b29ae2d97bbb1d78b10b908db6f55c6babd8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/5391b29ae2d97bbb1d78b10b908db6f55c6babd8.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/guardrails-ai/guardrails",
+    "canonical_url": "https://github.com/guardrails-ai/guardrails",
+    "slug": "guardrails-ai-validation-framework-for-llm-applications",
+    "org_slug": "other",
+    "title": "Guardrails AI: Input/output validation framework for LLM applications",
+    "annotation": "Python framework for LLM input/output validation + structured generation; Input/Output Guards, 65+ Hub validators, Pydantic/RAIL schema (Apache-2.0).",
+    "source_type": "html",
+    "theme": "spec-driven",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "spec-driven",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "spec-driven/other/guardrails-ai-validation-framework-for-llm-applications.md",
+    "content_sha1": "2dd4d5501b194cbd4fee74ba8bdd4b568896343a",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": "archive/raw/2dd4d5501b194cbd4fee74ba8bdd4b568896343a.html",
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/html/2511.21382v1",
+    "canonical_url": "https://arxiv.org/html/2511.21382v1",
+    "slug": "large-language-models-for-unit-test-generation-survey",
+    "org_slug": "other",
+    "title": "Large Language Models for Unit Test Generation",
+    "annotation": "arXiv survey documenting the generate-validate-repair paradigm — execution feedback fed back to the LLM for self-correction.",
+    "source_type": "arxiv",
+    "theme": "spec-driven",
+    "org": "Other",
+    "subtopic": "",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "spec-driven",
+        "org": "Other",
+        "subtopic": ""
+      }
+    ],
+    "dest_path": "spec-driven/other/large-language-models-for-unit-test-generation-survey.md",
+    "content_sha1": "19fe31c7309c673c15055d877d48aa81a7f061c1",
+    "fetch": {
+      "status": "arxiv",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

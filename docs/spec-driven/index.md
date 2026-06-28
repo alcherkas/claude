@@ -136,6 +136,66 @@ title: Spec-Driven, Constraints-Driven & Test-Driven Development
 - [Kiro Docs - Specs](other/kiro-specs.md) — requirements/design/tasks workflow for spec-driven agentic development
 - [Kiro Docs - Steering](other/kiro-steering.md) — persistent product, tech-stack, and structure context for agents
 
+## Tools
+Three groups of tooling for spec-driven, test-driven, and constraints-driven workflows — **spec-driven toolkits** (turn a written spec into staged, reviewable implementation), **TDD / feedback-sensor harnesses** (wire deterministic gates — test runners, coverage, compilers — into the agent loop), and **constraint-enforcement tooling** (constitution/steering files plus runtime guardrail/policy engines). A focused research pass (June 2026; 24 sources → 24 verified claims, 1 refuted) grades each entry; weakly-evidenced or uncovered tools are collected under *Gaps* at the end.
+
+### Spec-driven toolkits
+- [GitHub Spec Kit](microsoft-github/github-spec-kit-repository.md) — **vendor-primary** (GitHub; MIT): Specify → Plan → Tasks → Implement, "specifications become executable," 29+ agent integrations. *(high, 3-0)*
+- [OpenSpec](other/openspec-spec-driven-development-for-ai-coding-assistants.md) — emerging, org-published (Fission-AI; MIT): lightweight SDD via `/opsx:*` commands. *(high, 3-0)*
+- [Amazon Kiro](other/kiro-documentation.md) — agentic SDD IDE; Requirements → Design → Tasks ([Specs](other/kiro-specs.md), [Steering](other/kiro-steering.md)). *(steering verified high, 3-0; rated spec-first only)*
+- [Google Conductor](../context-engineering/google/conductor-introducing-context-driven-development-for-gemini-cli.md) — Gemini CLI extension (Apache-2.0) for "context-driven development"; persistent `plan.md` specs. *(high, 3-0)*
+- [Google Antigravity](google/build-with-google-antigravity-our-new-agentic-development-platform.md) — agent-first IDE/platform on Gemini 3; verification-centric "Artifacts" rather than a native spec/TDD format. *(high, 3-0)*
+
+### TDD & feedback-sensor harnesses
+- [Qodo-Cover](other/qodo-cover-ai-test-generation-and-coverage-agent.md) — test-runner + coverage-parser gates in a generate → run → validate loop (AGPL-3.0; formerly CodiumAI Cover-Agent). **Deprecated 2025-06-15.** *(high, 3-0)*
+- [Large Language Models for Unit Test Generation](other/large-language-models-for-unit-test-generation-survey.md) — survey of the **generate-validate-repair** paradigm (execution feedback → self-correction). *(medium, 2-1 — single survey)*
+- **TestForge** ([arXiv 2503.14713](https://arxiv.org/abs/2503.14713)) & **SocraTest** ([arXiv 2306.05152](https://arxiv.org/abs/2306.05152)) — research autonomous testing agents; TestForge wires file-edit / run-tests / read-coverage tools (84.3% pass@1, self-reported). *(high, 3-0; academic)*
+- [Anthropic best practices](anthropic/best-practices.md) — the **self-closing verification loop**: "give the agent a check it can run" (test/build/lint/diff) so the agent verifies its own work. *(high, primary)*
+- [Feedback sensors for coding agents](../evals-observability/thoughtworks/feedback-sensors-for-coding-agents.md) — ThoughtWorks Radar Vol. 34, **Trial** ring — the practitioner-org name for the same loop. *(high, 3-0)*
+
+### Constraint-enforcement tooling
+- [Spec Kit constitution](microsoft-github/spec-kit-spec-driven-md.md) — `/speckit.constitution` writes non-negotiable principles at `.specify/memory/constitution.md` and propagates them across templates. *(high, 3-0)*
+- [Kiro steering files](other/kiro-steering.md) — persistent `product.md` / `tech.md` / `structure.md`, auto-included once created. *(high, 3-0)*
+- [NVIDIA NeMo Guardrails](other/nvidia-nemo-guardrails-programmable-guardrails-for-llm-systems.md) — guardrail/policy engine; five rail categories incl. execution rails over tool calls (Apache-2.0). *(high, 3-0; general-purpose)*
+- [Guardrails AI](other/guardrails-ai-validation-framework-for-llm-applications.md) — Input/Output Guards + Pydantic/RAIL schema validation (Apache-2.0). *(high, 3-0; general-purpose)*
+
+### Gaps identified during research — Tools
+Less-evidenced or uncovered; read as gaps, not recommendations.
+
+- **Tessl** and **BMAD-METHOD** — named as spec-driven tools but produced **no verified primary-source claim** in this pass, so not cataloged above (absence = no verified evidence here, not evidence of non-existence).
+- **Refuted (0-3):** the *conflated* claim "Antigravity launched 2025-11-20 + cross-platform + free for individuals" — each component is individually verified, but the bundled statement was killed.
+- **Deprecations / renames to watch:** Qodo-Cover unmaintained; [Gemini CLI → Antigravity CLI](google/an-important-update-transitioning-gemini-cli-to-antigravity-cli.md) (individual Pro/Ultra/free tiers ended 2026-06-18); Spec Kit `/constitution` → `/speckit.constitution`.
+- **Category caveat:** NeMo Guardrails and Guardrails AI are general LLM-guardrail engines, not coding-agent-specific — included as the closest verified constraint-enforcement tooling.
+
+## Patterns / Techniques
+Named patterns and techniques for spec-driven, test-driven, and constraints-driven development with coding agents, grouped by how well-evidenced they are. A focused research pass (June 2026; 22 sources → 25 verified claims, 0 refuted) backs the first two groups with originator or vendor-primary sources; the **Gaps** group collects terms the topic is named for that produced no verifiable primary-source support.
+
+### Well-evidenced (authoritative / vendor-primary)
+- [Spec-first / spec-anchored / spec-as-source](martin-fowler/understanding-spec-driven-development-kiro-spec-kit-and-tessl.md) — Birgitta Böckeler's three-tier taxonomy of SDD rigor (Fowler site, 2025-10-15). *Failure mode: most tools only reach spec-first; spec-as-source rarely realized.*
+- [SDD "power inversion"](other/spec-driven-development-from-code-to-contract-in-the-age-of-ai-coding-assistants.md) — specs are the source of truth, code is a generated/verified artifact ("code serves specifications"). *Caveat: "executable specs" is aspirational framing; critics call it "reinvented waterfall."*
+- [The "constitution" pattern](microsoft-github/spec-kit-spec-driven-md.md) — Spec Kit governance file of non-negotiable principles (nine articles) referenced across specify/plan/implement. *Caveat: "immutable" is scare-quoted — constitutions are versioned/amendable.*
+- [The "steering files" pattern](other/kiro-steering.md) — Kiro's persistent project-knowledge markdown (`product.md`/`tech.md`/`structure.md`). *Caveat: not auto-created — "auto-included once created"; context-bloat risk.*
+- [Spec Kit slash-command workflow](microsoft-github/spec-kit-agents-md.md) — `/specify → /plan → /tasks → implement`, preceded by `/constitution` (multi-step refinement, not one-shot). *Caveat: surface evolves fast (`/speckit.*`; added `/clarify`, `/analyze`, `/checklist`).*
+- [Explore → Plan → Implement → Commit](anthropic/best-practices.md) — Anthropic's recommended Claude Code workflow separating research/planning from execution.
+- [Self-closing verification loop](anthropic/best-practices.md) — "give the agent a check it can run"; the conceptual cousin of feedback sensors and the most-emphasized practice in Anthropic's docs.
+- [Feedback sensors for coding agents](../evals-observability/thoughtworks/feedback-sensors-for-coding-agents.md) — ThoughtWorks Radar Vol. 34, **Trial** ring. *Caveat: Trial, not yet Adopt; "review gates" not confirmed as a separate blip.*
+- [Structured-Prompt-Driven Development (SPDD)](martin-fowler/structured-prompt-driven-development.md) — Zhang & Xia (Thoughtworks) / Fowler, 2026-04-28: prompts as version-controlled artifacts + the seven-part **REASONS Canvas** (Norms ≈ steering; Safeguards ≈ constraints). *Caveat: single (originator) source.*
+- **Semantic diffusion** (meta) — [Böckeler](martin-fowler/understanding-spec-driven-development-kiro-spec-kit-and-tessl.md) notes "spec-driven development… is already semantically diffused… 'spec' as a synonym for detailed prompt." Attribute every SDD entry to a specific flavor (Kiro vs Spec Kit vs Tessl).
+
+### Emerging / academic (arXiv, single-vendor self-report)
+- [SDD: From Code to Contract](other/spec-driven-development-from-code-to-contract-in-the-age-of-ai-coding-assistants.md) — single-author arXiv preprint (Piskala, 2026-01-30); academic SDD definition; **reuses Böckeler's taxonomy without attribution** (a semantic-diffusion signal). *(medium)*
+- [Agentic TDD loop in practice at Anthropic](anthropic/how-anthropic-teams-use-claude-code-1276b6.md) — Security Eng guided TDD + autonomous test-iterate loops (self-reported). *Caveat: promotional; red-green-refactor implied, not verbatim-confirmed.* (See also Anthropic's "TDD is the single strongest pattern for agentic coding" framing in [best practices](anthropic/best-practices.md).)
+- [Review gates for AI-assisted development](thoughtworks/how-to-implement-effective-review-gates-for-ai-assisted-development.md) — ThoughtWorks Insights; staged human/automated review checkpoints. *(not confirmed as a distinct Radar blip)*
+
+### Gaps identified during research — Patterns
+The Constraints-Driven cluster the topic is named for is the weakest: **no CDD claim survived verification.** Treat the items below as lightly-documented coinages, not established practice; the closest *verified* analogues are SPDD's **Safeguards** and Spec Kit's **constitution**.
+
+- [Constraint-Driven Development (CDD)](other/constraint-driven-development-a-new-paradigm-for-ai-assisted-software.md) — GrayBeam/Claude coinage; **no authoritative primary source** beyond the originating post.
+- [Constraint decay](other/constraint-decay-the-fragility-of-llm-agents-in-backend-code-generation.md) — arXiv framing of constraints degrading over long backend generations. *(single preprint)*
+- **Constitutional / security-by-construction SDD** — [arXiv 2602.02584](https://arxiv.org/abs/2602.02584); embeds non-negotiable security principles in the spec layer before code generation. *(emerging; not independently verified)*
+- **"Reducing Friction" coinages** — [Design-First Collaboration](martin-fowler/design-first-collaboration.md), [Knowledge Priming](martin-fowler/knowledge-priming.md), [Encoding Team Standards](martin-fowler/encoding-team-standards.md) ([series overview](martin-fowler/patterns-for-reducing-friction-in-ai-assisted-development.md)) — Rahul Gadkari; did not survive verification as named patterns; map loosely onto steering/constitution/SPDD-Norms.
+- **"Harness engineering"** — used loosely across sources; not separately confirmed here (a semantic-diffusion flag).
+
 ## Recommendations
 - **Start with the primary-source canon.** For SDD: GitHub's Spec Kit announcement + repo, Fowler/Böckeler's three-levels taxonomy, and the ThoughtWorks Radar blip. For TDD-with-agents: Anthropic's best-practices post plus ThoughtWorks's "The hidden pearls of TDD" and the Copilot/TDD article.
 - **Treat "constraints-driven development" as an emerging, mostly third-party label.** If the user needs methodology from the five priority sources, point them to "spec-anchored" (Fowler/Böckeler), "steering files"/"constitution" (Kiro/Spec Kit), and "harness engineering"/"feedback sensors for coding agents" (ThoughtWorks Radar Vol. 34) as the credible equivalents.
