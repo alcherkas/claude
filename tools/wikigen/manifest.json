@@ -9395,5 +9395,563 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://github.com/e2b-dev/e2b",
+    "canonical_url": "https://github.com/e2b-dev/e2b",
+    "slug": "e2b-secure-cloud-sandboxes-for-ai-generated-code",
+    "org_slug": "other",
+    "title": "E2B: Secure cloud sandboxes for AI-generated code",
+    "annotation": "Open-source infrastructure to run AI-generated code in isolated Firecracker-microVM cloud sandboxes (~200ms start) — kernel-level isolation for untrusted, agent-produced code.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/e2b-secure-cloud-sandboxes-for-ai-generated-code.md",
+    "content_sha1": "a55be19392e0dcb5ae55b0a97836c1611639bc4a",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/firecracker-microvm/firecracker",
+    "canonical_url": "https://github.com/firecracker-microvm/firecracker",
+    "slug": "firecracker-microvm-monitor-for-isolated-execution",
+    "org_slug": "other",
+    "title": "Firecracker: Lightweight microVM monitor for isolated execution",
+    "annotation": "AWS-built VMM that runs workloads in lightweight KVM microVMs — hardware-virtualization isolation with container-like speed; the isolation primitive under E2B, AWS Lambda and Fargate.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/firecracker-microvm-monitor-for-isolated-execution.md",
+    "content_sha1": "cf903fe4a11e16c6930c1cbbaaac73db2f2117ac",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/google/gvisor",
+    "canonical_url": "https://github.com/google/gvisor",
+    "slug": "gvisor-application-kernel-container-sandbox",
+    "org_slug": "other",
+    "title": "gVisor: Application-kernel container sandbox (runsc)",
+    "annotation": "Google's userspace application kernel (memory-safe Go) shipping the OCI runtime runsc; integrates with Docker/Kubernetes to sandbox containers, since ordinary containers share the host kernel and can be escaped by a single vulnerability.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/gvisor-application-kernel-container-sandbox.md",
+    "content_sha1": "6530c7d8166b2b978f1a65e749b00bdd8ee4984e",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://auth0.com/docs/get-started/auth0-for-ai-agents",
+    "canonical_url": "https://auth0.com/docs/get-started/auth0-for-ai-agents",
+    "slug": "auth0-for-ai-agents-token-vault-and-approvals",
+    "org_slug": "other",
+    "title": "Auth0 for AI Agents: Token Vault & human-in-the-loop approval",
+    "annotation": "Identity layer for agents: a Token Vault brokers scoped per-user OAuth tokens for external APIs through one integration, with CIBA asynchronous human approval before sensitive actions and granular least-privilege permissions.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/auth0-for-ai-agents-token-vault-and-approvals.md",
+    "content_sha1": "b6e1b71d951692056be5cd6b865f8b66cf814f63",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://docs.arcade.dev/home/auth/how-arcade-helps",
+    "canonical_url": "https://docs.arcade.dev/home/auth/how-arcade-helps",
+    "slug": "arcade-dev-oauth-tool-authorization-for-agents",
+    "org_slug": "other",
+    "title": "Arcade.dev: OAuth tool authorization for AI agents",
+    "annotation": "Runtime/authorization layer where each agent tool declares its required OAuth 2.0 scopes, enforcing user-delegated, least-privilege, just-in-time access on a user's behalf instead of broad service accounts.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/arcade-dev-oauth-tool-authorization-for-agents.md",
+    "content_sha1": "f5bc3f3f36daa4a691aeff350f305d9126223a05",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/Infisical/agent-vault",
+    "canonical_url": "https://github.com/Infisical/agent-vault",
+    "slug": "infisical-agent-vault-credential-proxy-for-agents",
+    "org_slug": "other",
+    "title": "Infisical Agent Vault: Credential proxy for AI agents",
+    "annotation": "HTTP credential proxy that intercepts an agent's outbound requests and injects real secrets before forwarding, so the agent uses placeholder values and never holds or sees the actual credentials.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/infisical-agent-vault-credential-proxy-for-agents.md",
+    "content_sha1": "e51ac043a3f20e0c3408cc3811c2f3646d93a0cf",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.hashicorp.com/en/products/vault/use-cases/agentic-runtime-security",
+    "canonical_url": "https://www.hashicorp.com/en/products/vault/use-cases/agentic-runtime-security",
+    "slug": "hashicorp-vault-agentic-runtime-security",
+    "org_slug": "other",
+    "title": "HashiCorp Vault: Agentic runtime security & per-agent identity",
+    "annotation": "Gives every AI agent a verifiable identity at deployment, tracked across on-prem/cloud/hybrid, with dynamic short-lived secrets — non-human identity management for agentic runtimes.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/hashicorp-vault-agentic-runtime-security.md",
+    "content_sha1": "37780e660249deda24b0115a59812f0bc62c59b8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/invariantlabs-ai/mcp-scan",
+    "canonical_url": "https://github.com/invariantlabs-ai/mcp-scan",
+    "slug": "mcp-scan-snyk-agent-scan-mcp-security-scanner",
+    "org_slug": "other",
+    "title": "MCP-Scan / Snyk Agent Scan: Security scanner for MCP servers & agents",
+    "annotation": "Connects to MCP servers, retrieves tool descriptions, and scans agents/MCP servers/skills for prompt injection, tool poisoning, tool shadowing, toxic flows and hardcoded secrets. Acquired by Snyk (June 2025) and rebranded 'Agent Scan'.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/mcp-scan-snyk-agent-scan-mcp-security-scanner.md",
+    "content_sha1": "bd9f59b7cdc79230316398bb2427633b76710106",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/cisco-ai-defense/mcp-scanner",
+    "canonical_url": "https://github.com/cisco-ai-defense/mcp-scanner",
+    "slug": "cisco-ai-defense-mcp-scanner",
+    "org_slug": "other",
+    "title": "Cisco AI Defense MCP Scanner",
+    "annotation": "Python tool that scans MCP servers/tools for security findings using a multi-engine approach — Cisco AI Defense inspect API, YARA rules and an LLM-as-a-judge, runnable together or independently — detecting prompt injection, tool poisoning and ~12 other vectors.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/cisco-ai-defense-mcp-scanner.md",
+    "content_sha1": "042d97c768dfe3cf7feb9a084b79b1545b905252",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/meta-llama/PurpleLlama/tree/main/LlamaFirewall",
+    "canonical_url": "https://github.com/meta-llama/PurpleLlama/tree/main/LlamaFirewall",
+    "slug": "llamafirewall-open-source-guardrail-framework",
+    "org_slug": "other",
+    "title": "LlamaFirewall: Open-source guardrail framework for AI agents",
+    "annotation": "Layered guardrail framework (PromptGuard 2, Agent Alignment Checks, CodeShield) that detects and mitigates AI-centric risks across LLM chat and multi-step agentic operations. NB: its indirect/obfuscated-injection-in-tool-responses coverage was not confirmed in verification.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/llamafirewall-open-source-guardrail-framework.md",
+    "content_sha1": "85bd7c0029a396c7daa883a5162bf3f617119996",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/",
+    "canonical_url": "https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/",
+    "slug": "owasp-agentic-ai-threats-and-mitigations",
+    "org_slug": "other",
+    "title": "OWASP Agentic AI: Threats & Mitigations (T1–T15)",
+    "annotation": "The canonical agentic threat vocabulary: 15 numbered threats each paired with mitigations — T1 Memory Poisoning, T2 Tool Misuse, T3 Privilege Compromise, T8 Repudiation & Untraceability, T10 Overwhelming Human-in-the-Loop, T11 Unexpected RCE & Code Attacks, T13 Rogue Agents.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/owasp-agentic-ai-threats-and-mitigations.md",
+    "content_sha1": "4f752f9fc5d36a582679cb5c8a3e6257bdba3ec8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+    "canonical_url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+    "slug": "owasp-top-10-for-agentic-applications-2026",
+    "org_slug": "other",
+    "title": "OWASP Top 10 for Agentic Applications (2026)",
+    "annotation": "Prioritized risk list for autonomous agents (released 10 Dec 2025): ASI01 Agent Behavior/Goal Hijacking, ASI02 Tool Misuse & Exploitation, ASI03 Identity & Privilege Abuse — mapping directly to tool-scoping/allowlist and least-privilege controls.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/owasp-top-10-for-agentic-applications-2026.md",
+    "content_sha1": "3d3b545b1f44f25f160de808ccfbbb42499b6626",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://code.claude.com/docs/en/permissions",
+    "canonical_url": "https://code.claude.com/docs/en/permissions",
+    "slug": "claude-code-permissions-and-permission-modes",
+    "org_slug": "anthropic",
+    "title": "Claude Code: Permissions & permission modes",
+    "annotation": "Primary source for several safe-autonomy patterns: discrete permission modes (plan → acceptEdits → bypassPermissions), a three-tier allow/ask/deny rule system (deny → ask → allow, first match wins), and harness-enforced (out-of-model) permission checks that prompt-injected instructions cannot override.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Anthropic",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Anthropic",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/anthropic/claude-code-permissions-and-permission-modes.md",
+    "content_sha1": "52e7484d2a6d3bdcd889643aa2e32ff72cae353d",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://www.anthropic.com/engineering/claude-code-auto-mode",
+    "canonical_url": "https://www.anthropic.com/engineering/claude-code-auto-mode",
+    "slug": "claude-code-auto-mode-model-graded-approvals",
+    "org_slug": "anthropic",
+    "title": "Claude Code auto mode: model-graded action approvals",
+    "annotation": "Delegates per-action approvals to a model-based transcript classifier — a middle ground between manual review and --dangerously-skip-permissions — plus tool-output sanitization and dropping arbitrary-code-execution rules on entering auto mode. Disclosed research preview (~17% of overeager actions slip through).",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Anthropic",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Anthropic",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/anthropic/claude-code-auto-mode-model-graded-approvals.md",
+    "content_sha1": "b4c065a13b0cb9ae2ce5030badcd1ab86ab3237f",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://developers.openai.com/codex/agent-approvals-security",
+    "canonical_url": "https://developers.openai.com/codex/agent-approvals-security",
+    "slug": "openai-codex-agent-approvals-and-sandboxing",
+    "org_slug": "other",
+    "title": "OpenAI Codex: Agent approvals & sandboxing",
+    "annotation": "Codex's approval modes and OS-level sandboxing: read-only / auto / full-access tiers gate state-changing actions, while sandboxing restricts filesystem and network reach as a complementary defense layer.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/openai-codex-agent-approvals-and-sandboxing.md",
+    "content_sha1": "ed3b262d33f625d1d52fde4369d6ddfec53dc3e0",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2510.25863",
+    "canonical_url": "https://arxiv.org/abs/2510.25863",
+    "slug": "aagate-nist-rmf-aligned-agentic-governance-platform",
+    "org_slug": "other",
+    "title": "AAGATE: A NIST AI RMF-aligned governance platform for agentic AI",
+    "annotation": "Research-stage platform that operationalizes the NIST AI RMF with a named framework per function (CSA MAESTRO for Map; AIVSS+SSVC for Measure; CSA Agentic Red Teaming for Manage), guardrails-as-code (NL→Rego/OPA), and the Janus shadow-monitor plan-then-execute pattern. Design, not measured efficacy.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/aagate-nist-rmf-aligned-agentic-governance-platform.md",
+    "content_sha1": "16321e60b271c7df4ce8372d93e589bd3bbd7bac",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://simonwillison.net/2025/Jun/13/prompt-injection-design-patterns/",
+    "canonical_url": "https://simonwillison.net/2025/Jun/13/prompt-injection-design-patterns/",
+    "slug": "design-patterns-for-securing-llm-agents-against-prompt-injection",
+    "org_slug": "other",
+    "title": "Design patterns for securing LLM agents against prompt injection (lethal trifecta, dual-LLM)",
+    "annotation": "Simon Willison's catalog of six prompt-injection design patterns (action-selector, plan-then-execute, dual-LLM, map-reduce, code-then-execute, context-minimization) plus the 'lethal trifecta' framing (private data + untrusted content + exfiltration). Surfaced during research but only as editorial framing in the verified corpus — include with that caveat.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/design-patterns-for-securing-llm-agents-against-prompt-injection.md",
+    "content_sha1": "3c95e8c04c6b515b21d3bdad0ae125fe8fc229e0",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://arxiv.org/abs/2503.18813",
+    "canonical_url": "https://arxiv.org/abs/2503.18813",
+    "slug": "camel-defeating-prompt-injections-by-design",
+    "org_slug": "other",
+    "title": "CaMeL: Defeating prompt injections by design",
+    "annotation": "Capabilities-based design that extracts a control/data-flow plan from the trusted user query and enforces a security policy on tool calls, structurally separating trusted instructions from untrusted data. Surfaced during research but not independently verified as a finding this pass.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/camel-defeating-prompt-injections-by-design.md",
+    "content_sha1": "91a944142c92b72c9495ff3fd803456faef6a8ad",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

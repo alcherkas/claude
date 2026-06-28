@@ -9,6 +9,7 @@ title: Security, Governance & Safe Autonomy for AI Coding Agents
 - This is a link-first reference delivering the most authoritative and recent materials from **Anthropic, Google, Microsoft/GitHub, Thoughtworks, and Martin Fowler** on securing and governing AI coding agents across the SDLC, plus dedicated **PCI DSS** sources.
 - The strongest primary sources are vendor docs and engineering blogs (Anthropic Claude Code security, sandboxing & managed settings; GitHub coding-agent firewall docs; Microsoft Learn agent governance; Google **SAIF 2.0**, announced October 2025 with an agent risk map, alongside CodeMender and the new AI Vulnerability Reward Program) plus Thoughtworks/Martin Fowler "harness engineering."
 - For PCI DSS, the authoritative primary sources are the **PCI SSC's 2025 AI principles** and **AI-in-assessments guidance**; AI tools touching cardholder data are in-scope under **PCI DSS v4.0.1** (published 11 June 2024 as a limited revision with no added/deleted requirements; v4.0 retired 31 December 2024; future-dated v4.0 requirements became mandatory 31 March 2025).
+- New **[Tools](#tools)** and **[Patterns / Techniques](#patterns-techniques)** catalogs (added June 2026 from two adversarially-verified research passes) cover the concrete safe-autonomy toolkit — **sandboxed execution** (E2B, Firecracker, gVisor), **agent authorization & least-privilege scoping** (Auth0, Arcade, Infisical, Vault), and **prompt-injection/MCP scanning** (MCP-Scan, Cisco MCP Scanner, LlamaFirewall) — plus named patterns grouped by evidence quality and a **[Gaps identified during research](#gaps-identified-during-research)** section.
 
 ---
 
@@ -142,6 +143,97 @@ title: Security, Governance & Safe Autonomy for AI Coding Agents
 
 ---
 
+## Tools
+
+Tools, products, and open-source frameworks for securing and governing autonomous coding agents, grouped by function — each with what it does and its license. Compiled from a focused research pass (June 2026); every entry below is backed by a primary source (official repo, vendor docs, or spec) and survived 3-vote adversarial verification. Thinly-covered categories are listed under [Gaps identified during research](#gaps-identified-during-research).
+
+### Sandboxed / isolated execution of agent-run code
+
+- [E2B: Secure cloud sandboxes for AI-generated code](other/e2b-secure-cloud-sandboxes-for-ai-generated-code.md) — Apache-2.0 (hosted cloud proprietary); Firecracker-microVM sandboxes for running untrusted agent-produced code.
+- [Firecracker: Lightweight microVM monitor](other/firecracker-microvm-monitor-for-isolated-execution.md) — Apache-2.0; KVM microVMs combining hardware isolation with container speed (the primitive under E2B, AWS Lambda, Fargate).
+- [gVisor: Application-kernel container sandbox (runsc)](other/gvisor-application-kernel-container-sandbox.md) — Apache-2.0; userspace kernel hardening containers against single-vulnerability escapes.
+- [Anthropic Sandbox Runtime](anthropic/sandbox-runtime.md) — experimental filesystem/network-isolated agent workloads (see also the [Claude Code sandboxing blog](anthropic/making-claude-code-more-secure-and-autonomous-with-sandboxing.md)).
+
+### Agent authorization & least-privilege credential scoping
+
+- [Auth0 for AI Agents: Token Vault & human approval](other/auth0-for-ai-agents-token-vault-and-approvals.md) — proprietary; scoped per-user OAuth tokens plus CIBA human-in-the-loop approval.
+- [Arcade.dev: OAuth tool authorization for agents](other/arcade-dev-oauth-tool-authorization-for-agents.md) — commercial; per-tool OAuth scopes, user-delegated least privilege.
+- [Infisical Agent Vault: credential proxy](other/infisical-agent-vault-credential-proxy-for-agents.md) — MIT (open-core); injects real secrets at a proxy so the agent never sees them.
+- [HashiCorp Vault: agentic runtime security](other/hashicorp-vault-agentic-runtime-security.md) — commercial; verifiable per-agent identity plus dynamic secrets.
+
+### Prompt-injection / MCP-security scanning & guardrails
+
+- [MCP-Scan / Snyk Agent Scan](other/mcp-scan-snyk-agent-scan-mcp-security-scanner.md) — Apache-2.0; scans MCP servers/agents/skills for injection, tool poisoning, shadowing, toxic flows.
+- [Cisco AI Defense MCP Scanner](other/cisco-ai-defense-mcp-scanner.md) — Apache-2.0; multi-engine (inspect API + YARA + LLM-judge) MCP threat scanner.
+- [LlamaFirewall: open-source guardrail framework](other/llamafirewall-open-source-guardrail-framework.md) — MIT; layered guardrails (PromptGuard 2, Agent Alignment Checks, CodeShield).
+
+---
+
+## Patterns / Techniques
+
+Named patterns and techniques for safe autonomy and governance, grouped by evidence quality (mirroring the [context-engineering Patterns](../context-engineering/index.md#patterns) treatment). All groups below carry primary sources; confidence is high for standards-body and vendor-primary patterns and medium for the single-preprint research group.
+
+### Well-evidenced — governance frameworks (standards bodies & vendors)
+
+- [OWASP Agentic AI: Threats & Mitigations (T1–T15)](other/owasp-agentic-ai-threats-and-mitigations.md) — 15 numbered agentic threats each paired with mitigations; the canonical agentic threat vocabulary.
+- [OWASP Top 10 for Agentic Applications (2026)](other/owasp-top-10-for-agentic-applications-2026.md) — prioritized agent risks (ASI01 Goal Hijacking, ASI02 Tool Misuse, ASI03 Identity & Privilege Abuse); released 10 Dec 2025.
+- [NIST AI Risk Management Framework](other/nist-ai-risk-management-framework.md) — Govern/Map/Measure/Manage; the GenAI profile (NIST AI 600-1) names direct **and indirect** prompt injection as a cybersecurity risk.
+- [Google SAIF 2.0 — "Focus on Agents"](google/saif-focus-on-agents.md) — agent risk map naming Prompt Injection and Rogue Actions.
+
+### Well-evidenced — defensive patterns in shipping coding agents
+
+*Failure mode each mitigates is noted in italics; links point to the primary source documenting the pattern.*
+
+- **Human-in-the-loop / approval gate** — explicit human confirmation before state-changing or risky actions. *Mitigates rogue/over-eager actions (OWASP T13).* → [Claude Code permissions](anthropic/claude-code-permissions-and-permission-modes.md), [Codex approvals](other/openai-codex-agent-approvals-and-sandboxing.md).
+- **Permission modes / progressive autonomy** (plan → auto-accept → auto → YOLO) — discrete autonomy tiers; plan mode is a read-only dry-run, the YOLO flag removes gating. *Mitigates the blast radius of autonomous error.* → [Claude Code permissions](anthropic/claude-code-permissions-and-permission-modes.md), [Codex approvals](other/openai-codex-agent-approvals-and-sandboxing.md).
+- **Command/tool allow · ask · deny lists** — three-tier rules evaluated deny → ask → allow (first match wins; deny carries no exceptions). *Mitigates tool misuse (OWASP T2 / ASI02).* → [Claude Code permissions](anthropic/claude-code-permissions-and-permission-modes.md), [Copilot allowlist reference](microsoft-github/copilot-allowlist-reference.md).
+- **Sandboxing as defense-in-depth** — OS-level filesystem/network restriction so injected commands cannot reach out-of-boundary resources even when the model is fooled. *Mitigates prompt-injection blast radius.* → [Claude Code sandboxing](anthropic/making-claude-code-more-secure-and-autonomous-with-sandboxing.md), [Codex approvals](other/openai-codex-agent-approvals-and-sandboxing.md).
+- **Least-privilege & tool/capability scoping** — minimize allowed tools/actions; e.g. drop arbitrary-code-execution rules on entering auto mode. *Mitigates privilege compromise (OWASP T3 / ASI03).* → [Claude auto mode](anthropic/claude-code-auto-mode-model-graded-approvals.md).
+- **Out-of-model (harness-enforced) permission enforcement** — rules enforced by the harness, not the LLM, so prompt or CLAUDE.md instructions cannot widen them. *A structural prompt-injection defense.* → [Claude Code permissions](anthropic/claude-code-permissions-and-permission-modes.md).
+- **Tool-output sanitization / content-vs-instruction separation** — scan file/web/shell/tool outputs for hijack attempts before they enter context. *Mitigates indirect prompt injection.* → [Claude auto mode](anthropic/claude-code-auto-mode-model-graded-approvals.md).
+- **Model-graded approval substitute** — a model-based transcript classifier approves each action (a middle ground between manual review and skip-permissions). *Scales HITL without disabling it.* → [Claude auto mode](anthropic/claude-code-auto-mode-model-graded-approvals.md).
+- **Audit trails & action traceability** — log every tool call for anomaly detection and post-incident review. *Mitigates repudiation/untraceability (OWASP T8).* → [OWASP Agentic AI Threats & Mitigations](other/owasp-agentic-ai-threats-and-mitigations.md).
+
+### Research-stage (single preprint — medium confidence)
+
+- [AAGATE: a NIST AI RMF-aligned agentic governance platform](other/aagate-nist-rmf-aligned-agentic-governance-platform.md) — framework-per-RMF-function governance, **guardrails-as-code** (NL→Rego/OPA), and the **Janus shadow-monitor** plan-then-execute pattern (continuous in-loop red teaming). Describes design, not measured efficacy.
+
+---
+
+## Gaps identified during research
+
+From the two June 2026 research passes — mirroring the [context-engineering](../context-engineering/index.md#patterns) treatment of weak-evidence material, nothing is silently dropped. Items here either failed adversarial verification, surfaced only as editorial framing (catalogued from primary sources but not independently verified this pass), or mark categories the passes under-covered.
+
+### Refuted / excluded by verification
+
+- **Daytona "complete per-sandbox isolation (dedicated kernel)" claim** — refuted 0-3; the strong-isolation wording was unsupported. (Daytona may still be a valid sandbox option; only the specific claim failed.)
+- **LlamaFirewall indirect/obfuscated-injection-in-tool-responses coverage** — refuted 1-2; do not overstate its indirect-injection coverage beyond the verified PromptGuard 2 / Agent Alignment / CodeShield guardrails.
+
+### Surfaced but not verified this pass (catalogued from primary sources; promote after a verification pass)
+
+The well-known prompt-injection design patterns appeared in the corpus only as editorial framing, so they were sourced separately rather than as verified findings:
+
+- [Design patterns for securing LLM agents (lethal trifecta, dual-LLM, plan-then-execute)](other/design-patterns-for-securing-llm-agents-against-prompt-injection.md) — Simon Willison.
+- [CaMeL: defeating prompt injections by design](other/camel-defeating-prompt-injections-by-design.md) — arXiv (Google DeepMind et al.).
+
+### Thinly-covered tool categories (candidates for a follow-up pass)
+
+The Tools pass returned little verified coverage here; these surfaced as primary sources but were not run through verification — treat as leads, not endorsements:
+
+- **Policy-as-code guardrail engines:** Open Policy Agent (OPA/Rego), Microsoft Agent Governance Toolkit, TrueFoundry OPA Guardrails, NVIDIA NeMo Guardrails, Guardrails AI, Permit.io, Cedar.
+- **Audit logging / tracing / observability of agent actions:** OpenTelemetry GenAI semantic conventions, Langfuse, MLflow Tracing, Arize Phoenix, Helicone.
+- **Supply-chain / SAST / SCA for AI-generated code:** Semgrep, Socket, GitHub Copilot Autofix (code scanning), OSV-Scanner, Snyk Code, CodeQL, Endor Labs.
+
+### Open questions
+
+- How do the new OWASP **Top 10 for Agentic Applications (ASI01–ASI10)** map item-by-item onto the older **15-threat T1–T15** taxonomy?
+- What concrete network-egress-restriction and ephemeral-workspace mechanisms (default-deny egress, throwaway containers) do major coding agents actually enforce, beyond the general sandboxing claims?
+- Are guardrails-as-code (NL→Rego/OPA) and shadow-monitor/plan-shadowing patterns deployed in any **production** coding agent, or do they remain research-only (AAGATE)?
+- What named permission/sandbox/governance patterns do **GitHub Copilot** and **Microsoft's** agent frameworks define that this pass did not capture?
+- Is the former Invariant Labs **MCP-Scan** OSS (Apache-2.0) status stable post-Snyk-acquisition, or moving toward a proprietary product?
+
+---
+
 ## Recommendations (reading path)
 1. **Start with primitives & guardrails:** Anthropic *Security – Claude Code Docs* + *sandboxing* blog, and GitHub *coding-agent firewall* docs — these define the concrete permission/allowlist/sandbox models you can enforce today.
 2. **Adopt a governance framework:** Google *SAIF 2.0 / Focus on Agents* + the *Implementing SAIF Controls* PDF, and Microsoft's *Agentic AI maturity model* + *Cloud Adoption Framework* governance pages.
@@ -156,3 +248,5 @@ title: Security, Governance & Safe Autonomy for AI Coding Agents
 - **PCI guidance document access:** The official *Integrating AI in PCI Assessments* Guidelines v1.0 PDF is publicly available but is most reliably reached through the PCI SSC Document Library (the direct PDF path on the PCI SSC document-hosting subdomain is consistent with their scheme but was not independently fetch-verified); avoid third-party mirrors when an audit trail matters.
 - **PCI DSS scope nuance:** PCI DSS v4.0.1 text does not name "AI" explicitly; the in-scope determination comes from the PCI SSC's AI principles/guidance plus standard scoping logic. The PCI SSC's *Integrating AI in PCI Assessments* doc concerns assessors' use of AI, which is distinct from securing AI coding agents that handle cardholder data — read both lenses.
 - **Non-primary sources:** A few links (e.g., the Thoughtworks Agent/works press release on PR Newswire, arXiv preprints) are included for substance but are not peer-reviewed or are promotional; weight them accordingly. All five named sources you requested are represented with first-party links wherever they exist.
+- **Tools & Patterns catalogs (June 2026 research):** entries in the [Tools](#tools) and [Patterns / Techniques](#patterns-techniques) sections were compiled by two adversarially-verified research passes and **hand-catalogued** (annotations and excerpts written by hand, not auto-fetched/archived) — verify each source's current name, version, and license before relying on it. The agent-security space churns fast (e.g. MCP-Scan → Snyk "Agent Scan"; Claude Code auto mode is a research preview, with Anthropic disclosing ~17% of over-eager actions slip through).
+- **Open-core / vendor nuance:** several "open-source" tools are open-core or have proprietary hosted counterparts (E2B's repo is Apache-2.0 but its cloud is proprietary; Infisical Agent Vault is MIT except its `ee` directory; Auth0, Arcade, and HashiCorp Vault are commercial). Vendor product pages are marketing language accepted as descriptive, not as benchmarked efficacy.
