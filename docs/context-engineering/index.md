@@ -98,7 +98,7 @@ title: Solution-Level Context Engineering Across Multiple Repositories
 - [Optimizing GitHub Copilot for Multi-Repository Teams in VS Code](other/optimizing-github-copilot-for-multi-repository-teams-in-vs-code.md) — community discussion
 - [Monorepo vs Multi-Repo AI: Architecture-based AI Tool Selection](other/monorepo-vs-multi-repo-ai-architecture-based-ai-tool-selection.md) — Augment Code
 
-### Tools
+## Tools
 Three approaches to feeding agents codebase context — **packing** (simple, local, zero-infra, dumps the repo), **indexing/retrieval** (token-efficient, queryable, sometimes needs a vector DB or LSP/SCIP infra), and **cross-repo** platforms.
 
 *Packing — repo → single file:*
