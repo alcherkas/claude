@@ -149,6 +149,16 @@ The deployment target — *where the orchestration actually runs in production* 
 
 > **Pick by:** isolation model (AWS microVM-per-session) · agent-as-versioned-asset + IaC (Azure `azd`/Bicep) · cost floor + ADK fit (Google free tier). All three avoid framework/model lock-in. *Caveat: pricing and preview-vs-GA status move fast — verify at adoption.*
 
+### Model gateway & cost routing
+
+The control plane an orchestration calls *through* to reach model providers — one OpenAI-compatible interface across many models, plus retries, fallbacks, load balancing, and caching. The direct lever on the topic's central cost concern (agents burn ~4× and multi-agent ~15× the tokens of a chat). The choice is **self-host vs. hosted-percentage vs. managed-by-logs**. From a June 2026 research pass (8 findings verified unanimous 3-0 against primary vendor docs).
+
+- [LiteLLM](other/litellm-self-hosted-llm-gateway.md) — **self-hosted, MIT**, Python SDK or proxy; 100+ providers, **zero token markup**, built-in load balancing + automatic fallbacks; paid Enterprise tier for SSO/RBAC. You pay only infra.
+- [OpenRouter](other/openrouter-hosted-llm-marketplace-gateway.md) — **hosted-only marketplace**; one key to 300–400+ models, no per-token markup but a **5.5% credit-purchase fee** (5% crypto/BYOK; first 1M BYOK req/mo free). Zero ops, fee scales linearly with spend.
+- [Portkey](other/portkey-managed-llm-gateway-semantic-cache.md) — **managed** (free Developer + $49/mo Production), 1,600+ LLMs; differentiator is **semantic caching**. Gateway now open-sourced (MIT); acquired by Palo Alto Networks.
+
+> **Cost crossover:** OpenRouter's 5.5% scales linearly with spend; a self-hosted LiteLLM at ~$200/mo infra **breaks even around ~$3,600/mo of model spend** and is cheaper above that. *Refuted in verification (don't repeat): per-request latency benchmarks, semantic-caching exclusivity, and an outdated "5% markup" framing for OpenRouter.*
+
 ## Patterns & Techniques
 
 Named orchestration patterns, graded by how well they are evidenced. The first three groups rest on **authoritative / vendor-primary** sources; the final group is the contrarian / failure-mode literature that says when *not* to orchestrate. (Anthropic's "Building Effective Agents," listed under Anthropic above, is the canonical taxonomy underpinning this whole section.)

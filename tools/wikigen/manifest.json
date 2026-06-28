@@ -12402,5 +12402,98 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://github.com/BerriAI/litellm",
+    "canonical_url": "https://github.com/BerriAI/litellm",
+    "slug": "litellm-self-hosted-llm-gateway",
+    "org_slug": "other",
+    "title": "LiteLLM: self-hosted open-source LLM gateway (100+ providers)",
+    "annotation": "Free, self-hosted, MIT LLM gateway (Python SDK or proxy) for 100+ providers with zero token markup; built-in load balancing + automatic fallbacks; paid Enterprise tier for SSO/RBAC. The self-hosted model-gateway option. (High-confidence, primary repo+docs.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/litellm-self-hosted-llm-gateway.md",
+    "content_sha1": "e2820020cd6d32b258f6f4536b58e81fe49dc5e8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://openrouter.ai/docs/faq",
+    "canonical_url": "https://openrouter.ai/docs/faq",
+    "slug": "openrouter-hosted-llm-marketplace-gateway",
+    "org_slug": "other",
+    "title": "OpenRouter: hosted LLM marketplace gateway (one API, 300+ models)",
+    "annotation": "Hosted-only marketplace proxy: one OpenAI-compatible key to 300-400+ models; no per-token markup, monetized via a 5.5% credit-purchase fee (5% crypto/BYOK, first 1M BYOK req/mo free). Fee scales linearly with spend. (High-confidence; '5% markup' framing refuted.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/openrouter-hosted-llm-marketplace-gateway.md",
+    "content_sha1": "0d154575b96bc9425084a59685aca33c1040d6ec",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/portkey-ai/gateway",
+    "canonical_url": "https://github.com/portkey-ai/gateway",
+    "slug": "portkey-managed-llm-gateway-semantic-cache",
+    "org_slug": "other",
+    "title": "Portkey: managed LLM gateway with semantic caching",
+    "annotation": "Managed gateway (free Developer + $49/mo Production tiers; no token markup) advertising 1,600+ LLMs; differentiator is semantic caching (similar-prompt cache hits). Gateway open-sourced (MIT, ~Mar 2026); acquired by Palo Alto Networks. (High-confidence; semantic-cache exclusivity refuted.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/portkey-managed-llm-gateway-semantic-cache.md",
+    "content_sha1": "9177714a6cdb372781fe8f898ffe853861cb9df8",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]
