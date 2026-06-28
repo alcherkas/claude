@@ -11999,5 +11999,67 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
+    "canonical_url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
+    "slug": "aws-bedrock-agentcore-managed-agent-runtime",
+    "org_slug": "other",
+    "title": "AWS Bedrock AgentCore: serverless managed runtime for AI agents",
+    "annotation": "Fully managed, framework-/model-/protocol-agnostic agent platform (GA Oct 2025); Runtime gives each session a dedicated Firecracker microVM (up to 8h), with modular Memory/Gateway/Identity/Observability services and per-second consumption pricing ($0.0895/vCPU-hr). (Architecture/pricing high-confidence, primary AWS docs.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/other/aws-bedrock-agentcore-managed-agent-runtime.md",
+    "content_sha1": "cc32364c1b942ecc62283cd59809ed920cd5c524",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/runtime-components",
+    "canonical_url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/runtime-components",
+    "slug": "azure-foundry-agent-service-managed-runtime",
+    "org_slug": "microsoft-github",
+    "title": "Azure AI Foundry Agent Service: agents as versioned runtime assets",
+    "annotation": "Foundry Agent Service runtime \u2014 agents/conversations/responses; an agent is a persisted, named, versioned orchestration asset with server-side state (store=false for zero-retention); hosted agents bill by container compute/hr; azd/Bicep deploy. (High-confidence; Memory feature still Preview as of Q1 2026.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Microsoft/GitHub",
+    "subtopic": "Tools",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Microsoft/GitHub",
+        "subtopic": "Tools"
+      }
+    ],
+    "dest_path": "orchestration/microsoft-github/azure-foundry-agent-service-managed-runtime.md",
+    "content_sha1": "019a0c9a2ba05eeb0cce5c18a9ed0e7cb68b3701",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

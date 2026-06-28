@@ -139,6 +139,16 @@ The persistence layer beneath the frameworks — where agent state and facts liv
 
 > **Evidence caveat (read before choosing).** The *architecture* descriptions above are high-confidence (primary papers + repos, unanimous in verification). The *benchmark* numbers are not: each vendor publishes self-favorable results on self-selected baselines, and the cross-vendor LoCoMo comparison is an open dispute — Zep's original ~84% was alleged by Mem0 to be inflated to a corrected 58.44%, and Zep rebuts with ~75% citing a misconfigured integration ([getzep/zep-papers#5](https://github.com/getzep/zep-papers/issues/5)). Ten head-to-head superiority claims were *refuted* during 3-vote verification. Treat all single-vendor accuracy/latency/token figures as directional marketing data, and default to ConvoMem's framing: agent memory is a **scale-triggered** layer, not a default.
 
+### Managed agent runtimes
+
+The deployment target — *where the orchestration actually runs in production* — distinct from the self-hosted [durable-execution substrate](#durable-execution-substrate) above (a managed runtime may bundle its own durability, scaling, identity, and observability). All three hyperscaler runtimes are now **framework-agnostic and model-agnostic** (bring LangGraph / CrewAI / ADK / OpenAI Agents SDK + any LLM); they differ on isolation, state model, pricing, and IaC. From a June 2026 research pass (24 claims verified unanimous 3-0 against primary vendor docs; benchmark-free, so high-confidence).
+
+- [AWS Bedrock AgentCore](other/aws-bedrock-agentcore-managed-agent-runtime.md) — serverless; **dedicated Firecracker microVM per session** (the strongest isolation story), long-running up to 8h, **modular composable services** (Runtime / Memory / Gateway / Identity / Observability, used à la carte). Per-second consumption pricing ($0.0895/vCPU-hr). GA Oct 2025.
+- [Google Vertex AI Agent Engine](google/build-and-manage-multi-system-agents-with-vertex-ai.md) — fully managed runtime (infra / scaling / security / eval / monitoring); ADK-native; the only one of the three with a **free tier** (50 vCPU-hrs + 100 GB-hrs/mo; idle agents not billed). Now part of the Gemini Enterprise Agent Platform.
+- [Azure AI Foundry Agent Service](microsoft-github/azure-foundry-agent-service-managed-runtime.md) — **agents as named, versioned, server-side orchestration assets** (agents / conversations / responses); the most **IaC-native** (`azd` / Bicep deploy); hosted-agent containers billed by compute/hour. GA 2025 (Memory still Preview as of Q1 2026).
+
+> **Pick by:** isolation model (AWS microVM-per-session) · agent-as-versioned-asset + IaC (Azure `azd`/Bicep) · cost floor + ADK fit (Google free tier). All three avoid framework/model lock-in. *Caveat: pricing and preview-vs-GA status move fast — verify at adoption.*
+
 ## Patterns & Techniques
 
 Named orchestration patterns, graded by how well they are evidenced. The first three groups rest on **authoritative / vendor-primary** sources; the final group is the contrarian / failure-mode literature that says when *not* to orchestrate. (Anthropic's "Building Effective Agents," listed under Anthropic above, is the canonical taxonomy underpinning this whole section.)

@@ -27,6 +27,8 @@ An agentic orchestration system is an assembly of six build layers, gated at the
   │  4 CONTEXT     per-subagent isolation · compaction · note-taking  │
   │  5 MEMORY      full-context first → Letta / Zep / Mem0         ⚠  │
   │  6 DURABLE     journal-and-replay — Temporal/Restate/Dapr/Inngest │
+  │  7 DEPLOY      managed runtime (AgentCore/Agent Engine/Foundry)   │
+  │                or self-host the substrate above                   │
   └──────────────────────────────────────────────────────────────────┘
             ▲                                                      │
             └──── EVALUATE + OBSERVE (eval-driven · traces · OTel) ⚠┘
@@ -43,6 +45,7 @@ An agentic orchestration system is an assembly of six build layers, gated at the
 | 4 | **Context** | [per-subagent context isolation · compaction · note-taking](../context-engineering/anthropic/effective-context-engineering-for-ai-agents.md); [durable/resumable harnesses](../context-engineering/anthropic/effective-harnesses-for-long-running-agents.md). | Strong — deeper in the [context-engineering topic](../context-engineering/index.md) |
 | 5 | **Memory / state** | full-context first ([ConvoMem](other/convomem-first-150-conversations-dont-need-rag.md)), then [Letta](other/memgpt-letta-llm-operating-system-agent-memory.md) (OS-tiered) / [Zep](other/zep-graphiti-temporal-knowledge-graph-agent-memory.md) (temporal KG) / [Mem0](other/mem0-scalable-long-term-memory-for-ai-agents.md) (vector-first). | **⚠ seam** — architectures clear, but benchmarks vendor-disputed and the layer is *scale-triggered*, not default |
 | 6 | **Durable execution** | [Temporal](other/temporal-durable-execution-for-ai-agents.md), [Restate](other/restate-durable-execution-for-agentic-loops.md) (framework-agnostic), [Dapr Agents](other/dapr-agents-durable-agentic-workflows.md), [Inngest](other/inngest-durable-execution-for-ai-agents.md). | Strong substrate; agent-specific patterns still emerging |
+| 7 | **Deploy / runtime** | self-host the substrate above, **or** a managed runtime that bundles durability/scaling/identity/observability: [AWS Bedrock AgentCore](other/aws-bedrock-agentcore-managed-agent-runtime.md) (microVM-per-session), [Google Vertex AI Agent Engine](google/build-and-manage-multi-system-agents-with-vertex-ai.md) (free tier), [Azure AI Foundry Agent Service](microsoft-github/azure-foundry-agent-service-managed-runtime.md) (`azd`/Bicep, agents-as-assets). | Strong — all three GA & framework/model-agnostic; pricing & preview status move fast |
 | ↺ | **Evaluate + observe** | eval-driven development, trajectory evals, LLM-as-judge, CI gates, OTel GenAI traces — the whole [evals-observability topic](../evals-observability/index.md). | **⚠ seam** for *multi-agent* eval — MAST shows failures are coordination-driven; no standard for grading an orchestration vs. a single agent |
 | ▣ | **Govern** | sandboxing, out-of-model policy-as-code, permission modes, kill switches — the [security-governance reference architecture](../security-governance/reference-architecture.md). | Covered there; assume the model can be fooled |
 
