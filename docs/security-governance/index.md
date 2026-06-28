@@ -13,7 +13,7 @@ title: Security, Governance & Safe Autonomy for AI Coding Agents
 - This is a link-first reference delivering the most authoritative and recent materials from **Anthropic, Google, Microsoft/GitHub, Thoughtworks, and Martin Fowler** on securing and governing AI coding agents across the SDLC, plus dedicated **PCI DSS** sources.
 - The strongest primary sources are vendor docs and engineering blogs (Anthropic Claude Code security, sandboxing & managed settings; GitHub coding-agent firewall docs; Microsoft Learn agent governance; Google **SAIF 2.0**, announced October 2025 with an agent risk map, alongside CodeMender and the new AI Vulnerability Reward Program) plus Thoughtworks/Martin Fowler "harness engineering."
 - For PCI DSS, the authoritative primary sources are the **PCI SSC's 2025 AI principles** and **AI-in-assessments guidance**; AI tools touching cardholder data are in-scope under **PCI DSS v4.0.1** (published 11 June 2024 as a limited revision with no added/deleted requirements; v4.0 retired 31 December 2024; future-dated v4.0 requirements became mandatory 31 March 2025).
-- New **[Tools](#tools)** and **[Patterns / Techniques](#patterns-techniques)** catalogs (added June 2026 from adversarially-verified research passes) cover the concrete safe-autonomy toolkit — **sandboxed execution** (E2B, Firecracker, gVisor), **agent authorization & least-privilege scoping** (Auth0, Arcade, Infisical, Vault), **prompt-injection/MCP scanning** (MCP-Scan, Cisco MCP Scanner, LlamaFirewall), **policy-as-code & guardrail engines** (OPA/Cedar, Permit.io MCP Gateway, Microsoft Agent Governance Toolkit, NeMo Guardrails), and **incident response, kill switches & rollback** (Claude Code /rewind, Microsoft Defender agent runtime protection + Entra Agent ID, Google SCC) — plus named patterns grouped by evidence quality and a **[Gaps identified during research](#gaps-identified-during-research)** section.
+- New **[Tools](#tools)** and **[Patterns / Techniques](#patterns-techniques)** catalogs (added June 2026 from adversarially-verified research passes) cover the concrete safe-autonomy toolkit — **sandboxed execution** (E2B, Firecracker, gVisor), **agent authorization & least-privilege scoping** (Auth0, Arcade, Infisical, Vault), **prompt-injection/MCP scanning** (MCP-Scan, Cisco MCP Scanner, LlamaFirewall), **policy-as-code & guardrail engines** (OPA/Cedar, Permit.io MCP Gateway, Microsoft Agent Governance Toolkit, NeMo Guardrails), **incident response, kill switches & rollback** (Claude Code /rewind + Agent SDK rewindFiles, GitHub break-glass revocation, Microsoft Defender + Entra Agent ID, Google SCC, plus the OWASP AI Agent Security Cheat Sheet and STRATUS pre-execution rejection), and **supply-chain / SAST / SCA for AI-generated code** (OSV-Scanner, Semgrep, Snyk, Socket, CodeQL) — plus named patterns grouped by evidence quality and a **[Gaps identified during research](#gaps-identified-during-research)** section.
 
 ---
 
@@ -145,6 +145,8 @@ title: Security, Governance & Safe Autonomy for AI Coding Agents
 - [SCGAgent: Recreating the Benefits of Reasoning Models for Secure Code Generation with Agentic Workflows](other/scgagent-recreating-the-benefits-of-reasoning-models-for-secure-code-generation.md) — arXiv
 - [Are AI-assisted Development Tools Immune to Prompt Injection?](other/are-ai-assisted-development-tools-immune-to-prompt-injection.md) — arXiv survey of agentic coding editor injection attacks
 - [Unit 42 "Double Agents": exploiting Vertex AI agent credentials](other/unit42-double-agents-vertex-ai.md) — Palo Alto Networks; independent demonstration that an overprivileged agent service account is a real, revocable attack surface (extracted P4SA creds → all-bucket read); Google remediated via BYOSA
+- [PocketOS/Railway: an AI agent wiped a production database](other/railway-pocketos-agent-database-deletion.md) — *(added June 2026)* real incident: an over-permissioned token + only instruction-level guardrails + co-located backups → unrecoverable production data loss. Concrete proof that prompting-to-be-safe is not a control.
+- [Why single kill switches are inadequate (shutdown resistance)](other/kill-switches-inadequate-shutdown-resistance.md) — *(added June 2026)* Stanford Law + Palisade; shutdown-sabotage, orphaned sub-agents, and runtime scope expansion argue for layered shutdown + cascading revocation rather than one switch.
 
 ---
 
@@ -183,14 +185,26 @@ Tools, products, and open-source frameworks for securing and governing autonomou
 - [NVIDIA NeMo Guardrails](other/nvidia-nemo-guardrails.md) — Apache-2.0; programmable runtime rails (Colang); content/behavioral guardrailing, not authorization.
 - [Guardrails AI](other/guardrails-ai-validators-and-guards.md) — Apache-2.0; composable Input/Output Guards; content validation, not authorization.
 
+### Supply-chain / SAST / SCA for AI-generated code
+
+*Added June 2026 from a dedicated deep-research pass (closes the SAST/SCA gap below). Every entry survived 3-vote adversarial verification against primary sources (25/25 claims confirmed, 0 killed). These gate AI-authored code in CI; AI-specific risk is **"slopsquatting"** — agents importing plausibly-named hallucinated/malicious packages.*
+
+- [OSV-Scanner: dependency & container vulnerability scanner](other/osv-scanner-dependency-vulnerability-scanner.md) — Apache-2.0; SCA across 11+ ecosystems plus containers/vendored C++ against OSV.dev; GitHub Action does scheduled + differential (new-vulns-only) PR scans.
+- [Semgrep: SAST engine + supply-chain scanning](other/semgrep-sast-and-supply-chain.md) — open-core (LGPL-2.1 core); 30+ language SAST + Supply Chain SCA; diff-aware PR scanning and custom YAML never-allow rules.
+- [Snyk: CI/CD security scanning](other/snyk-ci-cd-security-actions.md) — commercial; per-stack GitHub Actions (deps, containers, IaC) with SARIF → GitHub Code Scanning.
+- [Socket: behavioral supply-chain defense & Firewall](other/socket-supply-chain-firewall.md) — commercial; behavioral detection beyond CVEs (malware/typosquat/exfiltration) with a **blocking** install-time Firewall (preventive control).
+- [CodeQL: GitHub semantic SAST engine](other/codeql-semantic-sast-engine.md) — proprietary CLI (free for open-source only), sold as GitHub Code Security (GHAS, per active committer); the scanner behind Copilot coding-agent PRs.
+
 ### Incident response, kill switches & rollback
 
 *Added June 2026 from a dedicated deep-research pass (closes the incident-response gap below). All four major vendors now ship concrete controls — most Microsoft capabilities are **Preview**.*
 
 - [Claude Code checkpointing & /rewind](anthropic/claude-code-checkpointing-and-rewind.md) — session-level rollback of model-driven edits; **cannot** undo bash `rm`/`mv`/`cp` or external edits.
+- [Claude Agent SDK file checkpointing (rewindFiles)](anthropic/claude-agent-sdk-file-checkpointing.md) — *(added June 2026)* programmatic rollback for custom agents; same model-edit scope and same documented Bash-side-effect gap.
 - [Microsoft Defender AI agent runtime protection](microsoft-github/defender-ai-agent-runtime-protection.md) — pre-tool-call interception that can **block** unsafe actions before execution (Claude Code, Copilot CLI), plus incident/blast-radius graphs. Preview.
 - [Microsoft Entra Agent ID governance](microsoft-github/entra-agent-id-governance-and-kill-switch.md) — disable an agent identity (kill switch), access-package auto-expiry, least privilege, Conditional Access. Preview/licensed.
 - [Google SCC agent-credential detection & revocation](google/scc-agent-credential-detection-and-revocation.md) — Event Threat Detection on agent-credential abuse; delete service account + rotate keys.
+- [GitHub break-glass credential revocation](other/github-break-glass-credential-revocation.md) — *(added June 2026)* one-action bulk revoke of a user's PATs, SSH keys, OAuth tokens & SSO authorizations — kill-switch-by-revocation for an over-permissioned agent.
 
 ---
 
@@ -204,6 +218,7 @@ Named patterns and techniques for safe autonomy and governance, grouped by evide
 - [OWASP Top 10 for Agentic Applications (2026)](other/owasp-top-10-for-agentic-applications-2026.md) — prioritized agent risks (ASI01 Goal Hijacking, ASI02 Tool Misuse, ASI03 Identity & Privilege Abuse); released 10 Dec 2025.
 - [NIST AI Risk Management Framework](other/nist-ai-risk-management-framework.md) — Govern/Map/Measure/Manage; the GenAI profile (NIST AI 600-1) names direct **and indirect** prompt injection as a cybersecurity risk.
 - [Google SAIF 2.0 — "Focus on Agents"](google/saif-focus-on-agents.md) — agent risk map naming Prompt Injection and Rogue Actions.
+- [OWASP AI Agent Security Cheat Sheet](other/owasp-ai-agent-security-cheat-sheet.md) — *(added June 2026)* the primary-source **incident-response / containment** checklist: interrupt + rollback, approval before irreversible actions, action previews, risk-based autonomy boundaries, fail-closed.
 
 ### Well-evidenced — defensive patterns in shipping coding agents
 
@@ -223,11 +238,14 @@ Named patterns and techniques for safe autonomy and governance, grouped by evide
 - **Session-level checkpoint rollback** — revert agent file edits to a prior checkpoint. *Limits blast radius of bad edits; bounded to model-driven edits, not bash/external changes.* → [Claude Code checkpointing & /rewind](anthropic/claude-code-checkpointing-and-rewind.md).
 - **Agent identity & credential revocation** — disable the agent identity or rotate its service-account keys to cut off a misbehaving agent. *Mitigates credential compromise & lateral movement (OWASP T3 / ASI03).* → [Entra Agent ID](microsoft-github/entra-agent-id-governance-and-kill-switch.md), [Google SCC](google/scc-agent-credential-detection-and-revocation.md).
 - **Runtime pre-tool-call interception** — inspect and block unsafe tool calls before they execute. *Runtime defense-in-depth beyond static permissions.* → [Microsoft Defender agent runtime protection](microsoft-github/defender-ai-agent-runtime-protection.md).
+- **Pre-execution screening of destructive actions** — reject non-recoverable operations (`DROP DATABASE`, `rm -rf`) *before* they run, not after. *Closes the gap checkpoint-rollback can't (it only undoes model file edits).* → [STRATUS/TNR](other/stratus-tnr-undo-agent.md) *(research)*, [Microsoft Defender](microsoft-github/defender-ai-agent-runtime-protection.md).
+- **Layered shutdown / cascading revocation** — a single kill switch is insufficient; halt + revoke must reach delegated sub-agents and distributed credentials, and survive agents that resist shutdown. *Mitigates orphaned sub-agents & shutdown resistance.* → [Why single kill switches are inadequate](other/kill-switches-inadequate-shutdown-resistance.md), [GitHub break-glass bulk revoke](other/github-break-glass-credential-revocation.md).
 
 ### Research-stage (single preprint — medium confidence)
 
 - [AAGATE: a NIST AI RMF-aligned agentic governance platform](other/aagate-nist-rmf-aligned-agentic-governance-platform.md) — framework-per-RMF-function governance, **guardrails-as-code** (NL→Rego/OPA), and the **Janus shadow-monitor** plan-then-execute pattern (continuous in-loop red teaming). Describes design, not measured efficacy.
 - [Guardrails-as-code: natural-language → Rego/policy (research)](other/guardrails-as-code-nl-to-rego-research.md) — ARPaCCino (NL→Rego for IaC), Apple **Prose2Policy** (95.3% compile rate on the ACRE access-control set), and **Policy-as-Prompt**. NL→policy is feasible and quantified but still research-stage and aimed at IaC/access-control, not coding-agent action policies.
+- [STRATUS & Transactional-No-Regression (TNR)](other/stratus-tnr-undo-agent.md) — *(added June 2026)* NeurIPS 2025 (IBM + UIUC); undo-and-retry rollback plus a formal undoability guarantee and pre-execution rejection of non-recoverable actions. Aimed at cloud-ops remediation, not yet coding agents.
 
 ---
 
@@ -253,7 +271,7 @@ The Tools pass returned little verified coverage here; these surfaced as primary
 
 - ~~**Policy-as-code guardrail engines**~~ — **now covered** (June 2026 deep-research pass): see [Tools › Policy-as-code & runtime guardrail engines](#policy-as-code-runtime-guardrail-engines). OPA/Rego, Cedar, Permit.io MCP Gateway, the Microsoft Agent Governance Toolkit, NeMo Guardrails, and Guardrails AI are catalogued and verified; TrueFoundry OPA Guardrails surfaced as a single-vendor source (medium confidence, not promoted).
 - **Audit logging / tracing / observability of agent actions:** OpenTelemetry GenAI semantic conventions, Langfuse, MLflow Tracing, Arize Phoenix, Helicone. *(Note: the [evals-observability theme](../evals-observability/index.md) covers the observability/tracing tooling in depth.)*
-- **Supply-chain / SAST / SCA for AI-generated code:** Semgrep, Socket, GitHub Copilot Autofix (code scanning), OSV-Scanner, Snyk Code, CodeQL, Endor Labs.
+- ~~**Supply-chain / SAST / SCA for AI-generated code**~~ — **now covered** (June 2026 deep-research pass): see [Tools › Supply-chain / SAST / SCA](#supply-chain-sast-sca-for-ai-generated-code). OSV-Scanner, Semgrep, Snyk, Socket, and CodeQL are catalogued and verified (25/25 claims, 0 killed). GitHub Copilot Autofix and Endor Labs surfaced but were not run through verification this pass — treat as leads.
 
 ### Open questions
 
@@ -261,7 +279,7 @@ The Tools pass returned little verified coverage here; these surfaced as primary
 - What concrete network-egress-restriction and ephemeral-workspace mechanisms (default-deny egress, throwaway containers) do major coding agents actually enforce, beyond the general sandboxing claims?
 - ~~Are guardrails-as-code (NL→Rego/OPA) deployed in any **production** coding agent, or research-only?~~ **Answered (June 2026):** NL→Rego (ARPaCCino, [Prose2Policy](other/guardrails-as-code-nl-to-rego-research.md)) is **still research-only** and aimed at IaC/access-control; the underlying engines (OPA/Cedar) are production-ready and now reached into the agent path by Permit.io / the Microsoft toolkit with **hand-written** policy. (Shadow-monitor/plan-shadowing remains research-only — AAGATE.)
 - Is the former Invariant Labs **MCP-Scan** OSS (Apache-2.0) status stable post-Snyk-acquisition, or moving toward a proprietary product?
-- **Incident response (partially answered, June 2026):** all four vendors ship kill-switch / revoke / blast-radius controls (see [Tools › Incident response](#incident-response-kill-switches-rollback)), but two gaps remain — (a) **no NIST AI RMF / OWASP Agentic primary-source guidance** on agent incident response surfaced (the CSA "Agentic NIST AI RMF Profile" is a lead), and (b) **rollback of destructive bash-driven or already-merged changes** has no agent-native answer; do *halt* (kill switch) and *revoke* (credential rotation) compose automatically, or are they separate manual steps with an exploitable latency gap?
+- ~~**Incident response (partially answered, June 2026)**~~ — **substantially closed** by a dedicated June 2026 deep-research pass (8 findings, 25/25 claims confirmed). Both previously-open gaps now have sources: (a) **primary-source containment guidance** exists — the [OWASP AI Agent Security Cheat Sheet](other/owasp-ai-agent-security-cheat-sheet.md) prescribes interrupt+rollback, approval-before-irreversible-action, and fail-closed defaults (ASI10 "Rogue Agents" names the failure mode); and (b) **destructive-action handling** has a research answer — [STRATUS/TNR](other/stratus-tnr-undo-agent.md) does pre-execution rejection of non-recoverable ops plus a formal undoability guarantee, and ecosystem checkpointing ([Claude Agent SDK](anthropic/claude-agent-sdk-file-checkpointing.md), Roo Code, Hermes) confirms the Bash-side-effect gap is industry-wide. **Residual:** *halt* and *revoke* still don't provably compose ([single kill switches are inadequate](other/kill-switches-inadequate-shutdown-resistance.md) — orphaned sub-agents, shutdown resistance, distributed credentials); the bash/merged-change rollback gap is **named and bounded**, not eliminated. The [Railway incident](other/railway-pocketos-agent-database-deletion.md) shows the cost when these are missing.
 
 ---
 

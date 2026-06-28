@@ -12001,6 +12001,347 @@
     "also_in": []
   },
   {
+    "url": "https://github.com/google/osv-scanner",
+    "canonical_url": "https://github.com/google/osv-scanner",
+    "slug": "osv-scanner-dependency-vulnerability-scanner",
+    "org_slug": "other",
+    "title": "OSV-Scanner: dependency & container vulnerability scanner",
+    "annotation": "Google's Apache-2.0 SCA scanner \u2014 lockfiles/manifests across 11+ ecosystems plus container images and vendored C/C++ against OSV.dev; GitHub Action does scheduled + differential PR scans.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/osv-scanner-dependency-vulnerability-scanner.md",
+    "content_sha1": "84b5d8495d13b75ef712cd8b03041b484171885c",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/semgrep/semgrep",
+    "canonical_url": "https://github.com/semgrep/semgrep",
+    "slug": "semgrep-sast-and-supply-chain",
+    "org_slug": "other",
+    "title": "Semgrep: SAST engine + supply-chain scanning",
+    "annotation": "Open-core SAST engine (LGPL-2.1 core) for 30+ languages plus Supply Chain SCA; diff-aware PR scanning and custom YAML never-allow rules for gating AI-generated code.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/semgrep-sast-and-supply-chain.md",
+    "content_sha1": "4985a95789ef1735416471eaf0835912a0e1d187",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/snyk/actions",
+    "canonical_url": "https://github.com/snyk/actions",
+    "slug": "snyk-ci-cd-security-actions",
+    "org_slug": "other",
+    "title": "Snyk: CI/CD security scanning (deps, containers, IaC)",
+    "annotation": "Commercial multi-product scanner via per-stack GitHub Actions (SNYK_TOKEN); covers open-source deps, containers, and IaC with SARIF to GitHub Code Scanning.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/snyk-ci-cd-security-actions.md",
+    "content_sha1": "2a67704ff65fe0640f704f3f78ccc4a0c20be35f",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://socket.dev/",
+    "canonical_url": "https://socket.dev/",
+    "slug": "socket-supply-chain-firewall",
+    "org_slug": "other",
+    "title": "Socket: behavioral supply-chain defense & Firewall",
+    "annotation": "Behavioral supply-chain defense beyond CVEs (malware, typosquats, exfiltration) with a blocking Firewall; mitigates AI 'slopsquatting'. GitHub App + CLI.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/socket-supply-chain-firewall.md",
+    "content_sha1": "38c9a97dc62adc866042045ce499e6e50b42e8ac",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.com/github/codeql-cli-binaries",
+    "canonical_url": "https://github.com/github/codeql-cli-binaries",
+    "slug": "codeql-semantic-sast-engine",
+    "org_slug": "other",
+    "title": "CodeQL: GitHub semantic SAST engine",
+    "annotation": "GitHub's semantic SAST (data-flow/taint via QL); proprietary CLI free for open-source only, sold as GitHub Code Security (GHAS, per active committer). Powers Copilot agent PR scanning.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/codeql-semantic-sast-engine.md",
+    "content_sha1": "894a2d96cebd9435f0f375c416925e403d7a5efb",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html",
+    "canonical_url": "https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html",
+    "slug": "owasp-ai-agent-security-cheat-sheet",
+    "org_slug": "other",
+    "title": "OWASP AI Agent Security Cheat Sheet",
+    "annotation": "Primary-source HITL containment guidance \u2014 interrupt+rollback, approval before irreversible actions, action previews, risk-based autonomy boundaries, fail-closed. Closes the IR primary-source gap.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/owasp-ai-agent-security-cheat-sheet.md",
+    "content_sha1": "ca2d4736f903607246fabe85862ab7aaa0d9f96a",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://github.blog/changelog/2026-06-24-self-service-credential-revocation-for-incident-response/",
+    "canonical_url": "https://github.blog/changelog/2026-06-24-self-service-credential-revocation-for-incident-response/",
+    "slug": "github-break-glass-credential-revocation",
+    "org_slug": "other",
+    "title": "GitHub break-glass: self-service credential revocation for incident response",
+    "annotation": "Break-glass bulk revoke of all of a user's credentials (PATs, SSH, OAuth, SSO) in one action \u2014 a real kill-switch-by-revocation for over-permissioned coding agents. June 2026.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/other/github-break-glass-credential-revocation.md",
+    "content_sha1": "36affac7480b9dbd56a956c6bdc36c2022048a4d",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://platform.claude.com/docs/en/agent-sdk/file-checkpointing",
+    "canonical_url": "https://platform.claude.com/docs/en/agent-sdk/file-checkpointing",
+    "slug": "claude-agent-sdk-file-checkpointing",
+    "org_slug": "anthropic",
+    "title": "Claude Agent SDK file checkpointing (rewindFiles)",
+    "annotation": "SDK-level rollback (rewindFiles) for model-driven edits; explicitly does not track Bash side effects \u2014 first-party evidence for the reference-architecture rollback seam.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Anthropic",
+    "subtopic": "tools",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Anthropic",
+        "subtopic": "tools"
+      }
+    ],
+    "dest_path": "security-governance/anthropic/claude-agent-sdk-file-checkpointing.md",
+    "content_sha1": "7c4a128b1ec69597e5e176cef8445c49e3fabf11",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://research.ibm.com/blog/undo-agent-for-cloud",
+    "canonical_url": "https://research.ibm.com/blog/undo-agent-for-cloud",
+    "slug": "stratus-tnr-undo-agent",
+    "org_slug": "other",
+    "title": "STRATUS & Transactional-No-Regression: undo + pre-execution rejection of destructive actions",
+    "annotation": "NeurIPS 2025 research: pre-execution rejection of non-recoverable actions (a DROP DATABASE screened before it runs) plus a formal undoability guarantee (TNR). Research-stage answer to the destructive-bash rollback seam.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/stratus-tnr-undo-agent.md",
+    "content_sha1": "f7d37493a95949ef84f5b8da994bf1d98cb09da3",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://law.stanford.edu/2026/03/07/kill-switches-dont-work-if-the-agent-writes-the-policy-the-berkeley-agentic-ai-profile-through-the-ailccp-lens/",
+    "canonical_url": "https://law.stanford.edu/2026/03/07/kill-switches-dont-work-if-the-agent-writes-the-policy-the-berkeley-agentic-ai-profile-through-the-ailccp-lens/",
+    "slug": "kill-switches-inadequate-shutdown-resistance",
+    "org_slug": "other",
+    "title": "Why single kill switches are inadequate (shutdown resistance + layered shutdown)",
+    "annotation": "Why halt alone is not a control: shutdown-sabotage (Palisade o3 79/100 without allow-instruction), orphaned sub-agents/distributed credentials, runtime scope expansion. Argues for layered shutdown + cascading revocation.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/kill-switches-inadequate-shutdown-resistance.md",
+    "content_sha1": "e4b3c8d8e913abfae7f6eede89cfe3b2f27caf19",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://blog.railway.com/p/your-ai-wants-to-nuke-your-database",
+    "canonical_url": "https://blog.railway.com/p/your-ai-wants-to-nuke-your-database",
+    "slug": "railway-pocketos-agent-database-deletion",
+    "org_slug": "other",
+    "title": "PocketOS/Railway: an AI agent wiped a production database (incident case study)",
+    "annotation": "Real incident: an over-permissioned token let a Cursor+Claude agent wipe a production DB; only instruction-level guardrails, and co-located backups defeated recovery. Proof that prompting-to-be-safe is not a control.",
+    "source_type": "html",
+    "theme": "security-governance",
+    "org": "Other",
+    "subtopic": "patterns",
+    "source_file": "hand-registered",
+    "occurrences": [
+      {
+        "theme": "security-governance",
+        "org": "Other",
+        "subtopic": "patterns"
+      }
+    ],
+    "dest_path": "security-governance/other/railway-pocketos-agent-database-deletion.md",
+    "content_sha1": "bdf3364c01aa7d61776fd30395cc461156495f19",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-28",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
     "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
     "canonical_url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html",
     "slug": "aws-bedrock-agentcore-managed-agent-runtime",
