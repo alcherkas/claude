@@ -12681,5 +12681,98 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/solution-ideas/articles/ai-agents-at-scale",
+    "canonical_url": "https://learn.microsoft.com/en-us/azure/architecture/solution-ideas/articles/ai-agents-at-scale",
+    "slug": "dynamic-ai-agents-at-scale-factory-pattern",
+    "org_slug": "microsoft-github",
+    "title": "Dynamic AI Agents at Scale: the agent factory pattern",
+    "annotation": "Microsoft's canonical agent factory pattern (Azure Architecture Center): name -> ready agent instance, add types without changing orchestration; scales to hundreds of agents via dynamic selection + a semantic-cache shortlist that keeps per-request token cost flat regardless of fleet size. (High-confidence, primary; design intent not benchmark.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Microsoft/GitHub",
+    "subtopic": "Patterns & Techniques",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Microsoft/GitHub",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/microsoft-github/dynamic-ai-agents-at-scale-factory-pattern.md",
+    "content_sha1": "c42c369cbf01f8f58e1811ee0b07f0a9cf07d123",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-29",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://docs.nvidia.com/ai-enterprise/planning-resource/ai-factory-white-paper/latest/agentic-ai-in-the-factory.html",
+    "canonical_url": "https://docs.nvidia.com/ai-enterprise/planning-resource/ai-factory-white-paper/latest/agentic-ai-in-the-factory.html",
+    "slug": "nvidia-ai-factory-agentops-long-running-agents",
+    "org_slug": "other",
+    "title": "NVIDIA Enterprise AI Factory: AgentOps & long-running-agent primitives",
+    "annotation": "NVIDIA's AI Factory white paper defines AgentOps (traces + logs + outcome metrics) and per-agent primitives \u2014 mountable /workspace, versioned SKILL.md skills, isolated sandboxes \u2014 bridging the data-center 'AI factory' sense with the agentic operating discipline. (High-confidence, primary.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Patterns & Techniques",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/other/nvidia-ai-factory-agentops-long-running-agents.md",
+    "content_sha1": "e9635ff4cab0316f101fb8bf30c53752ca52cd3e",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-29",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://cmr.berkeley.edu/2026/03/governing-the-agentic-enterprise-a-new-operating-model-for-autonomous-ai-at-scale/",
+    "canonical_url": "https://cmr.berkeley.edu/2026/03/governing-the-agentic-enterprise-a-new-operating-model-for-autonomous-ai-at-scale/",
+    "slug": "agentic-operating-model-governing-agentic-enterprise",
+    "org_slug": "other",
+    "title": "The Agentic Operating Model: governing autonomous AI at scale",
+    "annotation": "Berkeley CMR's Agentic Operating Model: a four-layer governance framework (Cognitive/Coordination/Control/Governance) with the HITL->HOTL supervision shift (confidence thresholds + guardrail agents) and per-agent owner/risk/decision-boundaries. The governance counterpart to the agent factory. (High-confidence content; proposed model, early adoption.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Patterns & Techniques",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/other/agentic-operating-model-governing-agentic-enterprise.md",
+    "content_sha1": "6fa3986004d0b34ababc4900d841d4319c8fed2a",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-29",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

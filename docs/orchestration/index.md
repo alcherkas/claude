@@ -197,6 +197,17 @@ The single-agent **harness loop** — restart a fresh agent each iteration and c
 
 > **Two misconceptions to avoid (refuted in verification):** Ralph is **not** an error-feedback loop that feeds its own output back to converge — it *discards* context each iteration; and it is **not** a fixed five-phase plan/implement/test/verify/PR pipeline (that's one tutorial's framing). Known limit: it struggles with tightly-coupled multi-file changes and deep codebases.
 
+### Agent factories & operating at scale (emerging)
+
+The meta-pattern for *producing and operating* agents at scale — distinct from building one orchestration or one loop. From a June 2026 research pass (the factory pattern + AgentOps primitives are high-confidence/primary; the enterprise operating-model framings are newer).
+
+- [The agent factory pattern](microsoft-github/dynamic-ai-agents-at-scale-factory-pattern.md) — Microsoft's creational pattern: **name → ready agent instance** (add types without changing orchestration logic), scaling to hundreds of agents via dynamic selection + a **semantic-cache shortlist that keeps per-request token cost flat regardless of fleet size**.
+- [NVIDIA AgentOps & per-agent primitives](other/nvidia-ai-factory-agentops-long-running-agents.md) — the operating discipline (traces + logs + outcome metrics) and the concrete primitives each long-running agent gets: mountable `/workspace`, versioned `SKILL.md` skills, isolated sandboxes.
+- [The Agentic Operating Model](other/agentic-operating-model-governing-agentic-enterprise.md) — Berkeley CMR's four-layer governance framework (Cognitive / Coordination / Control / Governance) and the **HITL → HOTL** shift (confidence thresholds + guardrail agents intervene selectively, not approve-everything).
+- Also: the "model/tools/prompt as templates → render per context → register ID → manage as fleet" articulation and Microsoft's [*Agent Factory* observability series](../evals-observability/microsoft-github/agent-factory-top-5-agent-observability-best-practices-for-reliable-ai.md) (filed under evals), plus the "humans steer, agents execute" operating-model shift (echoed by McKinsey/Deloitte; LinkedIn stood up a funded agent-platform team).
+
+> **Why now — and a caveat.** Gartner projects **>150,000 agents per Fortune 500 enterprise by 2028** (from <15 in 2025), with ungoverned **agent sprawl** risking misinformation, oversharing, and data loss — so the factory and its governance model are two halves of the same scale problem. *But "factory" is loosely used:* in verification, what survived was the *specific architecture/governance mechanisms* above; broader blog framings (every agent "reduces to model/tools/prompt," MCP-wired "specs/skills/feedback" engines, agents autonomously self-provisioning new agents) were **refuted**. The pattern is real; the buzzword is marketing.
+
 ### When NOT to use / failure modes
 - [Don't Build Multi-Agents](other/don-t-build-multi-agents.md) — Cognition's (Devin) case for single-threaded, continuous-context agents over multi-agent topologies for coding work. *(Vendor blog / opinion — backfill.)*
 - [Why Do Multi-Agent LLM Systems Fail?](other/why-do-multi-agent-llm-systems-fail.md) — the empirical **MAST** failure taxonomy (14 failure modes in 3 categories). *(arXiv preprint — backfill; early research.)*
