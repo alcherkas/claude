@@ -12619,5 +12619,67 @@
       "error": null
     },
     "also_in": []
+  },
+  {
+    "url": "https://ghuntley.com/ralph/",
+    "canonical_url": "https://ghuntley.com/ralph/",
+    "slug": "ralph-loop-fresh-context-agentic-coding",
+    "org_slug": "other",
+    "title": "The Ralph Loop: fresh-context agentic coding loop",
+    "annotation": "Geoffrey Huntley's Ralph Loop (Jul 2025): a bash loop restarts a fresh agent each iteration (clean context window), using git + progress.txt + prd.json as memory, one task per loop, agent-agnostic. The named mirror of Anthropic's long-running-agent harness. (High-confidence; not an error-feedback loop, not a 5-phase pipeline.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Patterns & Techniques",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/other/ralph-loop-fresh-context-agentic-coding.md",
+    "content_sha1": "92391a8d5bab33436917a4a64e0273578a2f91c4",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-29",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
+  },
+  {
+    "url": "https://addyosmani.com/blog/loop-engineering/",
+    "canonical_url": "https://addyosmani.com/blog/loop-engineering/",
+    "slug": "loop-engineering-paradigm",
+    "org_slug": "other",
+    "title": "Loop engineering: writing loops, not prompts",
+    "annotation": "Emerging 'loop engineering' paradigm (Addy Osmani; Boris Cherny 'I write loops, not prompts'): the unit of work becomes the loop (external context + dispatch + completion-check), with six building blocks mapped to Claude Code primitives, plus the maker-checker /goal pattern (separate Haiku verifier). (Medium; recent, June 2026.)",
+    "source_type": "html",
+    "theme": "orchestration",
+    "org": "Other",
+    "subtopic": "Patterns & Techniques",
+    "source_file": null,
+    "occurrences": [
+      {
+        "theme": "orchestration",
+        "org": "Other",
+        "subtopic": "Patterns & Techniques"
+      }
+    ],
+    "dest_path": "orchestration/other/loop-engineering-paradigm.md",
+    "content_sha1": "8febf3d13b0deb560d7a522b85a60461866c0c92",
+    "fetch": {
+      "status": "ok",
+      "http_status": 200,
+      "fetched_at": "2026-06-29",
+      "archived_path": null,
+      "wayback_url": null,
+      "error": null
+    },
+    "also_in": []
   }
 ]

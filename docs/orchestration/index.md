@@ -188,6 +188,15 @@ Named orchestration patterns, graded by how well they are evidenced. The first t
 - [Effective context engineering for AI agents](../context-engineering/anthropic/effective-context-engineering-for-ai-agents.md) — per-subagent **context isolation** (subagents return ~1–2K-token summaries), **compaction**, and **structured note-taking** as the three long-horizon levers.
 - [Effective harnesses for long-running agents](../context-engineering/anthropic/effective-harnesses-for-long-running-agents.md) — **durable/resumable execution** via git commits + a progress file to survive fresh context windows; compaction alone is shown to be insufficient.
 
+### Agentic loops (fresh-context / the Ralph Loop)
+
+The single-agent **harness loop** — restart a fresh agent each iteration and carry state in the filesystem/git rather than the conversation — as the unattended-work counterpart to multi-agent orchestration. From a June 2026 research pass (core mechanism high-confidence; the 2026 "loop engineering" framing is newer/medium).
+
+- [The Ralph Loop](other/ralph-loop-fresh-context-agentic-coding.md) — Geoffrey Huntley's named pattern (Jul 2025): a bash loop restarts a fresh agent each iteration (clean context window), one task per loop, **git + `progress.txt` + `prd.json` as memory**, agent-agnostic. The externally-originated mirror of Anthropic's [long-running-agent harness](../context-engineering/anthropic/effective-harnesses-for-long-running-agents.md) — both choose *fresh context over compaction* for long-horizon work.
+- [Loop engineering](other/loop-engineering-paradigm.md) — the generalization ("write loops, not prompts"): the unit of work becomes the loop (external context + dispatch + completion-check), plus the **maker-checker `/goal`** pattern (a separate, faster model verifies completion, since a model grading its own work over-reports success).
+
+> **Two misconceptions to avoid (refuted in verification):** Ralph is **not** an error-feedback loop that feeds its own output back to converge — it *discards* context each iteration; and it is **not** a fixed five-phase plan/implement/test/verify/PR pipeline (that's one tutorial's framing). Known limit: it struggles with tightly-coupled multi-file changes and deep codebases.
+
 ### When NOT to use / failure modes
 - [Don't Build Multi-Agents](other/don-t-build-multi-agents.md) — Cognition's (Devin) case for single-threaded, continuous-context agents over multi-agent topologies for coding work. *(Vendor blog / opinion — backfill.)*
 - [Why Do Multi-Agent LLM Systems Fail?](other/why-do-multi-agent-llm-systems-fail.md) — the empirical **MAST** failure taxonomy (14 failure modes in 3 categories). *(arXiv preprint — backfill; early research.)*
